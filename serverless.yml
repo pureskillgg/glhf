@@ -44,10 +44,4 @@ custom:
 package:
   individually: true
 
-functions:
-  todo:
-    handler: handlers/todo.default
-    events:
-      - http:
-          method: get
-          path: /todo
+functions: ${file(./serverless/functions.yml)}

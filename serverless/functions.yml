@@ -1,0 +1,7 @@
+---
+todo:
+  handler: handlers/todo.default
+  events:
+    - http:
+        method: get
+        path: /todo
