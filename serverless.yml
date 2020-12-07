@@ -9,6 +9,9 @@ plugins:
 
 provider:
   name: aws
+  tracing:
+    apiGateway: true
+    lambda: true
   runtime: nodejs12.x
   region: ${env:AWS_DEFAULT_REGION, 'us-east-1'}
   stage: ${opt:stage, env:SERVERLESS_STAGE, 'stg'}
