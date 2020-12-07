@@ -37,7 +37,10 @@ custom:
     includeModules:
       forceExclude:
         - aws-sdk
-
+    # TODO: Workaround for https://github.com/serverless-heaven/serverless-webpack/issues/306
+    packagerOptions:
+      scripts:
+        - rm -rf node_modules/aws-sdk
 package:
   individually: true
 
