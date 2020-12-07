@@ -93,4 +93,4 @@ jobs:
           SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
           SLACK_TITLE: Deployed ${{ github.event.inputs.environment }}${{ github.event.client_payload.environment }}
           SLACK_MESSAGE: ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
-          SLACK_FOOTER: ''
+          SLACK_FOOTER: ${{ github.repository }}
