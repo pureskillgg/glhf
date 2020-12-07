@@ -50,17 +50,19 @@ makenew () {
   echo 'There are no defaults.'
   echo 'Example values are shown in parentheses.'
   read -p '> Package title (My Package): ' mk_title
-  read -p '> Package name (@namespace/my-package): ' mk_slug
+  read -p '> Package name (my-package): ' mk_pkg
   read -p '> Short package description (Foos and bars.): ' mk_description
   read -p '> Author name (Linus Torvalds): ' mk_author
   read -p '> Author email (linus@example.com): ' mk_email
-  read -p '> GitHub user or organization name (my-user): ' mk_user
   read -p '> GitHub repository name (my-repo): ' mk_repo
   read -p '> Serverless stack name (my-stack): ' mk_stack
   read -p '> Domain name (example.com): ' mk_domain
 
-  sed_delete README.md '10,117d'
-  sed_insert README.md '10i' 'TODO'
+  mk_user="pureskillgg"
+  mk_slug="@pureskillgg/${mk_pkg}"
+
+  sed_delete README.md '9,116d'
+  sed_insert README.md '9i' 'TODO'
 
   find_replace "s/\"version\": \".*\"/\"version\": \"0.0.0\"/g"
   find_replace "s/0\.0\.0\.\.\./0.0.1.../g"
