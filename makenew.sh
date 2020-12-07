@@ -36,7 +36,7 @@ stage_env () {
   git branch --unset-upstream
   git remote rm origin
   echo
-  git rm -f pureskillgg.sh
+  git rm -f makenew.sh
   echo
   echo 'Staging changes.'
   git add --all
@@ -45,7 +45,7 @@ stage_env () {
   echo
 }
 
-pureskillgg () {
+makenew () {
   echo 'Answer all prompts.'
   echo 'There are no defaults.'
   echo 'Example values are shown in parentheses.'
@@ -79,6 +79,6 @@ pureskillgg () {
 }
 
 check_env 'git read sed xargs'
-pureskillgg
+makenew
 stage_env
 exit
