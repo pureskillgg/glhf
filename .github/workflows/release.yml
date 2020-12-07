@@ -71,4 +71,26 @@ jobs:
         if: ${{ github.event.inputs.environment == 'staging' || github.event.client_payload.environment == 'staging' }}
         env:
           SERVERLESS_STAGE: stg
+      - name: Get status
+        id: status
+        if: always()
+        run: |
+          if [ "${JOB_STATUS,,}" == 'success' ]; then
+            echo "::set-output name=color::#00ff00"
+          else
+            echo "::set-output name=color::#ff0000"
+          fi
+        env:
+          JOB_STATUS: ${{ job.status }}
+      - name: Notify Discord
+        uses: rtCamp/action-slack-notify@v2.1.1
+        if: always()
+        env:
+          SLACK_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}/slack
+          SLACK_USERNAME: PureSkill.gg Bot
+          SLACK_ICON_EMOJI: ':github:'
+          SLACK_COLOR: ${{ steps.status.outputs.color }}
+          SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          SLACK_TITLE: Deployed ${{ github.event_name }}${{ github.event.client_payload.ref }} to ${{ github.event.inputs.environment }}${{ github.event.client_payload.environment }}
+          SLACK_FOOTER: ''
 

@@ -227,6 +227,7 @@ The following repository secrets must be set on [GitHub Actions]:
 - `AWS_ACCESS_KEY_ID`: AWS access key ID.
 - `AWS_SECRET_ACCESS_KEY`: AWS secret access key.
 - `GH_TOKEN`: A personal access token that can trigger workflows.
+- `DISCORD_WEBHOOK`: The Discord webhook to notify on deploy.
 
 These must be set manually.
 
