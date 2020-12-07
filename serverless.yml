@@ -28,6 +28,10 @@ provider:
     NODE_ENV: production
 
 custom:
+  name: serverless-nodejs
+  app: makenew
+  owner: pureskillgg
+  ssmPrefix: /${self:custom.owner}/${self:custom.app}/${self:provider.stage}
   webpack:
     packager: yarn
     includeModules:
