@@ -1,6 +1,6 @@
 {
   "name": "@pureskillgg/glhf",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Code Lambda for fun and profit.",
   "main": "dist/index.js",
   "module": "index.js",
