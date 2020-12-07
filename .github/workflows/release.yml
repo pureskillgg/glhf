@@ -91,6 +91,7 @@ jobs:
           SLACK_ICON_EMOJI: ':github:'
           SLACK_COLOR: ${{ steps.status.outputs.color }}
           SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-          SLACK_TITLE: Deployed ${{ github.event_name }}${{ github.event.client_payload.ref }} to ${{ github.event.inputs.environment }}${{ github.event.client_payload.environment }}
-          SLACK_FOOTER: ''
+          SLACK_TITLE: Deployed to ${{ github.event.inputs.environment }}${{ github.event.client_payload.environment }}
+          SLACK_MESSAGE: ${{ github.event.client_payload.ref }}
+          SLACK_FOOTER: ${{ github.event_name }}
 
