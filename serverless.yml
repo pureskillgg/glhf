@@ -16,6 +16,7 @@ provider:
   region: ${env:AWS_DEFAULT_REGION, 'us-east-1'}
   stage: ${opt:stage, env:SERVERLESS_STAGE, 'stg'}
   logRetentionInDays: 7
+  memorySize: 512
   apiGateway:
     shouldStartNameWithService: true
   environment:
