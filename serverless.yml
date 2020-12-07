@@ -4,7 +4,6 @@ service: makenew-serverless-nodejs
 frameworkVersion: "^2.0.0"
 
 plugins:
-  - serverless-domain-manager
   - serverless-offline
   - serverless-webpack
 
@@ -20,11 +19,6 @@ provider:
     NODE_ENV: production
 
 custom:
-  domain: pureskillgg.razorx.app
-  customDomain:
-    domainName: ${self:provider.stage}.${self:service}.${self:custom.domain}
-    endpointType: regional
-    createRoute53Record: true
   webpack:
     packager: yarn
     includeModules:
