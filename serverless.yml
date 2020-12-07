@@ -24,8 +24,7 @@ provider:
     Deployment: ${self:provider.stage}
   apiGateway:
     shouldStartNameWithService: true
-  environment:
-    NODE_ENV: production
+  environment: ${file(./serverless/environment.yml)}
 
 custom:
   name: serverless-nodejs
