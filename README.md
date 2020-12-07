@@ -1,6 +1,5 @@
 # Serverless Node.js Project Skeleton
 
-[![npm](https://img.shields.io/npm/v/@pureskillgg/makenew-serverless-nodejs.svg)](https://www.npmjs.com/package/@pureskillgg/makenew-serverless-nodejs)
 ![main](https://github.com/pureskillgg/makenew-serverless-nodejs/workflows/main/badge.svg)
 
 Package skeleton for a Node.js Serverless project on AWS Lambda.
@@ -232,7 +231,6 @@ _GitHub Actions should already be configured: this section is for reference only
 
 The following repository secrets must be set on [GitHub Actions]:
 
-- `NPM_TOKEN`: npm token for installing and publishing packages.
 - `AWS_DEFAULT_REGION`: The AWS region Serverless will deploy to.
 - `AWS_ACCESS_KEY_ID`: AWS access key ID.
 - `AWS_SECRET_ACCESS_KEY`: AWS secret access key.
