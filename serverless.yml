@@ -24,6 +24,7 @@ provider:
     Deployment: ${self:provider.stage}
   apiGateway:
     shouldStartNameWithService: true
+  iamRoleStatements: ${file(./serverless/role.yml)}
   environment: ${file(./serverless/environment.yml)}
 
 custom:
