@@ -1,7 +1,7 @@
 # Serverless Node.js Project Skeleton
 
-[![npm](https://img.shields.io/npm/v/@makenew/serverless-nodejs.svg)](https://www.npmjs.com/package/@makenew/serverless-nodejs)
-![main](https://github.com/makenew/serverless-nodejs/workflows/main/badge.svg)
+[![npm](https://img.shields.io/npm/v/@pureskillgg/makenew-serverless-nodejs.svg)](https://www.npmjs.com/package/@pureskillgg/makenew-serverless-nodejs)
+![main](https://github.com/pureskillgg/makenew-serverless-nodejs/workflows/main/badge.svg)
 
 Package skeleton for a Node.js Serverless project on AWS Lambda.
 
@@ -50,7 +50,7 @@ Bootstrap a new Node.js Serverless project in five minutes or less.
 1. Create an empty (**non-initialized**) repository on GitHub.
 2. Clone the master branch of this repository with
    ```
-   $ git clone --single-branch git@github.com:makenew/serverless-nodejs.git <new-node-lib>
+   $ git clone --single-branch git@github.com:pureskillgg/makenew-serverless-nodejs.git <new-node-lib>
    $ cd <new-node-lib>
    ```
    Optionally, reset to the latest version with
@@ -59,7 +59,7 @@ Bootstrap a new Node.js Serverless project in five minutes or less.
    ```
 3. Run
    ```
-   $ ./makenew.sh
+   $ ./pureskillgg.sh
    ```
    This will replace the boilerplate, delete itself,
    remove the git remote, remove upstream tags,
@@ -68,7 +68,7 @@ Bootstrap a new Node.js Serverless project in five minutes or less.
 5. Review, commit, and push the changes to GitHub with
    ```
    $ git diff --cached
-   $ git commit -m "Replace makenew boilerplate"
+   $ git commit -m "Replace pureskillgg boilerplate"
    $ git remote add origin git@github.com:<user>/<new-node-lib>.git
    $ git push -u origin master
    ```
@@ -82,7 +82,7 @@ Bootstrap a new Node.js Serverless project in five minutes or less.
 7. Ensure a valid certificate exists in [AWS Certificate Manager]
    that matches the custom deployment domains,
    e.g., this project uses a wildcard certificate for
-   `*.serverless-nodejs.makenew.razorx.app`.
+   `*.makenew-serverless-nodejs.pureskillgg.razorx.app`.
    Then trigger a deploy to the test stage with
    ```
    $ yarn run release:test
@@ -98,7 +98,7 @@ you can fetch and merge in changes from this repository.
 Add this as a new remote with
 
 ```
-$ git remote add upstream git@github.com:makenew/serverless-nodejs.git
+$ git remote add upstream git@github.com:pureskillgg/makenew-serverless-nodejs.git
 ```
 
 You can then fetch and merge changes with
@@ -114,20 +114,20 @@ Note that `CHANGELOG.md` is just a template for this skeleton.
 The actual changes for this project are documented in the commit history
 and summarized under [Releases].
 
-[Releases]: https://github.com/makenew/serverless-nodejs/releases
+[Releases]: https://github.com/pureskillgg/makenew-serverless-nodejs/releases
 
 ## Installation
 
 Add this as a dependency to your project using [npm] with
 
 ```
-$ npm install @makenew/serverless-nodejs
+$ npm install @pureskillgg/makenew-serverless-nodejs
 ```
 
 or using [Yarn] with
 
 ```
-$ yarn add @makenew/serverless-nodejs
+$ yarn add @pureskillgg/makenew-serverless-nodejs
 ```
 
 [npm]: https://www.npmjs.com/
@@ -138,8 +138,8 @@ $ yarn add @makenew/serverless-nodejs
 ### Quickstart
 
 ```
-$ git clone https://github.com/makenew/serverless-nodejs.git
-$ cd serverless-nodejs
+$ git clone https://github.com/pureskillgg/makenew-serverless-nodejs.git
+$ cd makenew-serverless-nodejs
 $ nvm install
 $ yarn install
 ```
@@ -164,10 +164,10 @@ The [source code] is hosted on GitHub.
 Clone the project with
 
 ```
-$ git clone git@github.com:makenew/serverless-nodejs.git
+$ git clone git@github.com:pureskillgg/makenew-serverless-nodejs.git
 ```
 
-[source code]: https://github.com/makenew/serverless-nodejs
+[source code]: https://github.com/pureskillgg/makenew-serverless-nodejs
 
 ### Requirements
 
@@ -206,7 +206,7 @@ Publishing may be triggered using on the web
 using a [version workflow_dispatch on GitHub Actions].
 
 [npm-version]: https://docs.npmjs.com/cli/version
-[version workflow_dispatch on GitHub Actions]: https://github.com/makenew/serverless-nodejs/actions?query=workflow%3Aversion
+[version workflow_dispatch on GitHub Actions]: https://github.com/pureskillgg/makenew-serverless-nodejs/actions?query=workflow%3Aversion
 
 ### Deployment
 
@@ -224,7 +224,7 @@ Deployment may be triggered using on the web
 using a [release workflow_dispatch on GitHub Actions].
 
 [npm-version]: https://docs.npmjs.com/cli/version
-[release workflow_dispatch on GitHub Actions]: https://github.com/makenew/serverless-nodejs/actions?query=workflow%3Arelease
+[release workflow_dispatch on GitHub Actions]: https://github.com/pureskillgg/makenew-serverless-nodejs/actions?query=workflow%3Arelease
 
 ## GitHub Actions
 
@@ -262,7 +262,7 @@ Please submit and comment on bug reports and feature requests.
 
 To submit a patch:
 
-1. Fork it (https://github.com/makenew/serverless-nodejs/fork).
+1. Fork it (https://github.com/pureskillgg/makenew-serverless-nodejs/fork).
 2. Create your feature branch (`git checkout -b my-new-feature`).
 3. Make changes.
 4. Commit your changes (`git commit -am 'Add some feature'`).

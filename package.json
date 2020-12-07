@@ -1,5 +1,5 @@
 {
-  "name": "@makenew/serverless-nodejs",
+  "name": "@pureskillgg/makenew-serverless-nodejs",
   "version": "5.1.0",
   "description": "Package skeleton for a Node.js Serverless project on AWS Lambda.",
   "main": "dist/index.js",
@@ -8,9 +8,9 @@
   "keywords": [
     "node"
   ],
-  "homepage": "https://github.com/makenew/serverless-nodejs",
-  "bugs": "https://github.com/makenew/serverless-nodejs/issues",
-  "repository": "makenew/serverless-nodejs",
+  "homepage": "https://github.com/pureskillgg/makenew-serverless-nodejs",
+  "bugs": "https://github.com/pureskillgg/makenew-serverless-nodejs/issues",
+  "repository": "pureskillgg/makenew-serverless-nodejs",
   "license": "MIT",
   "author": {
     "name": "Evan Sosenko",
