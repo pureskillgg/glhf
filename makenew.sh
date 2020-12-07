@@ -55,7 +55,8 @@ makenew () {
   read -p '> Author name (Linus Torvalds): ' mk_author
   read -p '> Author email (linus@example.com): ' mk_email
   read -p '> GitHub repository name (my-repo): ' mk_repo
-  read -p '> Serverless stack name (my-stack): ' mk_stack
+  read -p '> Serverless stack prefix (my-prefix): ' mk_app
+  read -p '> Serverless stack name (my-app): ' mk_name
 
   mk_user="pureskillgg"
   mk_slug="@pureskillgg/${mk_pkg}"
@@ -72,7 +73,9 @@ makenew () {
   find_replace "s|makenew-serverless-nodejs|___makenew-serverless-nodejs|g"
   find_replace "s|@pureskillgg/___makenew-serverless-nodejs|${mk_slug}|g"
   find_replace "s|pureskillgg/___makenew-serverless-nodejs|${mk_user}/${mk_repo}|g"
-  find_replace "s|___makenew-serverless-nodejs|${mk_stack}|g"
+  find_replace "s|___makenew-serverless-nodejs|${mk_app}-${mk_name}|g"
+  find_replace "s|app: makenew|app: ${mk_app}|g"
+  find_replace "s|name: serverless-nodejs|name: ${mk_name}|g"
 
   echo
   echo 'Replacing boilerplate.'
