@@ -1,16 +1,16 @@
 {
-  "name": "@pureskillgg/makenew-serverless-nodejs",
-  "version": "1.0.2",
-  "description": "Package skeleton for a Node.js Serverless project on AWS Lambda.",
+  "name": "@pureskillgg/glhf",
+  "version": "0.0.0",
+  "description": "Code Lambda for fun and profit.",
   "main": "dist/index.js",
   "module": "index.js",
   "sideEffects": false,
   "keywords": [
     "node"
   ],
-  "homepage": "https://github.com/pureskillgg/makenew-serverless-nodejs",
-  "bugs": "https://github.com/pureskillgg/makenew-serverless-nodejs/issues",
-  "repository": "pureskillgg/makenew-serverless-nodejs",
+  "homepage": "https://github.com/pureskillgg/glhf",
+  "bugs": "https://github.com/pureskillgg/glhf/issues",
+  "repository": "pureskillgg/glhf",
   "license": "SEE LICENSE IN LICENSE.txt",
   "author": {
     "name": "Evan Sosenko",

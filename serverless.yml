@@ -1,5 +1,5 @@
 ---
-service: makenew-serverless-nodejs
+service: glhf
 
 frameworkVersion: "^2.0.0"
 
@@ -28,8 +28,8 @@ provider:
   environment: ${file(./serverless/environment.yml)}
 
 custom:
-  name: serverless-nodejs
-  app: makenew
+  name: glhf
+  app: glfh
   owner: pureskillgg
   ssmPrefix: /${self:custom.owner}/${self:custom.app}/${self:provider.stage}
   webpack:
