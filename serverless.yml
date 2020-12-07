@@ -17,6 +17,11 @@ provider:
   stage: ${opt:stage, env:SERVERLESS_STAGE, 'stg'}
   logRetentionInDays: 7
   memorySize: 512
+  stackTags:
+    Owner: ${self:custom.owner}
+    Project: ${self:custom.app}
+    Name: ${self:custom.name}
+    Deployment: ${self:provider.stage}
   apiGateway:
     shouldStartNameWithService: true
   environment:
