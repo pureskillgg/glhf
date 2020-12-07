@@ -15,7 +15,7 @@ provider:
   runtime: nodejs12.x
   region: ${env:AWS_DEFAULT_REGION, 'us-east-1'}
   stage: ${opt:stage, env:SERVERLESS_STAGE, 'stg'}
-  logRetentionInDays: 30
+  logRetentionInDays: 7
   apiGateway:
     shouldStartNameWithService: true
   environment:
