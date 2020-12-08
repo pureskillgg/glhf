@@ -33,6 +33,7 @@ custom:
   owner: pureskillgg
   ssmPrefix: /${self:custom.owner}/${self:custom.app}/${self:provider.stage}
   webpack:
+    webpackConfig: webpack.config.cjs
     packager: yarn
     includeModules:
       forceExclude:
