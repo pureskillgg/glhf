@@ -2,7 +2,12 @@
   "name": "@pureskillgg/glhf",
   "version": "0.0.2",
   "description": "Code Lambda for fun and profit.",
-  "main": "dist/index.js",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "exports": {
+    "import": "./index.js",
+    "require": "./dist/index.cjs"
+  },
   "module": "index.js",
   "sideEffects": false,
   "keywords": [
