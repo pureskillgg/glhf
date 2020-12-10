@@ -165,6 +165,13 @@ To submit a patch:
 
 This Serverless project is Copyright (c) 2019-2021 FPS Critic, Inc.
 
+Portions of code in this Serverless project were taken and adapted from
+[@meltwater/jackalambda] which is licensed under the
+[included MIT license][./MIT-LICENSE.txt].
+The derived code is Copyright (c) 2019-2021 FPS Critic, Inc.
+
+[@meltwater/jackalambda]: https://github.com/meltwater/jackalambda
+
 ## Warranty
 
 This software is provided by the copyright holders and contributors "as is" and
