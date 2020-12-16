@@ -1,4 +1,4 @@
-# Good Lambda Have Fun
+# Good Lambda Have Function
 
 ![main](https://github.com/pureskillgg/glhf/workflows/main/badge.svg)
 
