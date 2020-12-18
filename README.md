@@ -10,7 +10,7 @@ Bootstrap a new Node.js Serverless project in five minutes or less.
 
 ### Features
 
-- Deploy to [AWS Lambda] under a with [Serverless].
+- Deploy to [AWS Lambda] with [Serverless].
 - [Node.js]'s [npm] package structure.
 - Fast, reliable, and secure dependency management with [Yarn].
 - Next generation JavaScript with [Babel].
