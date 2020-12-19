@@ -39,10 +39,11 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.GPG_PASSPHRASE }}
       - name: Setup Node.js
-        uses: actions/setup-node@v2-beta
+        uses: actions/setup-node@v2
         with:
           node-version: '14'
           registry-url: https://npm.pkg.github.com
+          scope: '@${{ github.repository_owner }}'
       - name: Get yarn cache directory
         id: yarn-cache-dir
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -63,6 +64,6 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile --non-interactive
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Cut version
         run: npm version ${{ github.event.inputs.version }}
