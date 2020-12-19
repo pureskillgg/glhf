@@ -45,7 +45,7 @@ jobs:
       - name: Build
         run: yarn run build
       - name: Publish
-        run: npm publish --access private
+        run: npm publish --access restricted
         if: ${{ endsWith(github.ref, format('v{0}', steps.published-version.outputs.version)) == false }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
