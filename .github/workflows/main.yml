@@ -21,6 +21,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           registry-url: https://npm.pkg.github.com
+          scope: '@${{ github.repository_owner }}'
       - name: Get yarn cache directory
         id: yarn-cache-dir
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -41,7 +42,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile --non-interactive
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Test
         run: yarn test
   lint:
@@ -59,6 +60,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           registry-url: https://npm.pkg.github.com
+          scope: '@${{ github.repository_owner }}'
       - name: Get yarn cache directory
         id: yarn-cache-dir
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -79,7 +81,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile --non-interactive
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Lint
         run: yarn run lint
   build:
@@ -97,6 +99,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           registry-url: https://npm.pkg.github.com
+          scope: '@${{ github.repository_owner }}'
       - name: Get yarn cache directory
         id: yarn-cache-dir
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -117,7 +120,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile --non-interactive
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Build
         run: yarn run build
   serverless:
@@ -135,6 +138,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           registry-url: https://npm.pkg.github.com
+          scope: '@${{ github.repository_owner }}'
       - name: Get yarn cache directory
         id: yarn-cache-dir
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -155,6 +159,6 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile --non-interactive
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Serverless package
         run: yarn run sls:package
