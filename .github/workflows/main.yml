@@ -7,7 +7,7 @@ on:
       - '**'
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         node:
@@ -46,7 +46,7 @@ jobs:
       - name: Test
         run: yarn test
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         node:
@@ -85,7 +85,7 @@ jobs:
       - name: Lint
         run: yarn run lint
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         node:
@@ -124,7 +124,7 @@ jobs:
       - name: Build
         run: yarn run build
   serverless:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         node:
