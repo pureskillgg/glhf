@@ -6,6 +6,9 @@ on:
     inputs:
       version:
         description: Version to cut
+  repository_dispatch:
+    types:
+      - version
 
 jobs:
   release:
@@ -66,4 +69,4 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Cut version
-        run: npm version ${{ github.event.inputs.version }}
+        run: npm version ${{ github.event.inputs.version }}${{ github.event.client_payload.version }}
