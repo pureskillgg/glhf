@@ -48,6 +48,7 @@
     "build:spec:index": "babel --source-maps --out-file-extension .cjs --out-dir .dist index.js",
     "build:spec:lib": "babel --source-maps --out-file-extension .cjs --out-dir .dist/lib lib",
     "build:spec:handlers": "babel --source-maps --out-file-extension .cjs --out-dir .dist/handlers handlers",
+    "build:spec:test": "babel --source-maps --out-file-extension .cjs --out-dir .dist/test test",
     "preversion": "npm-run-all --parallel lint test build sls:package",
     "postversion": "git push --follow-tags",
     "sls:package": "serverless package",
