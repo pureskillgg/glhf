@@ -1,6 +1,10 @@
 {
   "plugins": [
-    ["add-import-extension", { "extension": "cjs", "replace": true }]
+    [
+      "babel-plugin-add-import-extension",
+      { "extension": "cjs", "replace": true }
+    ],
+    ["@babel/plugin-syntax-class-properties"]
   ],
   "presets": [
     [
