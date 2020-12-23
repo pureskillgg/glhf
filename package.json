@@ -70,10 +70,8 @@
   "resolutions": {
     "aws-sdk": "2.771.0"
   },
-  "peerDependencies": {
-    "@pureskillgg/ace": "^0.0.2"
-  },
   "dependencies": {
+    "@pureskillgg/ace": "^0.0.2",
     "aws-sdk": "2.771.0",
     "source-map-support": "^0.5.9"
   },
@@ -86,7 +84,6 @@
     "@babel/plugin-syntax-class-properties": "^7.12.1",
     "@babel/preset-env": "^7.0.0",
     "@meltwater/examplr": "^5.0.1",
-    "@pureskillgg/ace": "^0.0.2",
     "ava": "^3.3.0",
     "babel-loader": "^8.0.4",
     "babel-plugin-add-import-extension": "^1.4.3",
