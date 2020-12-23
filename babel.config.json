@@ -4,7 +4,6 @@
       "babel-plugin-add-import-extension",
       { "extension": "cjs", "replace": true }
     ],
-    ["@babel/plugin-proposal-optional-chaining"],
     ["@babel/plugin-syntax-class-properties"]
   ],
   "presets": [
