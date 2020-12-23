@@ -1247,7 +1247,7 @@
   resolved "https://registry.yarnpkg.com/@kwsites/promise-deferred/-/promise-deferred-1.1.1.tgz#8ace5259254426ccef57f3175bc64ed7095ed919"
   integrity sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==
 
-"@meltwater/examplr@^5.0.1":
+"@meltwater/examplr@^5.0.0", "@meltwater/examplr@^5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@meltwater/examplr/-/examplr-5.0.1.tgz#a2853438e20e5a822505d2ddb4a547fb2ba175a3"
   integrity sha512-oSQ3Q0NJg261Su9WZjPPm3KmRE/q71M3l/G24q20sMxrnZQVZZnIVgJgOr/6oPLKzpbL411FXsHcNUhNYCxbrg==
@@ -1256,6 +1256,24 @@
     change-case "^4.1.1"
     pino "^6.3.2"
     pino-pretty "^4.0.0"
+
+"@meltwater/mlabs-logger@^7.0.1":
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/@meltwater/mlabs-logger/-/mlabs-logger-7.0.1.tgz#93f22e17dda419d853d6700669645f88b1f5b329"
+  integrity sha512-X0CcokwJu56DKyUcXiw6N9V/CymN8vFCIy2QJ3A0lb+Fiv9sHahBpBk7hGghA03L5WLi0OCSV+7BfvN3zQ7MwA==
+  dependencies:
+    "@meltwater/examplr" "^5.0.0"
+    bunyan-formatter "^1.0.0"
+    debug "^4.0.1"
+    pino "^6.3.2"
+
+"@meltwater/phi@^3.10.0":
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/@meltwater/phi/-/phi-3.10.0.tgz#d05a9235ed1d79ee727f683c3699a97558d592a6"
+  integrity sha512-ojMaSpdD3L5uBJ8PaLcEr//RGjh0R10BDelWYewEDuCXNHbdQFvapkH9kSBvclobror0kFbrYwKFlvUg7R5vnw==
+  dependencies:
+    ramda "~0.27.1"
+    ramda-adjunct "~2.29.0"
 
 "@nicolo-ribaudo/chokidar-2@2.1.8-no-fsevents":
   version "2.1.8-no-fsevents"
@@ -1348,10 +1366,15 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@pureskillgg/ace@^0.0.2":
-  version "0.0.2"
-  resolved "https://npm.pkg.github.com/download/@pureskillgg/ace/0.0.2/6edd6c734b25c4dcc50094274c769e7cf44f87518b65c649b552c92061c7ddc8#e2bab124c8cd71ff34d13c8b8b709d07079a5a01"
-  integrity sha512-uFavNapq6LksAKPODjxXUSB1wCNjlqROOo+VzzCUHBWmuf1ghz/N+WXParCUzaw8Jjg3izONsbA86cUf6wza0g==
+"@pureskillgg/ace@^0.2.0":
+  version "0.2.0"
+  resolved "https://npm.pkg.github.com/download/@pureskillgg/ace/0.2.0/9fb47e54c27cc116a27ef0be148c4f8c149e4000225830a4660edc800ea3c877#ef42726b5543ca941b60c9256e4e5a652a0881f4"
+  integrity sha512-3Bnn3rgefprju1d28Vwoy0dhlJ+iHXZQyasE3G2Bsta0pnZDOhQ2+j/a68BFmIH+SfHmL35g03p7Pd43wK2n7w==
+  dependencies:
+    "@meltwater/mlabs-logger" "^7.0.1"
+    "@meltwater/phi" "^3.10.0"
+    aws-sdk "^2.814.0"
+    cache-manager "^3.4.0"
 
 "@serverless/cli@^1.5.2":
   version "1.5.2"
@@ -2332,7 +2355,7 @@ ava@^3.3.0:
     write-file-atomic "^3.0.3"
     yargs "^16.2.0"
 
-aws-sdk@2.771.0, aws-sdk@^2.624.0, aws-sdk@^2.815.0:
+aws-sdk@2.771.0, aws-sdk@^2.624.0, aws-sdk@^2.814.0, aws-sdk@^2.815.0:
   version "2.771.0"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.771.0.tgz#ff4beb0a04d6ab1ae962c85dfb42e3e9bfe2b93b"
   integrity sha512-fqNGusCwkdemx3yFqvQbU1+xq/PB2wGq7EQIrrTZx/zxfXUp+7+PnrHzXtViCRghN0tylLghBfWYD4VcVcqi7g==
@@ -2664,6 +2687,15 @@ cache-base@^1.0.1:
     to-object-path "^0.3.0"
     union-value "^1.0.0"
     unset-value "^1.0.0"
+
+cache-manager@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-3.4.0.tgz#6f352fa1ee95709878e3474e9ed8489ef751bba3"
+  integrity sha512-+WtL5sKHGngtnzTHNFA6+gC0wjpAAUmwmprXOSeaCBOkohM8Nh7GvV8fC90NFrDh7m3i87AshGd39/yYbWNtWA==
+  dependencies:
+    async "^3.2.0"
+    lodash "^4.17.20"
+    lru-cache "6.0.0"
 
 cacheable-lookup@^5.0.3:
   version "5.0.4"
@@ -6339,7 +6371,7 @@ lowercase-keys@^2.0.0:
   resolved "https://registry.yarnpkg.com/lowercase-keys/-/lowercase-keys-2.0.0.tgz#2603e78b7b4b0006cbca2fbcc8a3202558ac9479"
   integrity sha512-tqNXrS78oMOE73NMxK4EMLQsQowWf8jKooH9g7xPavRT706R6bkQJ6DY2Te7QukaZsulxa30wQ7bk0pm4XiHmA==
 
-lru-cache@^6.0.0:
+lru-cache@6.0.0, lru-cache@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-6.0.0.tgz#6d6fe6570ebd96aaf90fcad1dafa3b2566db3a94"
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
@@ -7777,6 +7809,11 @@ quick-lru@^5.1.1:
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-5.1.1.tgz#366493e6b3e42a3a6885e2e99d18f80fb7a8c932"
   integrity sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==
 
+ramda-adjunct@~2.29.0:
+  version "2.29.0"
+  resolved "https://registry.yarnpkg.com/ramda-adjunct/-/ramda-adjunct-2.29.0.tgz#64925507686561e2d64ecbb1d8e4dacf39972c22"
+  integrity sha512-hhpy/Uo4J0dePqNvLadtUuk/1ns95YC9cZARJUgak1o3JSAAkdalVrniX7eQPtcUQDp5LYO3Jx58WbqBJYA+aA==
+
 ramda@^0.25.0:
   version "0.25.0"
   resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.25.0.tgz#8fdf68231cffa90bc2f9460390a0cb74a29b29a9"
@@ -7787,7 +7824,7 @@ ramda@^0.26.1:
   resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.26.1.tgz#8d41351eb8111c55353617fc3bbffad8e4d35d06"
   integrity sha512-hLWjpy7EnsDBb0p+Z3B7rPi3GDeRG5ZtiI33kJhTt+ORCd38AbAIjB/9zRIUoeTbE/AVX5ZkU7m6bznsvrf8eQ==
 
-ramda@^0.27.1:
+ramda@^0.27.1, ramda@~0.27.1:
   version "0.27.1"
   resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.27.1.tgz#66fc2df3ef873874ffc2da6aa8984658abacf5c9"
   integrity sha512-PgIdVpn5y5Yns8vqb8FzBUEYn98V3xcPgawAkkgj0YJ0qDsnHCiNmZYfOGMgOvoB0eWFLpYbhxUR3mxfDIMvpw==
