@@ -1247,16 +1247,6 @@
   resolved "https://registry.yarnpkg.com/@kwsites/promise-deferred/-/promise-deferred-1.1.1.tgz#8ace5259254426ccef57f3175bc64ed7095ed919"
   integrity sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==
 
-"@meltwater/examplr@^5.0.0":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@meltwater/examplr/-/examplr-5.0.1.tgz#a2853438e20e5a822505d2ddb4a547fb2ba175a3"
-  integrity sha512-oSQ3Q0NJg261Su9WZjPPm3KmRE/q71M3l/G24q20sMxrnZQVZZnIVgJgOr/6oPLKzpbL411FXsHcNUhNYCxbrg==
-  dependencies:
-    bunyan-formatter "^1.0.0"
-    change-case "^4.1.1"
-    pino "^6.3.2"
-    pino-pretty "^4.0.0"
-
 "@meltwater/examplr@^6.0.0":
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/@meltwater/examplr/-/examplr-6.0.0.tgz#fe21f2fccf596194d68e232836827c10f90d3cb1"
@@ -1267,20 +1257,20 @@
     pino "^6.3.2"
     pino-pretty "^4.0.0"
 
-"@meltwater/mlabs-logger@^7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@meltwater/mlabs-logger/-/mlabs-logger-7.0.1.tgz#93f22e17dda419d853d6700669645f88b1f5b329"
-  integrity sha512-X0CcokwJu56DKyUcXiw6N9V/CymN8vFCIy2QJ3A0lb+Fiv9sHahBpBk7hGghA03L5WLi0OCSV+7BfvN3zQ7MwA==
+"@meltwater/mlabs-logger@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@meltwater/mlabs-logger/-/mlabs-logger-8.0.0.tgz#8f854935d5cb896e8ec74f38630bfc3caf0d5aa8"
+  integrity sha512-OHQJr/gQhojLNWLE0hAUnavRVzUYhezfFXdIa/+isjXfVH9ktjw4TsHnSE+j8j11kOdGEjD6mdXvUbVHLqaoYw==
   dependencies:
-    "@meltwater/examplr" "^5.0.0"
+    "@meltwater/examplr" "^6.0.0"
     bunyan-formatter "^1.0.0"
     debug "^4.0.1"
     pino "^6.3.2"
 
-"@meltwater/phi@^3.10.0":
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/@meltwater/phi/-/phi-3.10.0.tgz#d05a9235ed1d79ee727f683c3699a97558d592a6"
-  integrity sha512-ojMaSpdD3L5uBJ8PaLcEr//RGjh0R10BDelWYewEDuCXNHbdQFvapkH9kSBvclobror0kFbrYwKFlvUg7R5vnw==
+"@meltwater/phi@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@meltwater/phi/-/phi-4.0.0.tgz#c8b3956e9eeb9343a67ddec17168386216351b5f"
+  integrity sha512-1Sdtxz5KTR0q3ikehWJcxdYYx2Cw7UYXBDdinVKJnKIETXoTu42aG8f/FMrBFVye9eP8Ny5B9ooESY8J2F2KhQ==
   dependencies:
     ramda "~0.27.1"
     ramda-adjunct "~2.29.0"
@@ -1376,13 +1366,13 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@pureskillgg/ace@^0.2.0":
-  version "0.2.0"
-  resolved "https://npm.pkg.github.com/download/@pureskillgg/ace/0.2.0/9fb47e54c27cc116a27ef0be148c4f8c149e4000225830a4660edc800ea3c877#ef42726b5543ca941b60c9256e4e5a652a0881f4"
-  integrity sha512-3Bnn3rgefprju1d28Vwoy0dhlJ+iHXZQyasE3G2Bsta0pnZDOhQ2+j/a68BFmIH+SfHmL35g03p7Pd43wK2n7w==
+"@pureskillgg/ace@^0.3.1":
+  version "0.3.1"
+  resolved "https://npm.pkg.github.com/download/@pureskillgg/ace/0.3.1/a3b0447832fbd0ee956f052bf355685238be0f02f3375e514fde03a5876b878c#5fccbe6ddb2d8e667fd913c6090746379a04e0cf"
+  integrity sha512-Bo3oVu/SPihzvFECM655/y//2RctZ4RPzAQ++gon/Xz3VsitELNav/dNrBnW8I+waucf51R2PQWFJ2O3VujkLQ==
   dependencies:
-    "@meltwater/mlabs-logger" "^7.0.1"
-    "@meltwater/phi" "^3.10.0"
+    "@meltwater/mlabs-logger" "^8.0.0"
+    "@meltwater/phi" "^4.0.0"
     aws-sdk "^2.814.0"
     cache-manager "^3.4.0"
 
