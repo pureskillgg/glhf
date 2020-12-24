@@ -42,6 +42,17 @@ custom:
     packagerOptions:
       scripts:
         - rm -rf node_modules/aws-sdk
+        - |
+          if [ -f "node_modules/uuid/bin/uuid" ]; then
+            rm -f ./node_modules/.bin/uuid
+            ln -rs node_modules/uuid/bin/uuid node_modules/.bin/uuid
+          fi
+        - |
+          if [ -f "node_modules/uuid/dist/bin/uuid" ]; then
+            rm -f ./node_modules/.bin/uuid
+            ln -rs node_modules/uuid/dist/bin/uuid node_modules/.bin/uuid
+          fi
+
 package:
   individually: true
 
