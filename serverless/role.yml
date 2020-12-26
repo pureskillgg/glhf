@@ -1,7 +1,7 @@
 ---
 - Effect: Allow
   Action:
-    - 'ssm:GetParameters'
+    - 'ssm:GetParameter'
   Resource:
     - 'Fn::Join':
         - ':'
