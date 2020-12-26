@@ -72,9 +72,14 @@
     "aws-sdk": "2.771.0"
   },
   "dependencies": {
+    "@meltwater/mlabs-logger": "^8.0.0",
+    "@meltwater/phi": "^4.0.0",
     "@pureskillgg/ace": "^0.3.1",
     "aws-sdk": "2.771.0",
-    "source-map-support": "^0.5.9"
+    "aws-xray-sdk": "^3.2.0",
+    "cache-manager": "^3.4.0",
+    "source-map-support": "^0.5.9",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@ava/babel": "^1.0.1",
