@@ -1,4 +1,4 @@
-import { getConfig, ssmString } from '@meltwater/ace'
+import { getConfig, ssmString } from '@pureskillgg/ace'
 
 const parameters = {
   blueLambdaArn: ssmString('BLUE_LAMBDA_ARN_SSM_PATH')
