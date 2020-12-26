@@ -57,3 +57,6 @@ package:
   individually: true
 
 functions: ${file(./serverless/functions.yml)}
+
+resources:
+  Resources: ${file(./serverless/resources.yml)}
