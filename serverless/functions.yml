@@ -1,7 +1,6 @@
 ---
-todo:
-  handler: handlers/todo.default
-  events:
-    - http:
-        method: get
-        path: /todo
+red:
+  handler: handlers/red.default
+
+blue:
+  handler: handlers/blue.default
