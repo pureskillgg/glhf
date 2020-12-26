@@ -1,6 +1,6 @@
 {
   "name": "@pureskillgg/glhf",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Code Lambda for fun and profit.",
   "type": "module",
   "main": "dist/index.cjs",
