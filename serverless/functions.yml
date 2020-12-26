@@ -2,7 +2,7 @@
 red:
   handler: handlers/red.default
   environment:
-    BLUE_LAMBDA_ARN_SSM_PATH: ${self:custom.ssmPrefix}/blue_lambda_arn
+    BLUE_LAMBDA_FUNCTION_SSM_PATH: ${self:custom.ssmPrefix}/blue_lambda_function
 
 blue:
   handler: handlers/blue.default

@@ -1,7 +1,7 @@
 ---
-BlueLambdaArnSsmParameter:
+BlueLambdaFunctionSsmParameter:
   Type: AWS::SSM::Parameter
   Properties:
-    Name: ${self:custom.ssmPrefix}/blue_lambda_arn
+    Name: ${self:custom.ssmPrefix}/blue_lambda_function
     Type: String
     Value: { Ref: 'BlueLambdaFunction' }

@@ -1,7 +1,7 @@
 import { getConfig, ssmString } from '@pureskillgg/ace'
 
 const parameters = {
-  blueLambdaArn: ssmString('BLUE_LAMBDA_ARN_SSM_PATH')
+  blueLambdaFunction: ssmString('BLUE_LAMBDA_FUNCTION_SSM_PATH')
 }
 
 export default async () => {
