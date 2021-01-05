@@ -4,7 +4,13 @@ name: main
 on:
   push:
     branches:
-      - '**'
+      - master
+      - 'ver/**'
+  pull_request:
+    branches:
+      - master
+      - 'ver/**'
+
 jobs:
   test:
     runs-on: ubuntu-20.04
