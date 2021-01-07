@@ -21,9 +21,6 @@ examples/local.json
 .tern-project
 .tern-port
 
-# npm config
-.npmrc
-
 # Temporary development files
 tmp
 
