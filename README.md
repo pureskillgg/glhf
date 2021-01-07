@@ -1,6 +1,6 @@
 # Serverless Node.js Project Skeleton
 
-![main](https://github.com/pureskillgg/makenew-serverless-nodejs/workflows/main/badge.svg)
+[![GitHub Actions](https://github.com/pureskillgg/makenew-serverless-nodejs/workflows/main/badge.svg)](https://github.com/pureskillgg/makenew-serverless-nodejs/actions)
 
 Package skeleton for a Node.js Serverless project on AWS Lambda.
 
@@ -240,12 +240,12 @@ including access to trigger workflows and read and write packages.
 
 Set these additional secrets to enable the action:
 
-- `GH_TOKEN`: A personal access token for the user.
 - `GH_USER`: The GitHub user's username.
+- `GH_TOKEN`: A personal access token for the user.
 - `GIT_USER_NAME`: The GitHub user's real name.
 - `GIT_USER_EMAIL`: The GitHub user's email.
-- `GPG_PASSPHRASE`: The GitHub user's GPG passphrase.
 - `GPG_PRIVATE_KEY`: The GitHub user's [GPG private key].
+- `GPG_PASSPHRASE`: The GitHub user's GPG passphrase.
 
 [GitHub Actions]: https://github.com/features/actions
 [GPG private key]: https://github.com/marketplace/actions/import-gpg#prerequisites
