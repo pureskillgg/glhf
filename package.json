@@ -18,8 +18,8 @@
   "repository": "pureskillgg/makenew-serverless-nodejs",
   "license": "SEE LICENSE IN LICENSE.txt",
   "author": {
-    "name": "Evan Sosenko",
-    "email": "evan@pureskill.gg"
+    "name": "PureSkill.gg",
+    "email": "secure@pureskill.gg"
   },
   "files": [
     "yarn.lock",

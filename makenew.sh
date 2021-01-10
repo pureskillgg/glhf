@@ -52,8 +52,6 @@ makenew () {
   read -p '> Package title (My Package): ' mk_title
   read -p '> Package name (my-package): ' mk_pkg
   read -p '> Short package description (Foos and bars.): ' mk_description
-  read -p '> Author name (Linus Torvalds): ' mk_author
-  read -p '> Author email (linus@example.com): ' mk_email
   read -p '> GitHub repository name (my-repo): ' mk_repo
   read -p '> Serverless stack prefix (my-prefix): ' mk_app
   read -p '> Serverless stack name (my-app): ' mk_name
@@ -68,8 +66,6 @@ makenew () {
   find_replace "s/0\.0\.0\.\.\./0.0.1.../g"
   find_replace "s/Serverless Node.js Project Skeleton/${mk_title}/g"
   find_replace "s/Package skeleton for a Node.js Serverless project on AWS Lambda\./${mk_description}/g"
-  find_replace "s/Evan Sosenko/${mk_author}/g"
-  find_replace "s/evan@pureskill\.gg/${mk_email}/g"
   find_replace "s|makenew-serverless-nodejs|___makenew-serverless-nodejs|g"
   find_replace "s|@pureskillgg/___makenew-serverless-nodejs|${mk_slug}|g"
   find_replace "s|pureskillgg/___makenew-serverless-nodejs|${mk_user}/${mk_repo}|g"
