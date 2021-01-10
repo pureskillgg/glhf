@@ -1,6 +1,6 @@
 # Good Lambda Have Function
 
-![main](https://github.com/pureskillgg/glhf/workflows/main/badge.svg)
+[![GitHub Actions](https://github.com/pureskillgg/glfh/workflows/main/badge.svg)](https://github.com/pureskillgg/glfh/actions)
 
 Code Lambda for fun and profit.
 
@@ -133,18 +133,20 @@ The following repository secrets must be set on [GitHub Actions]:
 
 These must be set manually.
 
-### Secrets for GitHub Action to Cut Version (Optional)
+### Secrets for Optional GitHub Actions
 
-The version GitHub action requires a user with write access to the repository
+The version and format GitHub actions
+require a user with write access to the repository.
 including access to trigger workflows and read and write packages.
+
 Set these additional secrets to enable the action:
 
+- `GH_USER`: The GitHub user's username.
 - `GH_TOKEN`: A personal access token for the user.
-- `GH_USER`: The Github user's username.
-- `GIT_USER_NAME`: The Github user's real name.
-- `GIT_USER_EMAIL`: The Github user's email.
-- `GPG_PASSPHRASE`: The Github user's GPG passphrase.
-- `GPG_PRIVATE_KEY`: The Github user's [GPG private key].
+- `GIT_USER_NAME`: The GitHub user's real name.
+- `GIT_USER_EMAIL`: The GitHub user's email.
+- `GPG_PRIVATE_KEY`: The GitHub user's [GPG private key].
+- `GPG_PASSPHRASE`: The GitHub user's GPG passphrase.
 
 [GitHub Actions]: https://github.com/features/actions
 [GPG private key]: https://github.com/marketplace/actions/import-gpg#prerequisites

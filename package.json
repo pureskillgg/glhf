@@ -18,8 +18,8 @@
   "repository": "pureskillgg/glhf",
   "license": "SEE LICENSE IN LICENSE.txt",
   "author": {
-    "name": "Evan Sosenko",
-    "email": "evan@pureskill.gg"
+    "name": "PureSkill.gg",
+    "email": "secure@pureskill.gg"
   },
   "files": [
     "yarn.lock",
@@ -32,6 +32,7 @@
   ],
   "scripts": {
     "test": "nyc ava",
+    "pretest": "node index.js",
     "test:update": "ava --update-snapshots",
     "test:watch": "ava --watch",
     "test:debug": "ava debug --break",
