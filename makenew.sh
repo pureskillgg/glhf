@@ -50,14 +50,13 @@ makenew () {
   echo 'There are no defaults.'
   echo 'Example values are shown in parentheses.'
   read -p '> Package title (My Package): ' mk_title
-  read -p '> Package name (my-package): ' mk_pkg
   read -p '> Short package description (Foos and bars.): ' mk_description
-  read -p '> GitHub repository name (my-repo): ' mk_repo
-  read -p '> Serverless stack prefix (my-prefix): ' mk_app
+  read -p '> Serverless stack prefix (my-prefix): ' mk_prefix
   read -p '> Serverless stack name (my-app): ' mk_name
 
   mk_user="pureskillgg"
-  mk_slug="@pureskillgg/${mk_pkg}"
+  mk_slug="${mk_prefix}-${mk_name}"
+  mk_pkg="@pureskillgg/${mk_slug}"
 
   sed_delete README.md '9,108d'
   sed_insert README.md '9i' 'TODO'
@@ -67,10 +66,10 @@ makenew () {
   find_replace "s/Serverless Node.js Project Skeleton/${mk_title}/g"
   find_replace "s/Package skeleton for a Node.js Serverless project on AWS Lambda\./${mk_description}/g"
   find_replace "s|makenew-serverless-nodejs|___makenew-serverless-nodejs|g"
-  find_replace "s|@pureskillgg/___makenew-serverless-nodejs|${mk_slug}|g"
-  find_replace "s|pureskillgg/___makenew-serverless-nodejs|${mk_user}/${mk_repo}|g"
-  find_replace "s|___makenew-serverless-nodejs|${mk_app}-${mk_name}|g"
-  find_replace "s|app: makenew|app: ${mk_app}|g"
+  find_replace "s|@pureskillgg/___makenew-serverless-nodejs|${mk_pkg}|g"
+  find_replace "s|pureskillgg/___makenew-serverless-nodejs|${mk_user}/${mk_slug}|g"
+  find_replace "s|___makenew-serverless-nodejs|${mk_slug}|g"
+  find_replace "s|app: makenew|app: ${mk_prefix}|g"
   find_replace "s|name: serverless-nodejs|name: ${mk_name}|g"
 
   echo
