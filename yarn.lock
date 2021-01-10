@@ -1366,10 +1366,10 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@pureskillgg/ace@^0.4.0":
-  version "0.4.0"
-  resolved "https://npm.pkg.github.com/download/@pureskillgg/ace/0.4.0/4f9d1227124fae446ae39bb18ba1a82e290f0fb550a79f7f13473c89f25fbd72#e58544e4bbf6d9ce1b0d2d75ac0005cca2ac7ed5"
-  integrity sha512-szxlkU/tCfLaXyS09fiMgF0KuC0TN0Aqq6ulBZBpxBecJPNuYVZmubkK+WpHsP5OcOtnoA7auiLphR4aJ5eb1g==
+"@pureskillgg/ace@^0.5.1":
+  version "0.5.1"
+  resolved "https://npm.pkg.github.com/download/@pureskillgg/ace/0.5.1/8c372f75eb188c660afb175a01852b5af96d38c18101ef1c68dd91d4badb3a57#8000ee0a93896b49c904b03b81e03e425dabfc20"
+  integrity sha512-4GV13iphNmtMG/C5hm8JICis4g4GfM7cXqpe+AegvKOicgAoyMHXTE+se5aCVmIUeQL2+yNbqKqlpTHp8uZ8mQ==
   dependencies:
     "@meltwater/mlabs-logger" "^8.0.0"
     "@meltwater/phi" "^4.0.0"
