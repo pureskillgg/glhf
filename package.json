@@ -32,7 +32,6 @@
   ],
   "scripts": {
     "test": "nyc ava",
-    "pretest": "node index.js",
     "test:update": "ava --update-snapshots",
     "test:watch": "ava --watch",
     "test:debug": "ava debug --break",
