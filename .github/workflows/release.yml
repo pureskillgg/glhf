@@ -75,6 +75,19 @@ jobs:
         if: ${{ github.event.inputs.environment == 'staging' || github.event.client_payload.environment == 'staging' }}
         env:
           SERVERLESS_STAGE: stg
+      - name: Get commit message
+        id: message
+        run: echo ::set-output name=message::$(git log --format=%B -n 1 ${{ github.sha }})
+      - name: Grafana Annotation
+        uses: frankie567/grafana-annotation-action@v1.0.2
+        with:
+          apiHost: ${{ secrets.GRAFANA_API_ORIGIN }}
+          apiToken: ${{ secrets.GRAFANA_API_KEY }}
+          tags: deployment,${{ github.event.repository.name }},${{ github.event.inputs.environment }}${{ github.event.client_payload.environment }}
+          text: |
+            ${{ steps.message.outputs.message }}
+            ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
+            ${{ github.sha }}
       - name: Get status
         id: status
         if: always()

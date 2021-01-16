@@ -129,6 +129,8 @@ The following repository secrets must be set on [GitHub Actions]:
 - `AWS_SECRET_ACCESS_KEY`: AWS secret access key.
 - `GH_TOKEN`: A personal access token that can trigger workflows
   and read and write packages.
+- `GRAFANA_API_ORIGIN`: The Grafana origin to push annotations.
+- `GRAFANA_API_KEY`: The Grafana key key for pushing annotations.
 - `DISCORD_WEBHOOK`: The Discord webhook to notify on deploy.
 
 These must be set manually.
