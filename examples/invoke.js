@@ -1,4 +1,6 @@
-import { readJson, LambdaClient } from '../index.js'
+import { LambdaClient } from '@pureskillgg/awsjs'
+
+import { readJson } from '../index.js'
 
 export const red = ({ redLambdaArn, log }) => async (req = 'req') => {
   const input = await readJson('fixtures', `${req}.json`)
