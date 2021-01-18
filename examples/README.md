@@ -1,7 +1,5 @@
 # Examples
 
-<!--- TODO: Update all uses of todo with added example. -->
-
 ## Running Examples Locally
 
 ### Local configuration
@@ -33,13 +31,13 @@ $ yarn run example
 Run provided examples with, e.g.,
 
 ```
-$ yarn run example todo
+$ yarn run example red
 ```
 
 Pass arguments to examples with
 
 ```
-$ yarn run example todo false
+$ yarn run example red req
 ```
 
 #### Debugging examples
@@ -47,7 +45,7 @@ $ yarn run example todo false
 Debug examples with, e.g.,
 
 ```
-$ yarn run example:inspect todo
+$ yarn run example:inspect req
 ```
 
 For examples which run a single process and then exit,
