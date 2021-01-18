@@ -33,7 +33,10 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              plugins: [['babel-plugin-add-import-extension', false]]
+              plugins: [
+                ['babel-plugin-add-import-extension', false],
+                ['@babel/plugin-proposal-class-properties']
+              ]
             }
           }
         ]
