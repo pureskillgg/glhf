@@ -67,5 +67,5 @@ jobs:
         run: yarn install --frozen-lockfile --non-interactive
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
-      - name: Cut version
+      - name: Cut ${{ github.event.inputs.version }}${{ github.event.client_payload.version }} version
         run: npm version ${{ github.event.inputs.version }}${{ github.event.client_payload.version }}
