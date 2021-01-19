@@ -1376,10 +1376,10 @@
     aws-sdk "^2.814.0"
     cache-manager "^3.4.0"
 
-"@pureskillgg/awsjs@^0.1.0":
-  version "0.1.0"
-  resolved "https://npm.pkg.github.com/download/@pureskillgg/awsjs/0.1.0/0464db6455c5d1b56ba88e2fff563921fa501d137a6064f58d84b9a103cfec24#7df4163c7f74eb1e6734c8e62228706209397d55"
-  integrity sha512-vmvmafnnSts55cKAFXgVtwAlCU4/XPNICvetjVSQbHjLewKl62ep0B3H21E6wF68HVbqzDjS72f2PLdXjG3dyQ==
+"@pureskillgg/awsjs@^0.2.1":
+  version "0.2.1"
+  resolved "https://npm.pkg.github.com/download/@pureskillgg/awsjs/0.2.1/bf81e065f3f461ac3314337e4a6f82beb8ade1895bc703a42ae09d8adb02c9a6#a3e723774a30f59d32a873014981a52836984054"
+  integrity sha512-rl4UTTq0V0u4B92TJ6xMMb3207xK8KZtko8b0aYHxeN33jTfGViEQGM/PhyFpd3iIBraoq86GEW+drOvswlHKg==
   dependencies:
     "@meltwater/mlabs-logger" "^8.0.0"
     "@meltwater/phi" "^4.0.0"
