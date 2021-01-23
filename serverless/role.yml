@@ -19,4 +19,4 @@
           - Ref: 'AWS::Region'
           - Ref: 'AWS::AccountId'
           - function
-          - ${self:custom.owner}-${self:service}-${self:provider.stage}-blue
+          - ${self:service}-${self:provider.stage}-blue
