@@ -9,3 +9,14 @@
           - Ref: 'AWS::Region'
           - Ref: 'AWS::AccountId'
           - 'parameter${self:custom.ssmPrefix}/*'
+- Effect: Allow
+  Action:
+    - 'lambda:InvokeFunction'
+  Resource:
+    - 'Fn::Join':
+        - ':'
+        - - 'arn:aws:lambda'
+          - Ref: 'AWS::Region'
+          - Ref: 'AWS::AccountId'
+          - function
+          - ${self:custom.owner}-${self:service}-${self:provider.stage}-blue
