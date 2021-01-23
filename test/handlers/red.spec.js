@@ -18,6 +18,6 @@ test('invoke', async (t) => {
   }
 
   const handler = createHandleInvoke([], t, overrideDependencies)
-  const data = await handler(event, {})
+  const data = await handler(event)
   t.snapshot(data, 'handler')
 })
