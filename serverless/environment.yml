@@ -4,5 +4,4 @@ LOG_LEVEL: ${env:LOG_LEVEL, 'info'}
 LOG_ENV: ${self:provider.stage}
 LOG_SYSTEM: ${self:custom.app}
 LOG_SERVICE: ${self:custom.name}
-LOG_NAME: ${self:service}
 LOG_VERSION: ${file(./package.json):version}
