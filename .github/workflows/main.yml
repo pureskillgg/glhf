@@ -14,18 +14,13 @@ on:
 jobs:
   test:
     runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        node:
-          - '12'
-          - '14'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node }}
+          node-version: '14'
           registry-url: https://npm.pkg.github.com
           scope: '@${{ github.repository_owner }}'
       - name: Get yarn cache directory
@@ -49,28 +44,19 @@ jobs:
         run: yarn install --frozen-lockfile --non-interactive
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
-      - name: Build
-        run: yarn run build
-        if: ${{ matrix.node == '12' }}
       - name: Module
         run: node index.js
-        if: ${{ matrix.node != '12' }}
       - name: Test
         run: yarn test
   lint:
     runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        node:
-          - '12'
-          - '14'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node }}
+          node-version: '14'
           registry-url: https://npm.pkg.github.com
           scope: '@${{ github.repository_owner }}'
       - name: Get yarn cache directory
@@ -96,19 +82,15 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Lint
         run: yarn run lint
-  build:
+  package:
     runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        node:
-          - '12'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node }}
+          node-version: '14'
           registry-url: https://npm.pkg.github.com
           scope: '@${{ github.repository_owner }}'
       - name: Get yarn cache directory
@@ -136,11 +118,6 @@ jobs:
         run: yarn run build
   serverless:
     runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        node:
-          - '12'
-          - '14'
     steps:
       - name: Checkout
         uses: actions/checkout@v2

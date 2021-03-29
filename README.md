@@ -13,7 +13,6 @@ Bootstrap a new Node.js Serverless project in five minutes or less.
 - Deploy to [AWS Lambda] with [Serverless].
 - [Node.js]'s [npm] package structure.
 - Fast, reliable, and secure dependency management with [Yarn].
-- Next generation JavaScript with [Babel].
 - Examples with configurable options and arguments powered by [examplr].
 - Linting with the [JavaScript Standard Style] using [ESLint].
 - [Prettier] code.
@@ -26,7 +25,6 @@ Bootstrap a new Node.js Serverless project in five minutes or less.
 
 [AVA]: https://github.com/avajs/ava
 [AWS Lambda]: https://aws.amazon.com/lambda/
-[Babel]: https://babeljs.io/
 [ESLint]: https://eslint.org/
 [EditorConfig]: https://editorconfig.org/
 [GitHub Actions]: https://github.com/features/actions
