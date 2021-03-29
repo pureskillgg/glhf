@@ -44,8 +44,6 @@ jobs:
         run: yarn install --frozen-lockfile --non-interactive
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
-      - name: Module
-        run: node index.js
       - name: Test
         run: yarn test
   lint:
