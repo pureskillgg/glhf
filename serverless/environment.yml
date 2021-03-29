@@ -1,7 +1,7 @@
 ---
 NODE_ENV: production
 LOG_LEVEL: ${env:LOG_LEVEL, 'info'}
-LOG_ENV: ${self:provider.stage}
+LOG_ENV: ${self:custom.stage}
 LOG_SYSTEM: ${self:custom.app}
 LOG_SERVICE: ${self:custom.name}
 LOG_VERSION: ${file(./package.json):version}

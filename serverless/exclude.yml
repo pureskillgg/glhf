@@ -1,0 +1,21 @@
+---
+- '*/**.spec.js'
+- .editorconfig
+- .eslintrc.json
+- .github/**
+- .gitignore
+- .nvmrc
+- .nyc_output/**
+- .nycrc.json
+- .prettierrc.json
+- CHANGELOG.md
+- README.md
+- ava.config.json
+- coverage/**
+- examples/**
+- fixtures/**
+- makenew.sh
+- nodemon.json
+- serverless.yml
+- test/**
+- yarn.lock
