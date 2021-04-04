@@ -6,9 +6,6 @@
 # https://github.com/github/gitignore
 
 # Build directories
-.webpack
-.dist
-dist
 package
 
 # Local config
@@ -23,6 +20,9 @@ examples/local.json
 
 # Temporary development files
 tmp
+
+# Serverless Offline
+.serverless-offline
 
 # npm lockfile (only yarn.lock supported)
 package-lock.json

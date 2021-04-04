@@ -3,59 +3,46 @@ service: glhf
 
 frameworkVersion: '^2.0.0'
 
+variablesResolutionMode: 20210219
+configValidationMode: error
+
 plugins:
+  - serverless-jetpack
   - serverless-offline
-  - serverless-webpack
 
 provider:
   name: aws
   tracing:
     apiGateway: true
     lambda: true
-  runtime: nodejs12.x
+  runtime: nodejs14.x
   region: ${env:AWS_DEFAULT_REGION, 'us-east-1'}
-  stage: ${opt:stage, env:SERVERLESS_STAGE, 'stg'}
+  stage: stg
   logRetentionInDays: 7
   memorySize: 512
   stackTags:
     Owner: ${self:custom.owner}
     Project: ${self:custom.app}
     Name: ${self:custom.name}
-    Deployment: ${self:provider.stage}
+    Deployment: ${self:custom.stage}
   apiGateway:
     shouldStartNameWithService: true
   lambdaHashingVersion: 20201221
-  iamRoleStatements: ${file(./serverless/role.yml)}
+  iam:
+    role:
+      statements: ${file(./serverless/role.yml)}
   environment: ${file(./serverless/environment.yml)}
 
 custom:
+  stage: ${opt:stage, env:SERVERLESS_STAGE, self:provider.stage}
   name: glhf
   app: glfh
   owner: pureskillgg
-  ssmPrefix: /${self:custom.owner}/${self:custom.app}/${self:provider.stage}
-  webpack:
-    webpackConfig: webpack.config.cjs
-    packager: yarn
-    includeModules:
-      forceExclude:
-        - aws-sdk
-    # UPSTREAM: Workaround for https://github.com/serverless-heaven/serverless-webpack/issues/306
-    packagerOptions:
-      scripts:
-        - rm -rf node_modules/aws-sdk
-        - |
-          if [ -f "node_modules/uuid/bin/uuid" ]; then
-            rm -f ./node_modules/.bin/uuid
-            ln -rs node_modules/uuid/bin/uuid node_modules/.bin/uuid
-          fi
-        - |
-          if [ -f "node_modules/uuid/dist/bin/uuid" ]; then
-            rm -f ./node_modules/.bin/uuid
-            ln -rs node_modules/uuid/dist/bin/uuid node_modules/.bin/uuid
-          fi
+  ssmPrefix: /${self:custom.owner}/${self:custom.app}/${self:custom.stage}
 
 package:
   individually: true
+  exclude: ${file(./serverless/exclude.yml)}
 
 functions: ${file(./serverless/functions.yml)}
 
