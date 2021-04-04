@@ -1685,10 +1685,10 @@
     "@meltwater/phi" "^4.0.0"
     cache-manager "^3.4.0"
 
-"@pureskillgg/awsjs@^0.5.0":
-  version "0.5.0"
-  resolved "https://npm.pkg.github.com/download/@pureskillgg/awsjs/0.5.0/ad298ffaa3386fe62e1a38c87d6ec04c6ba30cad99f44d9cf63344f51405d50d#2fdc0c63de57263c93606372d707616181a184b1"
-  integrity sha512-kpEMdt0Y8H6Awf+QbOdTFuQes0ZhfWUHOX07e7KfBsuNSzgDiSimtHUOybnJT4HP9F2IFEPGDvMEl12Nu5f7Jg==
+"@pureskillgg/awsjs@^0.5.2":
+  version "0.5.2"
+  resolved "https://npm.pkg.github.com/download/@pureskillgg/awsjs/0.5.2/7b9d8dc3a36430d67db6679949872d7436200d10dc936c23642b50f2ea3d58cf#317c6b739ef5e1b5d79accaec084e986e15349ad"
+  integrity sha512-JnWyamqREBLzO0XGkoO150aHP8u7/3OfUygZSW5WT3jvWeQkXiCpw/IxWFh5gKmXq4G0GIecEKHNtXWAPE0O/w==
   dependencies:
     "@aws-sdk/client-dynamodb" "^3.11.0"
     "@aws-sdk/client-eventbridge" "^3.11.0"
@@ -2544,10 +2544,10 @@ awilix@^4.3.1:
     glob "^7.1.6"
     rollup-plugin-copy "^3.4.0"
 
-aws-sdk@2.804.0, aws-sdk@^2.834.0, aws-sdk@^2.879.0:
-  version "2.804.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.804.0.tgz#ff7e6f91b86b4878ec69e3de895c10eb8203fc4b"
-  integrity sha512-a02pZdjL06MunElAZPPEjpghOp/ZA+16f+t4imh1k9FCDpsNVQrT23HRq/PMvRADA5uZZRkYwX8r9o6oH/1RlA==
+aws-sdk@^2.834.0, aws-sdk@^2.879.0:
+  version "2.879.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.879.0.tgz#d9fb5a8babac1ed0b3d0fb38a88e561580256082"
+  integrity sha512-HRfjGwST1U9AvCJFAyqpAJwbjFR4LqUyEUk77qdJpdYHL9pGPHdnEfGRkBkPn36xcC7Em6gVvFveVoEihbQUyQ==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"

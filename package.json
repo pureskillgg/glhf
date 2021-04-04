@@ -56,14 +56,11 @@
   "engines": {
     "node": ">=14.15.0"
   },
-  "resolutions": {
-    "aws-sdk": "2.804.0"
-  },
   "dependencies": {
     "@meltwater/mlabs-logger": "^8.0.0",
     "@meltwater/phi": "^4.0.0",
     "@pureskillgg/ace": "^0.7.0",
-    "@pureskillgg/awsjs": "^0.5.0",
+    "@pureskillgg/awsjs": "^0.5.2",
     "awilix": "^4.3.1",
     "cache-manager": "^3.4.0",
     "uuid": "^8.3.2"
@@ -73,7 +70,6 @@
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@meltwater/examplr": "^6.0.0",
     "ava": "^3.3.0",
-    "aws-sdk": "2.804.0",
     "eslint": "^7.4.0",
     "eslint-config-standard": "^16.0.0",
     "eslint-plugin-import": "^2.18.2",

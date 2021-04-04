@@ -1,6 +1,6 @@
 import test from 'ava'
 
-import { createHandleInvoke } from '../../handlers/blue.js'
+import { createHandleInvoke } from '../../handlers/blue.mjs'
 
 test('invoke', async (t) => {
   const event = { foo: 'bar' }
