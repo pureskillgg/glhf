@@ -1,8 +1,8 @@
 ---
 red:
-  handler: handlers/red.default
+  handler: handlers/red.handler
   environment:
     BLUE_LAMBDA_FUNCTION_SSM_PATH: ${self:custom.ssmPrefix}/blue_lambda_function
 
 blue:
-  handler: handlers/blue.default
+  handler: handlers/blue.handler

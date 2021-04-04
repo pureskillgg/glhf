@@ -1,11 +1,6 @@
-import { invokeHandler } from '../index.js'
+const index = import('./blue.mjs')
 
-const createProcessor = () => async (event, container) => {
-  return event
+exports.handler = async (...args) => {
+  const { handler } = await index
+  return handler(...args)
 }
-
-export const createHandleInvoke = invokeHandler({
-  createProcessor
-})
-
-export default createHandleInvoke()
