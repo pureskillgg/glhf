@@ -65,7 +65,6 @@
     "@pureskillgg/ace": "^0.6.0",
     "@pureskillgg/awsjs": "^0.3.1",
     "awilix": "^4.3.1",
-    "aws-sdk": "2.771.0",
     "cache-manager": "^3.4.0",
     "uuid": "^8.3.2"
   },
