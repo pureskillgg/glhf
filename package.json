@@ -62,8 +62,8 @@
   "dependencies": {
     "@meltwater/mlabs-logger": "^8.0.0",
     "@meltwater/phi": "^4.0.0",
-    "@pureskillgg/ace": "^0.6.0",
-    "@pureskillgg/awsjs": "^0.3.1",
+    "@pureskillgg/ace": "^0.7.0",
+    "@pureskillgg/awsjs": "^0.5.0",
     "awilix": "^4.3.1",
     "cache-manager": "^3.4.0",
     "uuid": "^8.3.2"
