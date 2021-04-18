@@ -1674,10 +1674,10 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@pureskillgg/ace@^0.7.0":
-  version "0.7.0"
-  resolved "https://npm.pkg.github.com/download/@pureskillgg/ace/0.7.0/b410ef153cebf416ebd25d229d2631bfae249fa27a37d398c6da62adb5eb4bc5#099ed6abc72fd9fa94e484bc254cd1b46899d450"
-  integrity sha512-1/Vy3DAa80MyeaPpruJE9n9PDBxQMrkMyaBtTF1RpQoLh8eRoz3a0hhljEpWauYtlhwsnGjQZUYHsZ4mwOiz+g==
+"@pureskillgg/ace@^0.8.0":
+  version "0.8.0"
+  resolved "https://npm.pkg.github.com/download/@pureskillgg/ace/0.8.0/794687378bf164a0908d5b699e93a4eca38f1b7041ff46013cd031cd205692a3#3813cd6097dc0b09412b0407b8ccbc4d63f26817"
+  integrity sha512-whKGzU+6qhlK1P2k3V+ZbNpbjF4Lez682D2rnfSURa4f1KkjbUHJvfZcXPiEmVSlgN9EyBu3HMUJGRTbh49eyQ==
   dependencies:
     "@aws-sdk/client-secrets-manager" "^3.11.0"
     "@aws-sdk/client-ssm" "^3.11.0"
