@@ -1,10 +1,13 @@
 ---
 service: makenew-serverless-nodejs
 
-frameworkVersion: '^2.0.0'
+frameworkVersion: '^2.38.0'
 
 variablesResolutionMode: 20210219
 configValidationMode: error
+
+disabledDeprecations:
+  - CLI_OPTIONS_SCHEMA
 
 plugins:
   - serverless-jetpack
@@ -24,7 +27,7 @@ provider:
     Owner: ${self:custom.owner}
     Project: ${self:custom.app}
     Name: ${self:custom.name}
-    Deployment: ${self:custom.stage}
+    Deployment: ${sls:stage}
   apiGateway:
     shouldStartNameWithService: true
   lambdaHashingVersion: 20201221
@@ -34,14 +37,13 @@ provider:
   environment: ${file(./serverless/environment.yml)}
 
 custom:
-  stage: ${opt:stage, env:SERVERLESS_STAGE, self:provider.stage}
   name: serverless-nodejs
   app: makenew
   owner: pureskillgg
-  ssmPrefix: /${self:custom.owner}/${self:custom.app}/${self:custom.stage}
+  ssmPrefix: /${self:custom.owner}/${self:custom.app}/${sls:stage}
 
 package:
   individually: true
-  exclude: ${file(./serverless/exclude.yml)}
+  patterns: ${file(./serverless/exclude.yml)}
 
 functions: ${file(./serverless/functions.yml)}
