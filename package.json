@@ -67,21 +67,20 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.13.14",
-    "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@meltwater/examplr": "^6.0.0",
     "ava": "^3.3.0",
     "eslint": "^7.4.0",
     "eslint-config-standard": "^16.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-promise": "^5.1.0",
     "nodemon": "^2.0.7",
     "npm-run-all": "^4.1.2",
     "nyc": "^15.0.0",
     "prettier": "^2.0.2",
-    "serverless": "^2.31.0",
+    "serverless": "^2.38.0",
     "serverless-jetpack": "^0.10.8",
-    "serverless-offline": "^6.9.0",
+    "serverless-offline": "^7.0.0",
     "testdouble": "^3.16.1"
   }
 }
