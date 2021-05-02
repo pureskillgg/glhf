@@ -3,6 +3,8 @@
 - .editorconfig
 - .eslintrc.json
 - .github/**
+- .npmrc
+- .yarnrc
 - .gitignore
 - .nvmrc
 - .nyc_output/**
