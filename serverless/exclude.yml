@@ -17,5 +17,6 @@
 - makenew.sh
 - nodemon.json
 - serverless.yml
+- serverless/**
 - test/**
 - yarn.lock
