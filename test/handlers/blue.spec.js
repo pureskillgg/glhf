@@ -5,15 +5,11 @@ import { createHandleInvoke } from '../../handlers/blue.mjs'
 
 test('invoke', async (t) => {
   const event = { foo: 'bar' }
-  const handler = createHandleInvoke(parameters, localParameters, t)
+  const handler = createHandleInvoke(parameters, t)
   const data = await handler(event)
   t.snapshot(data, 'handler')
 })
 
 const parameters = {
-  rank: localString('rank')
-}
-
-const localParameters = {
-  rank: 'mock-rank'
+  rank: localString('rank', 'mock-rank')
 }
