@@ -1685,10 +1685,10 @@
     "@meltwater/phi" "^4.0.0"
     cache-manager "^3.4.0"
 
-"@pureskillgg/awsjs@^0.5.2":
-  version "0.5.2"
-  resolved "https://npm.pkg.github.com/download/@pureskillgg/awsjs/0.5.2/7b9d8dc3a36430d67db6679949872d7436200d10dc936c23642b50f2ea3d58cf#317c6b739ef5e1b5d79accaec084e986e15349ad"
-  integrity sha512-JnWyamqREBLzO0XGkoO150aHP8u7/3OfUygZSW5WT3jvWeQkXiCpw/IxWFh5gKmXq4G0GIecEKHNtXWAPE0O/w==
+"@pureskillgg/awsjs@^1.0.0-rc.0":
+  version "1.0.0-rc.0"
+  resolved "https://npm.pkg.github.com/download/@pureskillgg/awsjs/1.0.0-rc.0/74061e445a0f9d6664bffd587d31215f9a9ebf2227e3ad6adb6a188cf3957b27#ae090191ea0f52ab58f9b2362ee515baa264637d"
+  integrity sha512-VBvtFa01OSchQXX5EJm3AnnyJXPMqBNY/BBsa/LndpJXONhCEz5aWumj5r0Q6P54nMeqoWdmlse32iKOxn1H2Q==
   dependencies:
     "@aws-sdk/client-dynamodb" "^3.11.0"
     "@aws-sdk/client-eventbridge" "^3.11.0"
@@ -1699,6 +1699,7 @@
     "@meltwater/mlabs-logger" "^8.0.0"
     "@meltwater/phi" "^4.0.0"
     "@meltwater/tau" "^2.0.0"
+    change-case "^4.1.2"
     uuid "^8.3.2"
 
 "@serverless/cli@^1.5.2":
@@ -3002,7 +3003,7 @@ chalk@^4.0.0, chalk@^4.1.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
-change-case@^4.1.1:
+change-case@^4.1.1, change-case@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/change-case/-/change-case-4.1.2.tgz#fedfc5f136045e2398c0410ee441f95704641e12"
   integrity sha512-bSxY2ws9OtviILG1EiY5K7NNxkqg/JnRnFxLtKQ96JaviiIxi7djMrSd0ECT9AC+lttClmYwKw53BWpOMblo7A==
