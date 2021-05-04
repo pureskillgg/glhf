@@ -61,7 +61,7 @@
     "@meltwater/phi": "^4.0.0",
     "@pureskillgg/ace": "^0.9.0",
     "@pureskillgg/awsjs": "^1.0.0-rc.0",
-    "awilix": "^4.3.1",
+    "awilix": "^4.3.4",
     "cache-manager": "^3.4.0",
     "uuid": "^8.3.2"
   },
