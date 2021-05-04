@@ -8,6 +8,7 @@ configValidationMode: error
 
 disabledDeprecations:
   - CLI_OPTIONS_SCHEMA
+  - NEW_PACKAGE_PATTERNS
 
 plugins:
   - serverless-jetpack
@@ -41,7 +42,7 @@ custom:
 
 package:
   individually: true
-  patterns: ${file(./serverless/exclude.yml)}
+  exclude: ${file(./serverless/exclude.yml)}
 
 functions: ${file(./serverless/functions.yml)}
 
