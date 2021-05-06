@@ -6,3 +6,5 @@ red:
 
 blue:
   handler: handlers/blue.handler
+  environment:
+    RANK: ge
