@@ -1689,10 +1689,10 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@pureskillgg/ace@^1.2.0-rc.0":
-  version "1.2.0-rc.0"
-  resolved "https://npm.pkg.github.com/download/@pureskillgg/ace/1.2.0-rc.0/f35a80c8a9233f3df9b5b0fa635c060ed81e8efe821738b4b7339190360f525a#859bc01d7e1068144ee9990a9a253de63826c5c0"
-  integrity sha512-LWg6SLoOOJrIdMqDLk6D5Xi9hCbCZaqKlE0bex+w/Byij+rwRudjdGi4xRZ9lm7g9+0Yd4T2QbJShaNfdVUW3Q==
+"@pureskillgg/ace@^1.2.0-rc.1":
+  version "1.2.0-rc.1"
+  resolved "https://npm.pkg.github.com/download/@pureskillgg/ace/1.2.0-rc.1/c3c731fe9ba27be5b60b26651d9a67bb5ee3a7c9c11d5c33a661b6c30faf28f1#0e4d18cde2e8741c327d2fa19c279d6b89489fcb"
+  integrity sha512-1ggSUD9kboi2rw53gTKlfBnRpZgT9vsttk8gDLFhZPQxxIOCtZrFxRCQtzjdATzhh9FEZ09NUFFCfz3wNd+inA==
   dependencies:
     "@aws-sdk/client-secrets-manager" "^3.11.0"
     "@aws-sdk/client-ssm" "^3.11.0"
