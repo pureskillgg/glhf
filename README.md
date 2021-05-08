@@ -1,6 +1,6 @@
 # Good Lambda Have Function
 
-[![GitHub Actions](https://github.com/pureskillgg/glfh/workflows/main/badge.svg)](https://github.com/pureskillgg/glfh/actions)
+[![GitHub Actions](https://github.com/pureskillgg/glhf/workflows/main/badge.svg)](https://github.com/pureskillgg/glhf/actions)
 
 Code Lambda for fun and profit.
 
