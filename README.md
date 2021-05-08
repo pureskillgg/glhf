@@ -6,7 +6,17 @@ Code Lambda for fun and profit.
 
 ## Description
 
-TODO
+Create a basic handler with
+
+```js
+import { invokeHandler } from '@pureskillgg/glhf'
+
+const createProcessor = () => async (event, container) => {
+  return { hello: 'world' }
+}
+
+export const handler = createHandleInvoke()
+```
 
 ## Installation
 
