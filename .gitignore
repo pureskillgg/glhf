@@ -7,6 +7,7 @@
 
 # Build directories
 package
+.docs
 
 # Local config
 examples/local.json
