@@ -37,6 +37,7 @@
     "lint": "npm-run-all --parallel lint:*",
     "lint:prettier": "prettier --check --ignore-path .gitignore '**/*.(js|cjs|json|yml|yaml|graphql)'",
     "lint:js": "eslint --ignore-path .gitignore --ext .js,.cjs .",
+    "lint:docs": "documentation lint '**/*.doc.js'",
     "preversion": "npm-run-all --parallel lint test sls:package",
     "postversion": "git push --follow-tags",
     "sls:package": "serverless package",
@@ -51,6 +52,8 @@
     "format": "npm-run-all --parallel format:*",
     "preformat": "prettier --write --ignore-path .gitignore '**/*.(js|cjs|json|yml|yaml|graphql)'",
     "format:js": "eslint --ignore-path .gitignore --fix --ext .js,.cjs .",
+    "docs": "documentation serve --watch --github '**/*.doc.js'",
+    "docs:build": "documentation build --format html --github --output .docs '**/*.doc.js'",
     "report": "nyc report"
   },
   "engines": {
@@ -69,6 +72,7 @@
     "@babel/eslint-parser": "^7.13.14",
     "@meltwater/examplr": "^6.0.0",
     "ava": "^3.3.0",
+    "documentation": "^13.2.5",
     "eslint": "^7.4.0",
     "eslint-config-standard": "^16.0.0",
     "eslint-plugin-import": "^2.18.2",
