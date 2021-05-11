@@ -17,8 +17,8 @@ plugins:
 provider:
   name: aws
   tracing:
-    apiGateway: true
-    lambda: true
+    apiGateway: false
+    lambda: false
   runtime: nodejs14.x
   region: ${env:AWS_DEFAULT_REGION, 'us-east-1'}
   stage: stg
