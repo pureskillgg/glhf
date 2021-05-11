@@ -53,6 +53,7 @@ makenew () {
   read -p '> Short package description (Foos and bars.): ' mk_description
   read -p '> Serverless stack prefix (my-prefix): ' mk_prefix
   read -p '> Serverless stack name (my-app): ' mk_name
+  read -p '> Sentry DSN: ' mk_sentry_dsn
 
   mk_user="pureskillgg"
   mk_slug="${mk_prefix}-${mk_name}"
@@ -71,6 +72,7 @@ makenew () {
   find_replace "s|___makenew-serverless-nodejs|${mk_slug}|g"
   find_replace "s|app: makenew|app: ${mk_prefix}|g"
   find_replace "s|name: serverless-nodejs|name: ${mk_name}|g"
+  find_replace "s|https://f625fe4d29a743aeaf121d7a7e63676d@o478217.ingest.sentry.io/5760022|${mk_sentry_dsn}|g"
 
   echo
   echo 'Replacing boilerplate.'

@@ -1,6 +1,10 @@
+const Sentry = require('@sentry/serverless')
+
+Sentry.AWSLambda.init()
+
 const index = import('../index.js')
 
-exports.handler = async () => {
+exports.handler = Sentry.AWSLambda.wrapHandler(async () => {
   const { todo } = await index
   return {
     statusCode: 200,
@@ -8,4 +12,4 @@ exports.handler = async () => {
       data: todo('TODO')
     })
   }
-}
+})

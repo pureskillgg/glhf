@@ -88,6 +88,20 @@ jobs:
             ${{ steps.message.outputs.message }}
             ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
             ${{ github.sha }}
+      - name: Get version
+        id: version
+        run: |
+          echo "::set-output name=version::$(jq -r .version < package.json)"
+      - name: Sentry release
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ github.repository_owner }}
+          SENTRY_PROJECT: ${{ github.event.repository.name }}
+        with:
+          environment: ${{ github.event.inputs.environment }}${{ github.event.client_payload.environment }}
+          version: ${{ steps.version.outputs.version }}
+          version_prefix: 'v'
       - name: Get status
         id: status
         if: always()
