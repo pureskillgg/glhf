@@ -63,7 +63,6 @@
     "@meltwater/mlabs-logger": "^8.0.0",
     "@meltwater/phi": "^4.0.0",
     "@pureskillgg/ace": "^1.2.1",
-    "@pureskillgg/awsjs": "^1.1.0",
     "awilix": "^4.3.4",
     "cache-manager": "^3.4.0",
     "uuid": "^8.3.2"
@@ -71,6 +70,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.13.14",
     "@meltwater/examplr": "^6.0.0",
+    "@pureskillgg/awsjs": "^1.1.0",
     "ava": "^3.3.0",
     "documentation": "^13.2.5",
     "eslint": "^7.4.0",
