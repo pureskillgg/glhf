@@ -120,8 +120,9 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Move runtime dependencies
         run: |
+          version=$(jq -r '.devDependencies."@pureskillgg/awsjs"' < package.json)
           yarn remove @pureskillgg/awsjs
-          yarn add @pureskillgg/awsjs
+          yarn add "@pureskillgg/awsjs@${version}"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Build
