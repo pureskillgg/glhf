@@ -24,6 +24,7 @@ provider:
   stage: stg
   logRetentionInDays: 3
   memorySize: 512
+  timeout: 30
   stackTags:
     Owner: ${self:custom.owner}
     Project: ${self:custom.app}
