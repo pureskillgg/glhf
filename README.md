@@ -142,6 +142,7 @@ The following repository secrets must be set on [GitHub Actions]:
 - `GRAFANA_API_ORIGIN`: The Grafana origin to push annotations.
 - `GRAFANA_API_KEY`: The Grafana key key for pushing annotations.
 - `DISCORD_WEBHOOK`: The Discord webhook to notify on deploy.
+- `SENTRY_AUTH_TOKEN`: The Sentry auth token.
 
 These must be set manually.
 

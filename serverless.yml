@@ -16,11 +16,15 @@ plugins:
 
 provider:
   name: aws
+  tracing:
+    apiGateway: false
+    lambda: false
   runtime: nodejs14.x
   region: ${env:AWS_DEFAULT_REGION, 'us-east-1'}
   stage: stg
-  logRetentionInDays: 7
+  logRetentionInDays: 3
   memorySize: 512
+  timeout: 30
   stackTags:
     Owner: ${self:custom.owner}
     Project: ${self:custom.app}
@@ -28,16 +32,21 @@ provider:
     Deployment: ${sls:stage}
   apiGateway:
     shouldStartNameWithService: true
+  eventBridge:
+    useCloudFormation: true
   lambdaHashingVersion: 20201221
   iam:
     role:
       statements: ${file(./serverless/role.yml)}
   environment: ${file(./serverless/environment.yml)}
+  layers:
+    - arn:aws:lambda:us-east-1:943013980633:layer:SentryNodeServerlessSDK:18
 
 custom:
   name: glhf
   app: glhf
   owner: pureskillgg
+  sentryDsn: https://34b74ae67f29432591da1ca0cafcf2c3@o478217.ingest.sentry.io/5760035
   ssmPrefix: /${self:custom.owner}/${self:custom.app}/${sls:stage}
 
 package:

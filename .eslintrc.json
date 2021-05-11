@@ -1,12 +1,11 @@
 {
   "root": true,
-  "extends": ["standard"],
+  "extends": ["standard", "prettier"],
   "parser": "@babel/eslint-parser",
   "parserOptions": {
     "requireConfigFile": false
   },
   "rules": {
-    "valid-jsdoc": "error",
-    "space-before-function-paren": "off"
+    "valid-jsdoc": "error"
   }
 }
