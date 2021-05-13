@@ -46,7 +46,7 @@ custom:
   name: glhf
   app: glhf
   owner: pureskillgg
-  sentryDsn: https://34b74ae67f29432591da1ca0cafcf2c3@o478217.ingest.sentry.io/5760035
+  sentryDsn: ${ssm:/${self:custom.owner}/global/sentry/${self:service}/dsn}
   ssmPrefix: /${self:custom.owner}/${self:custom.app}/${sls:stage}
 
 package:
