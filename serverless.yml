@@ -22,7 +22,7 @@ provider:
   runtime: nodejs14.x
   region: ${env:AWS_DEFAULT_REGION, 'us-east-1'}
   stage: stg
-  logRetentionInDays: 3
+  logRetentionInDays: 30
   memorySize: 512
   timeout: 30
   stackTags:
