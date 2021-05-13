@@ -46,7 +46,7 @@ custom:
   name: serverless-nodejs
   app: makenew
   owner: pureskillgg
-  sentryDsn: https://f625fe4d29a743aeaf121d7a7e63676d@o478217.ingest.sentry.io/5760022
+  sentryDsn: ${ssm:/${self:custom.owner}/global/sentry/${self:service}/dsn}
   ssmPrefix: /${self:custom.owner}/${self:custom.app}/${sls:stage}
 
 package:
