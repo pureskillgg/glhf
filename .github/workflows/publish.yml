@@ -39,7 +39,6 @@ jobs:
           SENTRY_PROJECT: ${{ github.event.repository.name }}
         with:
           version: ${{ steps.version.outputs.current }}
-          version_prefix: 'v'
   docs:
     runs-on: ubuntu-20.04
     steps:
