@@ -7,4 +7,4 @@ LOG_SERVICE: ${self:custom.name}
 LOG_VERSION: ${file(./package.json):version}
 SENTRY_DSN: ${self:custom.sentryDsn}
 SENTRY_ENVIRONMENT: ${sls:stage}
-SENTRY_RELEASE: ${file(./package.json):version}
+SENTRY_RELEASE: ${self:service}@${file(./package.json):version}
