@@ -39,3 +39,4 @@ jobs:
           SENTRY_PROJECT: ${{ github.event.repository.name }}
         with:
           version: ${{ steps.version.outputs.current }}
+          version_prefix: ${{ github.event.repository.name }}@

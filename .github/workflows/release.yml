@@ -102,6 +102,7 @@ jobs:
         with:
           environment: prod
           version: ${{ steps.version.outputs.version }}
+          version_prefix: ${{ github.event.repository.name }}@
       - name: Sentry release v${{ steps.version.outputs.version }} to staging
         if: ${{ github.event.inputs.environment == 'staging' || github.event.client_payload.environment == 'staging' }}
         uses: getsentry/action-release@v1
@@ -112,6 +113,7 @@ jobs:
         with:
           environment: stg
           version: ${{ steps.version.outputs.version }}
+          version_prefix: ${{ github.event.repository.name }}@
       - name: Get status
         id: status
         if: always()
