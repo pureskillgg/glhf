@@ -3,7 +3,7 @@
     {
       "messageId": "059f36b4-87a3-44ab-83d2-661975830a7d",
       "receiptHandle": "AQEBwJnKyrHigUMZj6rYigCgxlaS3SLy0a...",
-      "body": "Test message.",
+      "body": "{\"foo\": 2}",
       "attributes": {
         "ApproximateReceiveCount": "1",
         "SentTimestamp": "1545082649183",
@@ -24,7 +24,7 @@
     {
       "messageId": "2e1424d4-f796-459a-8184-9c92662be6da",
       "receiptHandle": "AQEBzWwaftRI0KuVm4tP+/7q1rGgNqicHq...",
-      "body": "Test message.",
+      "body": "{\"foo\": 3}",
       "attributes": {
         "ApproximateReceiveCount": "1",
         "SentTimestamp": "1545082650636",
