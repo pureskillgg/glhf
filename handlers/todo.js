@@ -1,3 +1,5 @@
+'use strict'
+
 const Sentry = require('@sentry/serverless')
 
 Sentry.AWSLambda.init()
