@@ -17,7 +17,7 @@ test('invoke', async (t) => {
     container.register('blueLambdaClient', asValue(blueLambdaClient))
   }
 
-  const handler = createHandleInvoke([], t, overrideDependencies)
+  const handler = createHandleInvoke({}, t, overrideDependencies)
   const data = await handler(event)
   t.snapshot(data, 'handler')
 })
