@@ -68,6 +68,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.6",
     "@babel/eslint-parser": "^7.13.14",
     "@meltwater/examplr": "^6.0.0",
     "@pureskillgg/awsjs": "^1.1.0",
@@ -85,7 +86,7 @@
     "nyc": "^15.0.0",
     "prettier": "^2.3.0",
     "serverless": "^2.38.0",
-    "serverless-jetpack": "^0.10.8",
+    "serverless-jetpack": "^0.11.1",
     "serverless-offline": "^7.0.0",
     "testdouble": "^3.16.1"
   }

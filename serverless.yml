@@ -7,7 +7,6 @@ variablesResolutionMode: 20210219
 configValidationMode: error
 
 disabledDeprecations:
-  - CLI_OPTIONS_SCHEMA
   - NEW_PACKAGE_PATTERNS
 
 plugins:
