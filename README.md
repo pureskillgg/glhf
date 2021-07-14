@@ -9,7 +9,7 @@ Code Lambda for fun and profit.
 This library trivializes creating powerful AWS Lambda handler
 functions with minimal boilerplate.
 
-This created a Lambda that invokes another lambda:
+This creates a handler that invokes another AWS Lambda function:
 
 ```javascript
 import { asClass } from 'awilix'
@@ -80,6 +80,11 @@ and `registerDependencies`.
   This function is registered with the [Awilix] container
   as a factory function, thus is can access all dependencies registered
   using `registerDependencies`.
+
+The options for parsers, serializers, wrappers, and strategies
+are advanced features which are stable, but not yet fully documented.
+They are used internally to create the included handler factories.
+Please refer to the code for how they may be used.
 
 ### Handler Factories
 
