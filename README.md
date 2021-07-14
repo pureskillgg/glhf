@@ -28,23 +28,39 @@ $ yarn add @pureskillgg/glhf
 
 ## Usage
 
+The key option for creating new handlers is `createProcessor`.
+The processor should contain the business logic for handling each event.
+The `createProcessor` option is registered with the [Awilix] container
+as a factory function.
+
+For example, this creates a processor that logs a message on each event,
+
+```javascript
+const createProcessor = ({ log }) => async (event, container) => {
+  log.info('hello')
+}
+```
+
 ### Handler Factories
 
-- All handler functions return a new handler factory with identical signature:
+All handler functions return a new handler factory with identical signature:
   1. `parameters`: The [AWS Config Executor] parameters to load.
   2. `t`: The AVA `t` object (if running inside AVA).
   3. `overrideDependencies`: A function with signature `(container, config) => void`
       which will be called immediately after `registerDependencies`.
-- These arguments are all designed to facilitate testing.
-  See [`handles`](./handles) and [`test/handlers`](./test/handlers).
-- The async function returned by the factory has a signature `(event, context) => any`
-  matching the signature expected by AWS Lambda.
-- All handlers execute these steps in order:
-    - Load the config defined by the parameters.
-    - Create a new [Awilix] container and register `reqId` and `log` as dependencies.
-    - Parse the event with the `parser`.
-    - Run the processor on the event using the configured strategy and wrapper.
-    - Serialize and return the result.
+These arguments are all designed to facilitate testing.
+See [`handlers`](./handlers) and [`test/handlers`](./test/handlers).
+
+The async function returned by the factory has a signature `(event, context) => any`
+matching the signature expected by AWS Lambda.
+
+All handlers execute these steps in order:
+  1. Load the config defined by the parameters.
+  2. Create a new [Awilix] container and register the default dependencies:
+     `log`, `reqId`, and `processor`.
+  3. Parse the event with the parser.
+  4. Execute the processor on the event using the configured strategy and wrapper.
+  5. Serialize and return the result.
 
 [AWS Config Executor]: https://github.com/pureskillgg/ace
 [Awilix]: https://github.com/jeffijoe/awilix
