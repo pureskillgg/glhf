@@ -31,7 +31,12 @@
         "SenderId": "AIDAIENQZJOLO23YVJ4VO",
         "ApproximateFirstReceiveTimestamp": "1545082650649"
       },
-      "messageAttributes": {},
+      "messageAttributes": {
+        "req-id": {
+          "dataType": "String",
+          "stringValue": "f9de2904-597b-4481-855e-85bf39d4f332"
+        }
+      },
       "md5OfBody": "e4e68fb7bd0e697a0ae8f1bb342846b3",
       "eventSource": "aws:sqs",
       "eventSourceARN": "arn:aws:sqs:us-east-2:123456789012:my-queue",
