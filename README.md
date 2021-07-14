@@ -9,6 +9,47 @@ Code Lambda for fun and profit.
 This library trivializes creating powerful AWS Lambda handler
 functions with minimal boilerplate.
 
+This created a Lambda that invokes another lambda:
+
+```javascript
+import { asClass } from 'awilix'
+import { LambdaClient } from '@pureskillgg/awsjs'
+import { ssmString } from '@pureskillgg/ace'
+
+import { invokeHandler } from '../index.js'
+
+const parameters = {
+  blueLambdaFunction: ssmString('BLUE_LAMBDA_FUNCTION_SSM_PATH')
+}
+
+const createProcessor = ({ blueLambdaClient, log }) => async (
+  event,
+  container
+) => {
+  return blueLambdaClient.invokeJson(event)
+}
+
+const registerDependencies = (container, config) => {
+  container.register(
+    'blueLambdaClient',
+    asClass(LambdaClient).inject(() => ({
+      name: 'blue',
+      functionName: config.blueLambdaFunction,
+      AwsLambdaClient: undefined,
+      params: undefined
+    }))
+  )
+}
+
+export const createHandleInvoke = invokeHandler({
+  parameters,
+  createProcessor,
+  registerDependencies
+})
+
+export const handler = createHandleInvoke(parameters)
+```
+
 ## Installation
 
 Add this as a dependency to your project using [npm] with
@@ -28,18 +69,17 @@ $ yarn add @pureskillgg/glhf
 
 ## Usage
 
-The key option for creating new handlers is `createProcessor`.
-The processor should contain the business logic for handling each event.
-The `createProcessor` option is registered with the [Awilix] container
-as a factory function.
+The key options for creating new handlers are `parameters`, `createProcessor`,
+and `registerDependencies`.
 
-For example, this creates a processor that logs a message on each event,
-
-```javascript
-const createProcessor = ({ log }) => async (event, container) => {
-  log.info('hello')
-}
-```
+- Use `parameters` to load configuration with [AWS Config Executor].
+- Use `registerDependencies` to register things with side-effects
+  that should be mocked out in tests.
+  This function has access to the configuration loaded via `parameters`.
+- Use `createProcessor` to define the business logic for handling each event.
+  This function is registered with the [Awilix] container
+  as a factory function, thus is can access all dependencies registered
+  using `registerDependencies`.
 
 ### Handler Factories
 
