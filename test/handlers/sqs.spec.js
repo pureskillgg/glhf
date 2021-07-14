@@ -1,6 +1,6 @@
 import test from 'ava'
 
-import { sqsHandler, sqsJsonHandler, readJson } from '../../index.js'
+import { readJson, sqsHandler, sqsJsonHandler } from '../../index.js'
 
 test('sqsHandler: invoke', async (t) => {
   const event = await readJson('fixtures', 'event', 'sqs.json')
