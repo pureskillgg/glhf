@@ -123,7 +123,7 @@ if a more specific handler is not provided.
 ```javascript
 import { invokeHandler } from '@pureskillgg/glhf'
 
-const createProcessor = () => async (event, container) => {
+const createProcessor = () => async (event, ctx) => {
   return { hello: 'world' }
 }
 
@@ -149,7 +149,7 @@ it will parse the SQS message body as JSON.
 ```javascript
 import { sqsJsonHandler } from '@pureskillgg/glhf'
 
-const createProcessor = () => async (event, container) => {
+const createProcessor = () => async (event, ctx) => {
   return event.body
 }
 

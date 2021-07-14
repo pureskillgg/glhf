@@ -10,7 +10,7 @@ const parameters = {
   rank: envString('RANK')
 }
 
-const createProcessor = ({ rank }) => async (event, container) => {
+const createProcessor = ({ rank }) => async (event, ctx) => {
   return { ...event, rank }
 }
 
