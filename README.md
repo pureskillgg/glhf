@@ -6,17 +6,8 @@ Code Lambda for fun and profit.
 
 ## Description
 
-Create a basic handler with
-
-```js
-import { invokeHandler } from '@pureskillgg/glhf'
-
-const createProcessor = () => async (event, container) => {
-  return { hello: 'world' }
-}
-
-export const handler = createHandleInvoke()
-```
+This library trivializes creating powerful AWS Lambda handler
+functions with minimal boilerplate.
 
 ## Installation
 
@@ -34,6 +25,77 @@ $ yarn add @pureskillgg/glhf
 
 [npm]: https://www.npmjs.com/
 [Yarn]: https://yarnpkg.com/
+
+## Usage
+
+### Handler Factories
+
+- All handler functions return a new handler factory with identical signature:
+  1. `parameters`: The [AWS Config Executor] parameters to load.
+  2. `t`: The AVA `t` object (if running inside AVA).
+  3. `overrideDependencies`: A function with signature `(container, config) => void`
+      which will be called immediately after `registerDependencies`.
+- These arguments are all designed to facilitate testing.
+  See [`handles`](./handles) and [`test/handlers`](./test/handlers).
+- The async function returned by the factory has a signature `(event, context) => any`
+  matching the signature expected by AWS Lambda.
+- All handlers execute these steps in order:
+    - Load the config defined by the parameters.
+    - Create a new [Awilix] container and register `reqId` and `log` as dependencies.
+    - Parse the event with the `parser`.
+    - Run the processor on the event using the configured strategy and wrapper.
+    - Serialize and return the result.
+
+[AWS Config Executor]: https://github.com/pureskillgg/ace
+[Awilix]: https://github.com/jeffijoe/awilix
+
+#### Invoke Handler
+
+The `invokeHandler` handles AWS Lambda invocation events.
+
+An invocation event is a plain JSON serializable JavaScript object.
+This handler may thus be used to handle any invocation event
+if a more specific handler is not provided.
+
+##### Example
+
+```javascript
+import { invokeHandler } from '@pureskillgg/glhf'
+
+const createProcessor = () => async (event, container) => {
+  return { hello: 'world' }
+}
+
+const createHandler = invokeHandler({ createProcessor })
+
+export const handler = createHandler()
+```
+
+#### SQS Handler
+
+The `sqsHandler` handler handles [SQS events](./fixtures/event/sqs.json).
+
+Since SQS events contain multiple messages,
+the default strategy for this handler will execute the processor
+on each message in parallel.
+Each message will be processed in a child Awilix scope.
+
+The `sqsJsonHandler` behaves like the `sqsHandler` except
+it will parse the SQS message body as JSON.
+
+##### Example
+
+```javascript
+import { sqsJsonHandler } from '@pureskillgg/glhf'
+
+const createProcessor = () => async (event, container) => {
+  return event.body
+}
+
+const createHandler = sqsJsonHandler({ createProcessor })
+
+export const handler = createHandler()
+```
 
 ## Development and Testing
 
