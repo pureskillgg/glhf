@@ -20,4 +20,4 @@ test('sqsJsonHandler: invoke', async (t) => {
   t.snapshot(data, 'handler')
 })
 
-const createProcessor = () => async (event, context) => ({ event, context })
+const createProcessor = () => async (event, ctx) => ({ event, ctx })

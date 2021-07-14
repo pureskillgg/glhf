@@ -10,7 +10,7 @@ const parameters = {
 
 const createProcessor = ({ blueLambdaClient, log }) => async (
   event,
-  container
+  ctx
 ) => {
   return blueLambdaClient.invokeJson(event)
 }
