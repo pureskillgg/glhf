@@ -86,6 +86,11 @@ are advanced features which are stable, but not yet fully documented.
 They are used internally to create the included handler factories.
 Please refer to the code for how they may be used.
 
+Parsers and serializers should be agnostic to details of user input and response content.
+They are not expected to throw runtime errors.
+If a parsers or serializer throws, it indicates an bug in it's implementation, or a
+bad configuration (e.g., trying to parse payloads for the wrong event type).
+
 ### Handler Factories
 
 All handler functions return a new handler factory with identical signature:
