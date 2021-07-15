@@ -88,7 +88,7 @@ Please refer to the code for how they may be used.
 
 Parsers and serializers should be agnostic to details of user input and response content.
 They are not expected to throw runtime errors.
-If a parsers or serializer throws, it indicates an bug in it's implementation, or a
+If a parsers or serializer throws, it indicates an bug in its implementation, or a
 bad configuration (e.g., trying to parse payloads for the wrong event type).
 
 ### Handler Factories
@@ -155,7 +155,7 @@ The `httpHandler` handler handles [API Gateway Proxy events](./fixtures/event/ap
 
 The handler will catch all processor errors, wrap them with Boom,
 and return a basic status code response.
-If the processor throws a Boom error, it's status code will be respected.
+If the processor throws a Boom error, its status code will be respected.
 
 The `httpJsonHandler` behaves like the `httpHandler` except
 it will parse the request body as JSON, and if the processor
