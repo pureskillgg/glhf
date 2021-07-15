@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+### Unreleased
+
+### Added
+
+- Handle request id for unparsed SQS event case.
+- Call `onError` in strategies if registered as a dependency.
+
+### Changed
+
+- Invoke wrapper log name from `default` to `invoke`.
+
 ## 1.1.1 / 2021-07-14
 
 ### Fixed
