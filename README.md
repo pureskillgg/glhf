@@ -15,8 +15,7 @@ This creates a handler that invokes another AWS Lambda function:
 import { asClass } from 'awilix'
 import { LambdaClient } from '@pureskillgg/awsjs'
 import { ssmString } from '@pureskillgg/ace'
-
-import { invokeHandler } from '../index.js'
+import { invokeHandler } from '@pureskillgg/glhf'
 
 const parameters = {
   blueLambdaFunction: ssmString('BLUE_LAMBDA_FUNCTION_SSM_PATH')
@@ -69,8 +68,24 @@ $ yarn add @pureskillgg/glhf
 
 ## Usage
 
-The key options for creating new handlers are `parameters`, `createProcessor`,
-and `registerDependencies`.
+A trivial handler that does nothing may be created like this
+
+```javascript
+import { invokeHandler } from '@pureskillgg/glhf'
+
+const createHandleInvoke = invokeHandler()
+export const handler = createHandleInvoke()
+```
+
+To create a more useful handler, leverage
+`parameters`, `createProcessor`, and `registerDependencies`,
+
+```javascript
+import { invokeHandler } from '@pureskillgg/glhf'
+
+const createHandleInvoke = invokeHandler({ createProcessor, registerDependencies })
+export const handler = createHandleInvoke(parameters)
+```
 
 - Use `parameters` to load configuration with [AWS Config Executor].
 - Use `registerDependencies` to register things with side-effects
@@ -81,23 +96,14 @@ and `registerDependencies`.
   as a factory function, thus is can access all dependencies registered
   using `registerDependencies`.
 
-The options for parsers, serializers, wrappers, and strategies
-are advanced features which are stable, but not yet fully documented.
-They are used internally to create the included handler factories.
-Please refer to the code for how they may be used.
-
-Parsers and serializers should be agnostic to details of user input and response content.
-They are not expected to throw runtime errors.
-If a parsers or serializer throws, it indicates an bug in its implementation, or a
-bad configuration (e.g., trying to parse payloads for the wrong event type).
-
 ### Handler Factories
 
-All handler functions return a new handler factory with identical signature:
+All exported handler functions return a new handler factory with identical signature:
   1. `parameters`: The [AWS Config Executor] parameters to load.
   2. `t`: The AVA `t` object (if running inside AVA).
   3. `overrideDependencies`: A function with signature `(container, config) => void`
       which will be called immediately after `registerDependencies`.
+
 These arguments are all designed to facilitate testing.
 See [`handlers`](./handlers) and [`test/handlers`](./test/handlers).
 
@@ -175,6 +181,37 @@ const createHandler = sqsJsonHandler({ createProcessor })
 
 export const handler = createHandler()
 ```
+
+### Advanced usage
+
+The handler functions takes additional options:
+`parser`, `serializer`, `createWrapper`, and `createStrategy`.
+These are advanced features which are stable, but not yet fully documented.
+They are used internally to create the included handler factories.
+Please refer to the code for how they may be used.
+
+#### Parsers and serializers
+
+A parser is a synchronous function which transforms the raw AWS Lambda event
+before it is passed to the processor.
+
+A serializer is a synchronous function which transforms the output of the processor
+into he final return value of the AWS Lambda function.
+
+Parsers and serializers should be agnostic to details of user input and response content.
+They are not expected to throw runtime errors.
+If a parser or serializer throws, it indicates a bug in its implementation,
+or a bad configuration (e.g., trying to parse payloads for the wrong event type).
+
+#### Wrappers
+
+A wrapper function must call a strategy with the event and context.
+It may optionally call the logger, parser, and serializer.
+
+#### Strategy
+
+A strategy has access to the Awilix container scoped to the event.
+It should resolve and call the processor and optionally handle errors.
 
 ## Development and Testing
 
