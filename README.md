@@ -86,6 +86,11 @@ are advanced features which are stable, but not yet fully documented.
 They are used internally to create the included handler factories.
 Please refer to the code for how they may be used.
 
+Parsers and serializers should be agnostic to details of user input and response content.
+They are not expected to throw runtime errors.
+If a parsers or serializer throws, it indicates an bug in its implementation, or a
+bad configuration (e.g., trying to parse payloads for the wrong event type).
+
 ### Handler Factories
 
 All handler functions return a new handler factory with identical signature:
@@ -143,6 +148,19 @@ Each message will be processed in a child Awilix scope.
 
 The `sqsJsonHandler` behaves like the `sqsHandler` except
 it will parse the SQS message body as JSON.
+
+#### HTTP Handler
+
+The `httpHandler` handler handles [API Gateway Proxy events](./fixtures/event/api-gateway-proxy.json).
+
+The handler will catch all processor errors, wrap them with Boom,
+and return a basic status code response.
+If the processor throws a Boom error, its status code will be respected.
+
+The `httpJsonHandler` behaves like the `httpHandler` except
+it will parse the request body as JSON, and if the processor
+returns an object with a `body` property, it will
+serialize that to JSON and add any missing response properties.
 
 ##### Example
 
