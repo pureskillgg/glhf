@@ -1782,10 +1782,10 @@
     "@meltwater/phi" "^4.0.0"
     cache-manager "^3.4.0"
 
-"@pureskillgg/awsjs@^1.1.0":
-  version "1.1.1"
-  resolved "https://npm.pkg.github.com/download/@pureskillgg/awsjs/1.1.1/813b0bb822dc965c13979ff20ebb004dd1b837f1906b76cdebc83232887a6aa6#5c83851597705d9e22b38f8aa5ca0c80978fb426"
-  integrity sha512-+WqkV1yIGEMk0XedYyeSz/uYpJgY02hGK1A/cB60qtd6zJ9tc3Ya2mmmYFt4AjsBsK96DDThnaXHn//ZCdD+0Q==
+"@pureskillgg/awsjs@^1.2.0":
+  version "1.2.0"
+  resolved "https://npm.pkg.github.com/download/@pureskillgg/awsjs/1.2.0/fdf18a3d0695254cc4de3991ea4a606692b0508d071c74d556b3827e44846c0e#92dffd12298b3dd9721776161766f3963d24f2e6"
+  integrity sha512-h8aKGFyaKj4muOEWix0cKbUaCYWfcdpGRc56XMDN7bTnDKR49X61psp/6rqWOfDjpRDf2SNtoIgeQh7XPlqSMw==
   dependencies:
     "@aws-sdk/client-dynamodb" "^3.20.0"
     "@aws-sdk/client-eventbridge" "^3.20.0"
