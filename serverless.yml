@@ -29,6 +29,9 @@ provider:
     Project: ${self:custom.app}
     Name: ${self:custom.name}
     Deployment: ${sls:stage}
+  httpApi:
+    payload: '2.0'
+    disableDefaultEndpoint: true
   apiGateway:
     shouldStartNameWithService: true
   eventBridge:

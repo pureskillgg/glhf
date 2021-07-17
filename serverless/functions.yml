@@ -1,7 +1,3 @@
 ---
 todo:
   handler: handlers/todo.handler
-  events:
-    - http:
-        method: get
-        path: /todo
