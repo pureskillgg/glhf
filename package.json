@@ -88,7 +88,7 @@
     "prettier": "^2.3.0",
     "serverless": "^2.38.0",
     "serverless-jetpack": "^0.11.1",
-    "serverless-offline": "^7.0.0",
+    "serverless-offline": "^8.0.0",
     "testdouble": "^3.16.1"
   }
 }
