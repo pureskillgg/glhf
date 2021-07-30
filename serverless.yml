@@ -49,7 +49,7 @@ custom:
   app: makenew
   owner: pureskillgg
   sentryDsn: ${ssm:/${self:custom.owner}/global/sentry/${self:service}/dsn}
-  ssmPrefix: /${self:custom.owner}/${self:custom.app}/${sls:stage}
+  ssmPrefix: /${self:custom.owner}/${self:custom.app}/${sls:stage}/${self:custom.name}
 
 package:
   individually: true
