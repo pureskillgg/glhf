@@ -40,13 +40,13 @@ const registerDependencies = (container, config) => {
   )
 }
 
-export const createHandleInvoke = invokeHandler({
+export const createHandler = invokeHandler({
   parameters,
   createProcessor,
   registerDependencies
 })
 
-export const handler = createHandleInvoke(parameters)
+export const handler = createHandler(parameters)
 ```
 
 ## Installation
@@ -73,8 +73,8 @@ A trivial handler that does nothing may be created like this
 ```javascript
 import { invokeHandler } from '@pureskillgg/glhf'
 
-const createHandleInvoke = invokeHandler()
-export const handler = createHandleInvoke()
+const createHandler = invokeHandler()
+export const handler = createHandler()
 ```
 
 To create a more useful handler, leverage
@@ -83,8 +83,8 @@ To create a more useful handler, leverage
 ```javascript
 import { invokeHandler } from '@pureskillgg/glhf'
 
-const createHandleInvoke = invokeHandler({ createProcessor, registerDependencies })
-export const handler = createHandleInvoke(parameters)
+const createHandler = invokeHandler({ createProcessor, registerDependencies })
+export const handler = createHandler(parameters)
 ```
 
 - Use `parameters` to load configuration with [AWS Config Executor].

@@ -14,9 +14,9 @@ const createProcessor = ({ rank }) => async (event, ctx) => {
   return { ...event, rank }
 }
 
-export const createHandleInvoke = invokeHandler({
+export const createHandler = invokeHandler({
   registerDependencies,
   createProcessor
 })
 
-export const handler = createHandleInvoke(parameters)
+export const handler = createHandler(parameters)

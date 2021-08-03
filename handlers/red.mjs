@@ -27,10 +27,10 @@ const registerDependencies = (container, config) => {
   )
 }
 
-export const createHandleInvoke = invokeHandler({
+export const createHandler = invokeHandler({
   parameters,
   createProcessor,
   registerDependencies
 })
 
-export const handler = createHandleInvoke(parameters)
+export const handler = createHandler(parameters)
