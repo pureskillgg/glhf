@@ -64,7 +64,7 @@
     "@meltwater/mlabs-logger": "^8.0.0",
     "@meltwater/phi": "^4.0.0",
     "@pureskillgg/ace": "^1.2.1",
-    "awilix": "^4.3.4",
+    "awilix": "^5.0.1",
     "cache-manager": "^3.4.0",
     "uuid": "^8.3.2"
   },
