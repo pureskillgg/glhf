@@ -1659,12 +1659,12 @@
     ramda "~0.27.1"
     ramda-adjunct "~2.33.0"
 
-"@meltwater/tau@^2.0.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@meltwater/tau/-/tau-2.1.0.tgz#22055df5dddfd1d1546050e9cf0c6a4a2e97620d"
-  integrity sha512-fJWzuQ6QPmKx6DMzkNGRCIUf6azWfzpU0833TYYeswxahLueZ5DAfB886P4ECHT785l62Bv36Vyp0GRuDIpAmg==
+"@meltwater/tau@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@meltwater/tau/-/tau-3.0.0.tgz#1036bdcc94c3a97877488b7f16fa2f016329f7a2"
+  integrity sha512-v8azcFaue1pefWpcm7u6PVdBR6hKoVyQtjlZHcw32MHxwfbvotciF1BD9PuokZEFWEfkarFW1jtpZIOKFC9ljg==
   dependencies:
-    luxon "~1.28.0"
+    luxon "~2.0.2"
     ramda "^0.27.0"
 
 "@nodelib/fs.scandir@2.1.5":
@@ -1742,9 +1742,9 @@
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
 "@pureskillgg/ace@^1.2.1":
-  version "1.3.0"
-  resolved "https://npm.pkg.github.com/download/@pureskillgg/ace/1.3.0/502b32542a323855f38a65c96a6076acfe711bc21cff42a5cc9b0315941ddad9#367303ea56d21fda11e6a925ac104e4ece41442c"
-  integrity sha512-6F39d2tXMZ+8RYS5HMk/2ObITrI+8aN45vgo9Iq+bCg+5u58/iZPA8blWDPW3ZR9adErVXO2H6EB7auW9rHpMg==
+  version "1.3.1"
+  resolved "https://npm.pkg.github.com/download/@pureskillgg/ace/1.3.1/71df0ad40d32d3524d9db2832b105837304f348abef2c6a122a8fbea246c037b#60546b4c32de6aacb17088e732546e5a5e4d2701"
+  integrity sha512-+MFTjIDnIZ3UITnGvrI250URnC/dCnXeGz9JY5PcDemtKQcV/ksv7Qi9A15wFWg5ftv74qvwTqd0mCRd8SIruA==
   dependencies:
     "@aws-sdk/client-secrets-manager" "^3.11.0"
     "@aws-sdk/client-ssm" "^3.11.0"
@@ -1753,9 +1753,9 @@
     cache-manager "^3.4.0"
 
 "@pureskillgg/awsjs@^1.2.0":
-  version "1.2.0"
-  resolved "https://npm.pkg.github.com/download/@pureskillgg/awsjs/1.2.0/fdf18a3d0695254cc4de3991ea4a606692b0508d071c74d556b3827e44846c0e#92dffd12298b3dd9721776161766f3963d24f2e6"
-  integrity sha512-h8aKGFyaKj4muOEWix0cKbUaCYWfcdpGRc56XMDN7bTnDKR49X61psp/6rqWOfDjpRDf2SNtoIgeQh7XPlqSMw==
+  version "1.2.1"
+  resolved "https://npm.pkg.github.com/download/@pureskillgg/awsjs/1.2.1/015595b6e719e61350c6d6f3e766f9f69cf55b28000bb83898f05e9744538b99#c1ef78b12efd10436625d706a3e3961df39046bd"
+  integrity sha512-5mpqBJ29Z8/g4bQcS23T7XohT5wEI7yXQXOTxmClVALEpYqNQn6+RgpDaFr9tJYaWYbSdzEDBnDZRSOuQLrhmQ==
   dependencies:
     "@aws-sdk/client-dynamodb" "^3.20.0"
     "@aws-sdk/client-eventbridge" "^3.20.0"
@@ -1766,7 +1766,7 @@
     "@aws-sdk/util-dynamodb" "^3.20.0"
     "@meltwater/mlabs-logger" "^8.0.0"
     "@meltwater/phi" "^4.0.0"
-    "@meltwater/tau" "^2.0.0"
+    "@meltwater/tau" "^3.0.0"
     change-case "^4.1.2"
     uuid "^8.3.2"
 
@@ -7430,10 +7430,15 @@ lru_map@^0.3.3:
   resolved "https://registry.yarnpkg.com/lru_map/-/lru_map-0.3.3.tgz#b5c8351b9464cbd750335a79650a0ec0e56118dd"
   integrity sha1-tcg1G5Rky9dQM1p5ZQoOwOVhGN0=
 
-luxon@^1.25.0, luxon@~1.28.0:
+luxon@^1.25.0:
   version "1.28.0"
   resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.28.0.tgz#e7f96daad3938c06a62de0fb027115d251251fbf"
   integrity sha512-TfTiyvZhwBYM/7QdAVDh+7dBTBA29v4ik0Ce9zda3Mnf8on1S5KJI8P2jKFZ8+5C0jhmr0KwJEO/Wdpm0VeWJQ==
+
+luxon@~2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-2.0.2.tgz#11f2cd4a11655fdf92e076b5782d7ede5bcdd133"
+  integrity sha512-ZRioYLCgRHrtTORaZX1mx+jtxKtKuI5ZDvHNAmqpUzGqSrR+tL4FVLn/CUGMA3h0+AKD1MAxGI5GnCqR5txNqg==
 
 magic-string@^0.25.7:
   version "0.25.7"
