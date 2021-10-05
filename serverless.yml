@@ -1,7 +1,7 @@
 ---
 service: makenew-serverless-nodejs
 
-frameworkVersion: '^2.38.0'
+frameworkVersion: '^2.61.0'
 
 variablesResolutionMode: 20210219
 configValidationMode: error
@@ -15,6 +15,7 @@ plugins:
 
 provider:
   name: aws
+  architecture: arm64
   tracing:
     apiGateway: false
     lambda: false
