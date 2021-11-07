@@ -67,16 +67,13 @@ Bootstrap a new Node.js Serverless project in five minutes or less.
    $ git remote add origin git@github.com:<user>/<new-node-lib>.git
    $ git push -u origin master
    ```
+
 6. Ensure the GitHub action passes,
-   then publish the initial version of the package with
+   then release the initial version with
    ```
    $ nvm install
    $ yarn install
    $ npm version patch
-   ```
-7. Trigger a deploy to the stg stage with
-   ```
-   $ yarn run release:staging
    ```
 
 ### Updating from this skeleton
@@ -201,18 +198,9 @@ using a [version workflow_dispatch on GitHub Actions].
 
 Serverless deployment is triggered by a release repository_dispatch on GitHub Actions.
 
-Ensure a `GITHUB_TOKEN` is set in your environment and
-use `yarn run release:<environment>` to do this automatically, e.g.,
-
-```
-$ yarn run release:staging
-$ yarn run release:production
-```
-
 Deployment may be triggered using on the web
 using a [release workflow_dispatch on GitHub Actions].
 
-[npm-version]: https://docs.npmjs.com/cli/version
 [release workflow_dispatch on GitHub Actions]: https://github.com/pureskillgg/makenew-serverless-nodejs/actions?query=workflow%3Arelease
 
 ## GitHub Actions
