@@ -127,7 +127,7 @@ jobs:
         env:
           JOB_STATUS: ${{ job.status }}
       - name: Notify Discord
-        uses: rtCamp/action-slack-notify@v2.1.1
+        uses: rtCamp/action-slack-notify@v2
         if: always()
         env:
           SLACK_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}/slack
