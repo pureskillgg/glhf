@@ -16,15 +16,15 @@ plugins:
 provider:
   name: aws
   architecture: arm64
-  tracing:
-    apiGateway: false
-    lambda: false
   runtime: nodejs14.x
   region: ${env:AWS_DEFAULT_REGION, 'us-east-1'}
   stage: stg
   logRetentionInDays: 30
   memorySize: 512
   timeout: 30
+  tracing:
+    apiGateway: false
+    lambda: false
   stackTags:
     Owner: ${self:custom.owner}
     Project: ${self:custom.app}
