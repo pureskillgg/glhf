@@ -25,7 +25,7 @@ jobs:
         with:
           ref: ${{ github.event.inputs.ref }}${{ github.event.client_payload.ref }}
       - name: Start deployment
-        uses: bobheadxi/deployments@v0.4.3
+        uses: bobheadxi/deployments@v0.6.0
         id: deployment
         with:
           step: start
@@ -134,7 +134,7 @@ jobs:
         env:
           JOB_STATUS: ${{ job.status }}
       - name: Notify Discord
-        uses: rtCamp/action-slack-notify@v2.1.1
+        uses: rtCamp/action-slack-notify@v2
         if: always()
         env:
           SLACK_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}/slack
@@ -146,7 +146,7 @@ jobs:
           SLACK_MESSAGE: ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
           SLACK_FOOTER: ${{ github.repository }}
       - name: Finish deployment
-        uses: bobheadxi/deployments@v0.4.3
+        uses: bobheadxi/deployments@v0.6.0
         if: always()
         with:
           step: finish

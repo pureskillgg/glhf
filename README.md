@@ -292,18 +292,9 @@ using a [version workflow_dispatch on GitHub Actions].
 
 Serverless deployment is triggered by a release repository_dispatch on GitHub Actions.
 
-Ensure a `GITHUB_TOKEN` is set in your environment and
-use `yarn run release:<environment>` to do this automatically, e.g.,
-
-```
-$ yarn run release:staging
-$ yarn run release:production
-```
-
 Deployment may be triggered using on the web
 using a [release workflow_dispatch on GitHub Actions].
 
-[npm-version]: https://docs.npmjs.com/cli/version
 [release workflow_dispatch on GitHub Actions]: https://github.com/pureskillgg/glhf/actions?query=workflow%3Arelease
 
 ## GitHub Actions
