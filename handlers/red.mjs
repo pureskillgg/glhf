@@ -8,12 +8,11 @@ const parameters = {
   blueLambdaFunction: ssmString('BLUE_LAMBDA_FUNCTION_SSM_PATH')
 }
 
-const createProcessor = ({ blueLambdaClient, log }) => async (
-  event,
-  ctx
-) => {
-  return blueLambdaClient.invokeJson(event)
-}
+const createProcessor =
+  ({ blueLambdaClient, log }) =>
+  async (event, ctx) => {
+    return blueLambdaClient.invokeJson(event)
+  }
 
 const registerDependencies = (container, config) => {
   container.register(
