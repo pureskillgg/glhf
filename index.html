@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset='utf-8'>
-  <title>@pureskillgg/glhf 2.0.1 | Documentation</title>
+  <title>@pureskillgg/glhf 2.1.0 | Documentation</title>
   <meta name='description' content='Code Lambda for fun and profit.'>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' rel='stylesheet'>
@@ -15,7 +15,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>@pureskillgg/glhf</h3>
-          <div class='mb1'><code>2.0.1</code></div>
+          <div class='mb1'><code>2.1.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -42,6 +42,16 @@
                   href='#readjson'
                   class="">
                   readJson
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#eventbridgehandler'
+                  class="">
+                  eventbridgeHandler
                   
                 </a>
                 
@@ -112,6 +122,16 @@
                   href='#apigatewayproxyjsonparser'
                   class="">
                   apiGatewayProxyJsonParser
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#eventbridgeparser'
+                  class="">
+                  eventbridgeParser
                   
                 </a>
                 
@@ -257,7 +277,7 @@
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/event/index.doc.js#L1-L8'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/event/index.doc.js#L1-L8'>
       <span>lib/event/index.doc.js</span>
       </a>
     
@@ -333,7 +353,7 @@
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/fs.doc.js#L1-L10'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/fs.doc.js#L1-L10'>
       <span>lib/fs.doc.js</span>
       </a>
     
@@ -406,12 +426,98 @@ using path.join to a single file path.</p>
   
   <div class='clearfix'>
     
+    <h3 class='fl m0' id='eventbridgehandler'>
+      eventbridgeHandler
+    </h3>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/handlers/eventbridge.doc.js#L1-L10'>
+      <span>lib/handlers/eventbridge.doc.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Create a handler factory for EventBridge events.
+Handles EventBridge rule events and redriven events from SQS.
+See the README for an explanation of how to use the returned handler factory.</p>
+
+    <div class='pre p1 fill-light mt0'>eventbridgeHandler(options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    Overrides passed to createHandler.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
+        The handler factory.
+
+      
+    
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Related</div>
+    
+      
+        <a href="#createhandler">createHandler</a>
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='createhandler'>
       createHandler
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/handlers/factory.doc.js#L1-L14'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/handlers/factory.doc.js#L1-L14'>
       <span>lib/handlers/factory.doc.js</span>
       </a>
     
@@ -569,7 +675,7 @@ See the README for an explanation of how to use the returned handler factory.</p
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/handlers/invoke.doc.js#L1-L9'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/handlers/invoke.doc.js#L1-L9'>
       <span>lib/handlers/invoke.doc.js</span>
       </a>
     
@@ -654,7 +760,7 @@ See the README for an explanation of how to use the returned handler factory.</p
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/handlers/sqs.doc.js#L1-L17'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/handlers/sqs.doc.js#L1-L17'>
       <span>lib/handlers/sqs.doc.js</span>
       </a>
     
@@ -738,7 +844,7 @@ See the README for an explanation of how to use the returned handler factory.</p
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/handlers/sqs.doc.js#L1-L17'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/handlers/sqs.doc.js#L1-L17'>
       <span>lib/handlers/sqs.doc.js</span>
       </a>
     
@@ -823,7 +929,7 @@ See the README for an explanation of how to use the returned handler factory.</p
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/headers.doc.js#L1-L5'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/headers.doc.js#L1-L5'>
       <span>lib/headers.doc.js</span>
       </a>
     
@@ -882,7 +988,7 @@ See the README for an explanation of how to use the returned handler factory.</p
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/parsers/api-gateway-proxy.doc.js#L1-L16'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/parsers/api-gateway-proxy.doc.js#L1-L16'>
       <span>lib/parsers/api-gateway-proxy.doc.js</span>
       </a>
     
@@ -959,7 +1065,7 @@ Includes searchParams as an instance of URLSearchParams.
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/parsers/api-gateway-proxy.doc.js#L1-L16'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/parsers/api-gateway-proxy.doc.js#L1-L16'>
       <span>lib/parsers/api-gateway-proxy.doc.js</span>
       </a>
     
@@ -1031,12 +1137,89 @@ Includes searchParams as an instance of URLSearchParams.
   
   <div class='clearfix'>
     
+    <h3 class='fl m0' id='eventbridgeparser'>
+      eventbridgeParser
+    </h3>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/parsers/eventbridge.doc.js#L1-L8'>
+      <span>lib/parsers/eventbridge.doc.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Parser for EventBridge events.
+Parses EventBridge rule events and redriven events from SQS.</p>
+
+    <div class='pre p1 fill-light mt0'>eventbridgeParser(event: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>event</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    The event.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>></code>:
+        The parsed events.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='identityparser'>
       identityParser
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/parsers/identity.doc.js#L1-L7'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/parsers/identity.doc.js#L1-L7'>
       <span>lib/parsers/identity.doc.js</span>
       </a>
     
@@ -1112,7 +1295,7 @@ Includes searchParams as an instance of URLSearchParams.
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/parsers/records.doc.js#L1-L7'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/parsers/records.doc.js#L1-L7'>
       <span>lib/parsers/records.doc.js</span>
       </a>
     
@@ -1188,7 +1371,7 @@ Includes searchParams as an instance of URLSearchParams.
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/parsers/sqs.doc.js#L1-L18'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/parsers/sqs.doc.js#L1-L18'>
       <span>lib/parsers/sqs.doc.js</span>
       </a>
     
@@ -1266,7 +1449,7 @@ with proper types.
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/parsers/sqs.doc.js#L1-L18'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/parsers/sqs.doc.js#L1-L18'>
       <span>lib/parsers/sqs.doc.js</span>
       </a>
     
@@ -1344,7 +1527,7 @@ with proper types.
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/serializers/api-gateway-proxy.doc.js#L1-L14'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/serializers/api-gateway-proxy.doc.js#L1-L14'>
       <span>lib/serializers/api-gateway-proxy.doc.js</span>
       </a>
     
@@ -1420,7 +1603,7 @@ with proper types.
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/serializers/api-gateway-proxy.doc.js#L1-L14'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/serializers/api-gateway-proxy.doc.js#L1-L14'>
       <span>lib/serializers/api-gateway-proxy.doc.js</span>
       </a>
     
@@ -1496,7 +1679,7 @@ with proper types.
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/serializers/identity.doc.js#L1-L7'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/serializers/identity.doc.js#L1-L7'>
       <span>lib/serializers/identity.doc.js</span>
       </a>
     
@@ -1572,7 +1755,7 @@ with proper types.
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/strategies/event.doc.js#L1-L9'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/strategies/event.doc.js#L1-L9'>
       <span>lib/strategies/event.doc.js</span>
       </a>
     
@@ -1650,7 +1833,7 @@ Resolves and calls onError on an event error.</p>
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/strategies/http.doc.js#L1-L11'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/strategies/http.doc.js#L1-L11'>
       <span>lib/strategies/http.doc.js</span>
       </a>
     
@@ -1730,7 +1913,7 @@ and returns a matching status code response.</p>
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/strategies/parallel.doc.js#L1-L9'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/strategies/parallel.doc.js#L1-L9'>
       <span>lib/strategies/parallel.doc.js</span>
       </a>
     
@@ -1808,7 +1991,7 @@ Resolves and calls onError on each element error.</p>
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/wrappers/invoke.doc.js#L1-L10'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/wrappers/invoke.doc.js#L1-L10'>
       <span>lib/wrappers/invoke.doc.js</span>
       </a>
     
@@ -1911,7 +2094,7 @@ Resolves and calls onError on each element error.</p>
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/8e98d156338c68df99cd25d5906551717a065939/lib/wrappers/record.doc.js#L1-L8'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/pureskillgg/glhf/blob/bd4340089b833c216d9948d05c81e97587f4c95d/lib/wrappers/record.doc.js#L1-L8'>
       <span>lib/wrappers/record.doc.js</span>
       </a>
     
