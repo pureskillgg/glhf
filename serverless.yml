@@ -45,7 +45,7 @@ provider:
       statements: ${file(./serverless/role.yml)}
   environment: ${file(./serverless/environment.yml)}
   layers:
-    - arn:aws:lambda:us-east-1:943013980633:layer:SentryNodeServerlessSDK:35
+    - arn:aws:lambda:us-east-1:943013980633:layer:SentryNodeServerlessSDK:40
 
 custom:
   name: serverless-nodejs
