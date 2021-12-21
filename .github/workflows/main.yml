@@ -2,27 +2,24 @@
 name: main
 
 on:
-  push:
-    branches:
-      - master
-      - 'ver/**'
-  pull_request:
-    branches:
-      - master
-      - 'ver/**'
+  - push
+  - pull_request
 
 jobs:
   test:
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node:
+          - '14'
+          - '16'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
-          registry-url: https://npm.pkg.github.com
-          scope: '@${{ github.repository_owner }}'
+          node-version: ${{ matrix.node }}
       - name: Get yarn cache directory
         id: yarn-cache-dir
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -42,8 +39,6 @@ jobs:
             ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
       - name: Install dependencies
         run: yarn install --frozen-lockfile --non-interactive
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Test
         run: yarn test
   lint:
@@ -54,9 +49,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
-          registry-url: https://npm.pkg.github.com
-          scope: '@${{ github.repository_owner }}'
+          node-version: ${{ matrix.node }}
       - name: Get yarn cache directory
         id: yarn-cache-dir
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -76,8 +69,6 @@ jobs:
             ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
       - name: Install dependencies
         run: yarn install --frozen-lockfile --non-interactive
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Lint
         run: yarn run lint
   package:
@@ -85,18 +76,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
-          registry-url: https://npm.pkg.github.com
-          scope: '@${{ github.repository_owner }}'
+          node-version: ${{ matrix.node }}
       - name: Get yarn cache directory
         id: yarn-cache-dir
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -116,14 +99,10 @@ jobs:
             ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
       - name: Install dependencies
         run: yarn install --frozen-lockfile --non-interactive
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Move runtime dependencies
         run: |
           version=$(jq -r '.devDependencies."@pureskillgg/awsjs"' < package.json)
           yarn remove @pureskillgg/awsjs
           yarn add "@pureskillgg/awsjs@${version}"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Build
         run: yarn run sls:package

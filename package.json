@@ -15,10 +15,10 @@
   "homepage": "https://github.com/pureskillgg/glhf",
   "bugs": "https://github.com/pureskillgg/glhf/issues",
   "repository": "pureskillgg/glhf",
-  "license": "SEE LICENSE IN LICENSE.txt",
+  "license": "MIT",
   "author": {
     "name": "PureSkill.gg",
-    "email": "secure@pureskill.gg"
+    "email": "contact@pureskill.gg"
   },
   "files": [
     "yarn.lock",
@@ -61,7 +61,7 @@
     "@hapi/boom": "^9.1.3",
     "@meltwater/mlabs-logger": "^8.0.0",
     "@meltwater/phi": "^4.0.0",
-    "@pureskillgg/ace": "^1.5.0",
+    "@pureskillgg/ace": "^1.5.1",
     "awilix": "^5.0.1",
     "cache-manager": "^3.4.0",
     "uuid": "^8.3.2"

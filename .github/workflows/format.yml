@@ -33,8 +33,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
-          registry-url: https://npm.pkg.github.com
-          scope: '@${{ github.repository_owner }}'
       - name: Get yarn cache directory
         id: yarn-cache-dir
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -54,8 +52,6 @@ jobs:
             ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
       - name: Install dependencies
         run: yarn install --frozen-lockfile --non-interactive
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Format
         run: yarn run format
       - name: Commit
