@@ -1,5 +1,7 @@
 # Good Lambda Have Function
 
+[![npm](https://img.shields.io/npm/v/@pureskillgg/glhf.svg)](https://www.npmjs.com/package/@pureskillgg/glhf)
+[![docs](https://img.shields.io/badge/docs-online-informational)](https://pureskillgg.github.io/glhf/)
 [![GitHub Actions](https://github.com/pureskillgg/glhf/workflows/main/badge.svg)](https://github.com/pureskillgg/glhf/actions)
 
 Code Lambda for fun and profit.
@@ -303,11 +305,11 @@ _GitHub Actions should already be configured: this section is for reference only
 
 The following repository secrets must be set on [GitHub Actions]:
 
+- `NPM_TOKEN`: npm token for publishing packages.
 - `AWS_DEFAULT_REGION`: The AWS region Serverless will deploy to.
 - `AWS_ACCESS_KEY_ID`: AWS access key ID.
 - `AWS_SECRET_ACCESS_KEY`: AWS secret access key.
-- `GH_TOKEN`: A personal access token that can trigger workflows
-  and read and write packages.
+- `GH_TOKEN`: A personal access token that can trigger workflows.
 - `GRAFANA_API_ORIGIN`: The Grafana origin to push annotations.
 - `GRAFANA_API_KEY`: The Grafana key key for pushing annotations.
 - `DISCORD_WEBHOOK`: The Discord webhook to notify on deploy.
@@ -348,12 +350,10 @@ To submit a patch:
 
 ## License
 
-This Serverless project is Copyright (c) 2019-2021 FPS Critic, Inc.
+This npm package is licensed under the MIT license.
 
-Portions of code in this Serverless project were taken and adapted from
-[@meltwater/jackalambda] which is licensed under the
-[included MIT license][./MIT-LICENSE.txt].
-The derived code is Copyright (c) 2019-2021 FPS Critic, Inc.
+Portions of code in this project were taken and adapted from
+[@meltwater/jackalambda] which is licensed under the MIT license.
 
 [@meltwater/jackalambda]: https://github.com/meltwater/jackalambda
 

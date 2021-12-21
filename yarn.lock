@@ -1758,10 +1758,10 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@pureskillgg/ace@^1.5.0":
-  version "1.5.0"
-  resolved "https://npm.pkg.github.com/download/@pureskillgg/ace/1.5.0/414d3e6329df0400488ad3d03c4f95804f8913d0b3232ce87f02318f73a7a2c0#7c00bdc967f5c715dff67b757430996e305283ce"
-  integrity sha512-HJFAkeqG5OXdqTznHeJJSEZfGU7wWAZ2MmNeC/h5XTOGnr1HqCQ+oZ0uSTB1JYKmfWhVHmbWs9OJeH/HXbp3zg==
+"@pureskillgg/ace@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@pureskillgg/ace/-/ace-1.5.1.tgz#dcc7e7b572f6f552d935bc6786cd909d92d611a1"
+  integrity sha512-kGAC5aFSAcYHTyp+5oqJtoR2qN5ulfp5v5o4J2OFgd2zLHVyrbsAP/yBW1uT4Ck9Y7T3tidSQVRjPGb4ZAc20A==
   dependencies:
     "@aws-sdk/client-secrets-manager" "^3.11.0"
     "@aws-sdk/client-ssm" "^3.11.0"
@@ -1770,9 +1770,9 @@
     cache-manager "^3.4.0"
 
 "@pureskillgg/awsjs@^1.4.0":
-  version "1.4.0"
-  resolved "https://npm.pkg.github.com/download/@pureskillgg/awsjs/1.4.0/73fc633226fc27187a24f690ee0bac1a2ddb2deb7bb8b8c6e1cc3ccf3f7af2ca#9a558b3abe24cbff1a4c23224e99215480b2eb4c"
-  integrity sha512-2caQ21a1+RHeP3PUnsfHvXVTjBV+9z2qLK+zp21QuvdELUn9snzU+8Dc54CHSfnGU7InakI1G3fThHHa8C9syA==
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@pureskillgg/awsjs/-/awsjs-1.4.1.tgz#b94263da1019abb13a2a9a49939795e33edf045b"
+  integrity sha512-Uu4JlqwSU0Loq/cu1y8oOab7qfwIlMG2lxdCr7ud8v/RyTKq7dAKqxwOJmIl1HqRWr4QCQfI6MIiYAXNuSb58A==
   dependencies:
     "@aws-sdk/client-dynamodb" "^3.20.0"
     "@aws-sdk/client-eventbridge" "^3.20.0"
@@ -2511,7 +2511,7 @@ ansi-html@^0.0.7:
   resolved "https://registry.yarnpkg.com/ansi-html/-/ansi-html-0.0.7.tgz#813584021962a9e9e6fd039f940d12f56ca7859e"
   integrity sha1-gTWEAhliqenm/QOflA0S9WynhZ4=
 
-ansi-regex@^2.0.0, ansi-regex@^2.1.1:
+ansi-regex@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.1.1.tgz#c3b33ab5ee360d86e0e628f0468ae7ef27d654df"
   integrity sha1-w7M6te42DYbg5ijwRorn7yfWVN8=
@@ -3465,19 +3465,7 @@ cli-boxes@^2.2.1:
   resolved "https://registry.yarnpkg.com/cli-boxes/-/cli-boxes-2.2.1.tgz#ddd5035d25094fce220e9cab40a45840a440318f"
   integrity sha512-y4coMcylgSCdVinjiDBuR8PCC2bLjyGTwEmPb9NHR/QaNU6EUOXcTY/s6VjGMD6ENSEaeQYHCY0GNGS5jfMwPw==
 
-cli-color@^1.3:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/cli-color/-/cli-color-1.4.0.tgz#7d10738f48526824f8fe7da51857cb0f572fe01f"
-  integrity sha512-xu6RvQqqrWEo6MPR1eixqGPywhYBHRs653F9jfXB2Hx4jdM/3WxiNE1vppRmxtMIfl16SFYTpYlrnqH/HsK/2w==
-  dependencies:
-    ansi-regex "^2.1.1"
-    d "1"
-    es5-ext "^0.10.46"
-    es6-iterator "^2.0.3"
-    memoizee "^0.4.14"
-    timers-ext "^0.1.5"
-
-cli-color@^2.0.0, cli-color@^2.0.1:
+cli-color@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/cli-color/-/cli-color-2.0.1.tgz#93e3491308691f1e46beb78b63d0fb2585e42ba6"
   integrity sha512-eBbxZF6fqPUNnf7CLAFOersUnyYzv83tHFLSlts+OAHsNendaqv2tHCq+/MO+b3Y+9JeoUlIvobyxG/Z8GNeOg==
@@ -3520,15 +3508,15 @@ cli-spinners@^2.5.0:
   resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-2.6.1.tgz#adc954ebe281c37a6319bfa401e6dd2488ffb70d"
   integrity sha512-x/5fWmGMnbKQAaNwN+UZlV79qBLM9JFnJuJ03gIi5whrob0xV0ofNVHy9DhwGdsMJQc2OKv0oGmLzvaqvAVv+g==
 
-cli-sprintf-format@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/cli-sprintf-format/-/cli-sprintf-format-1.1.0.tgz#7373b00cc8299285f29bc2a20e050a4522d4baff"
-  integrity sha512-t3LcCdPvrypZovStadWdRS4a186gsq9aoHJYTIer55VY20YdVjGVHDV4uPWcWCXTw1tPjfwlRGE7zKMWJ663Sw==
+cli-sprintf-format@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/cli-sprintf-format/-/cli-sprintf-format-1.1.1.tgz#ec69955c89ef1c61243b52e68015b75c08fb9188"
+  integrity sha512-BbEjY9BEdA6wagVwTqPvmAwGB24U93rQPBFZUT8lNCDxXzre5LFHQUTJc70czjgUomVg8u8R5kW8oY9DYRFNeg==
   dependencies:
-    cli-color "^1.3"
-    es5-ext "^0.10.46"
-    sprintf-kit "2"
-    supports-color "^5.5"
+    cli-color "^2.0.1"
+    es5-ext "^0.10.53"
+    sprintf-kit "^2.0.1"
+    supports-color "^6.1.0"
 
 cli-truncate@^2.1.0:
   version "2.1.0"
@@ -7259,13 +7247,13 @@ lodash@4.17.x, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.1
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 log-node@^8.0.2:
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/log-node/-/log-node-8.0.2.tgz#0c067e6e7f1623f0c69be1d809603af3c03db053"
-  integrity sha512-H+3t002yGqZRJhVW3A/EksIB7i1M84cwcWzBPsnAmQWOA2ePAV2fXJpNPBnw6VEdhzPcedIxQwT5jhBVTlYQww==
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/log-node/-/log-node-8.0.3.tgz#441bf1a72f9f1c28b62f5bf42e9eb3765af74d73"
+  integrity sha512-1UBwzgYiCIDFs8A0rM2QdBFo8Wd8UQ0HrSTu/MNI+/2zN3NoHRj2fhplurAyuxTYUXu3Oohugq1jAn5s05u1MQ==
   dependencies:
     ansi-regex "^5.0.1"
-    cli-color "^2.0.0"
-    cli-sprintf-format "^1.1.0"
+    cli-color "^2.0.1"
+    cli-sprintf-format "^1.1.1"
     d "^1.0.1"
     es5-ext "^0.10.53"
     sprintf-kit "^2.0.1"
@@ -10142,7 +10130,7 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-sprintf-kit@2, sprintf-kit@^2.0.1:
+sprintf-kit@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/sprintf-kit/-/sprintf-kit-2.0.1.tgz#bb837e8fa4b28f094531d8e33669120027236bb8"
   integrity sha512-2PNlcs3j5JflQKcg4wpdqpZ+AjhQJ2OZEo34NXDtlB0tIPG84xaaXhpA8XFacFiwjKA4m49UOYG83y3hbMn/gQ==
@@ -10457,14 +10445,14 @@ supertap@^2.0.0:
     serialize-error "^7.0.1"
     strip-ansi "^6.0.0"
 
-supports-color@^5.3.0, supports-color@^5.5, supports-color@^5.5.0:
+supports-color@^5.3.0, supports-color@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"
   integrity sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==
   dependencies:
     has-flag "^3.0.0"
 
-supports-color@^6.0.0:
+supports-color@^6.0.0, supports-color@^6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-6.1.0.tgz#0764abc69c63d5ac842dd4867e8d025e880df8f3"
   integrity sha512-qe1jfm1Mg7Nq/NSh6XE24gPXROEVsWHxC1LIx//XNlD9iw7YZQGjZNjYN7xGaEG6iKdA8EtNFW6R0gjnVXp+wQ==
@@ -10643,7 +10631,7 @@ time-zone@^1.0.0:
   resolved "https://registry.yarnpkg.com/time-zone/-/time-zone-1.0.0.tgz#99c5bf55958966af6d06d83bdf3800dc82faec5d"
   integrity sha1-mcW/VZWJZq9tBtg73zgA3IL67F0=
 
-timers-ext@^0.1.5, timers-ext@^0.1.7:
+timers-ext@^0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/timers-ext/-/timers-ext-0.1.7.tgz#6f57ad8578e07a3fb9f91d9387d65647555e25c6"
   integrity sha512-b85NUNzTSdodShTIbky6ZF02e8STtVVfD+fu4aXXShEELpozH+bCpJLYMPZbsABN2wDH7fJpqIoXxJpzbf0NqQ==
