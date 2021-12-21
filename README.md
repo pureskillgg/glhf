@@ -145,6 +145,63 @@ const createHandler = invokeHandler({ createProcessor })
 export const handler = createHandler()
 ```
 
+#### EventBridge Handler
+
+The `eventbridgeHandler` handles [EventBridge events].
+
+##### Dead-letter queue redrive
+
+Additionally, this handler supports redriving events from dead-letter
+queues connected to both `onFailure` and event rules.
+
+- EventBridge invokes the function as an [Asynchronous invocation].
+- If EventBridge cannot invoke the target function, it will put the event
+  in the DLQ after exhausting the allotted retry attempts.
+- If EventBridge can invoke the function it will consider the event delivered,
+  **even if the function invocation throws an error**.
+- If the asynchronous function invocation throws an error,
+  it will put the _invocation record_ in the DLQ after exhausting the allotted retry attempts.
+- If the DLQ message is from EventBridge, the message body is the event record.
+- If the DLQ message is from Lambda, the message body contains
+  the event record inside the `requestPayload` attribute.
+
+The example below shows how to configure a Serverless function
+that will deliver failed messages to a DLQ and allow redriving
+failed messages with the same function.
+
+##### Example
+
+```javascript
+import { eventbridgeHandler } from '@pureskillgg/glhf'
+
+const createProcessor = () => async (event, ctx) => {
+  return { type: event['detail-type'] }
+}
+
+const createHandler = invokeHandler({ createProcessor })
+
+export const handler = createHandler()
+```
+
+```yaml
+event:
+  handler: handlers/event.handler
+  destinations:
+    onFailure: ${ssm:${self:custom.ssmPrefix}/event_deadletter_queue_arn}
+  events:
+    - eventBridge:
+        eventBus: ${ssm:${self:custom.ssmPrefix}/eventbus_arn}
+        deadLetterQueueArn: {ssm:${self:custom.ssmPrefix}/event_deadletter_queue_arn}
+    - sqs:
+        enabled: false
+        arn: ${ssm:${self:custom.ssmPrefix}/event_deadletter_queue_arn}
+        batchSize: 1
+
+```
+
+[EventBridge events]: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-events.html
+[Asynchronous invocation]: https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html
+
 #### SQS Handler
 
 The `sqsHandler` handler handles [SQS events](./fixtures/event/sqs.json).
