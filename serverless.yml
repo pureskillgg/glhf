@@ -6,9 +6,6 @@ frameworkVersion: '^2.66.2'
 variablesResolutionMode: 20210326
 configValidationMode: error
 
-disabledDeprecations:
-  - NEW_PACKAGE_PATTERNS
-
 plugins:
   - serverless-jetpack
   - serverless-offline
