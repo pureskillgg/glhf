@@ -1,9 +1,9 @@
 ---
 service: glhf
 
-frameworkVersion: '^2.61.0'
+frameworkVersion: '^2.66.2'
 
-variablesResolutionMode: 20210219
+variablesResolutionMode: 20210326
 configValidationMode: error
 
 disabledDeprecations:
@@ -45,7 +45,7 @@ provider:
       statements: ${file(./serverless/role.yml)}
   environment: ${file(./serverless/environment.yml)}
   layers:
-    - arn:aws:lambda:us-east-1:943013980633:layer:SentryNodeServerlessSDK:35
+    - arn:aws:lambda:us-east-1:943013980633:layer:SentryNodeServerlessSDK:40
 
 custom:
   name: glhf
