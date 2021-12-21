@@ -154,6 +154,7 @@ The `eventbridgeHandler` handles [EventBridge events].
 Additionally, this handler supports redriving events from dead-letter
 queues connected to both `onFailure` and event rules.
 
+The full lifecycle of an event is explained below:
 - EventBridge invokes the function as an [Asynchronous invocation].
 - If EventBridge cannot invoke the target function, it will put the event
   in the DLQ after exhausting the allotted retry attempts.
