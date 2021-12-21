@@ -186,7 +186,7 @@ export const handler = createHandler()
 
 ### Advanced usage
 
-The handler functions takes additional options:
+The handler functions take additional options:
 `parser`, `serializer`, `createWrapper`, and `createStrategy`.
 These are advanced features which are stable, but not yet fully documented.
 They are used internally to create the included handler factories.
@@ -198,7 +198,7 @@ A parser is a synchronous function which transforms the raw AWS Lambda event
 before it is passed to the processor.
 
 A serializer is a synchronous function which transforms the output of the processor
-into he final return value of the AWS Lambda function.
+into the final return value of the AWS Lambda function.
 
 Parsers and serializers should be agnostic to details of user input and response content.
 They are not expected to throw runtime errors.
