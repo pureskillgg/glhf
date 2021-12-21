@@ -95,7 +95,7 @@ export const handler = createHandler(parameters)
   This function has access to the configuration loaded via `parameters`.
 - Use `createProcessor` to define the business logic for handling each event.
   This function is registered with the [Awilix] container
-  as a factory function, thus is can access all dependencies registered
+  as a factory function, thus it can access all dependencies registered
   using `registerDependencies`.
 
 ### Handler Factories
