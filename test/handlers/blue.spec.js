@@ -5,7 +5,7 @@ import { createHandler } from '../../handlers/blue.js'
 
 test('invoke', async (t) => {
   const event = { foo: 'bar' }
-  const handler = createHandler(parameters, t)
+  const handler = await createHandler(parameters, t)
   const data = await handler(event)
   t.snapshot(data, 'handler')
 })

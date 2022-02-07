@@ -48,7 +48,7 @@ export const createHandler = invokeHandler({
   registerDependencies
 })
 
-export const handler = createHandler(parameters)
+export const handler = await createHandler(parameters)
 ```
 
 ## Installation
@@ -76,7 +76,7 @@ A trivial handler that does nothing may be created like this
 import { invokeHandler } from '@pureskillgg/glhf'
 
 const createHandler = invokeHandler()
-export const handler = createHandler()
+export const handler = await createHandler()
 ```
 
 To create a more useful handler, leverage
@@ -86,7 +86,7 @@ To create a more useful handler, leverage
 import { invokeHandler } from '@pureskillgg/glhf'
 
 const createHandler = invokeHandler({ createProcessor, registerDependencies })
-export const handler = createHandler(parameters)
+export const handler = await createHandler(parameters)
 ```
 
 - Use `parameters` to load configuration with [AWS Config Executor].
@@ -142,7 +142,7 @@ const createProcessor = () => async (event, ctx) => {
 
 const createHandler = invokeHandler({ createProcessor })
 
-export const handler = createHandler()
+export const handler = await createHandler()
 ```
 
 #### EventBridge Handler
@@ -181,7 +181,7 @@ const createProcessor = () => async (event, ctx) => {
 
 const createHandler = invokeHandler({ createProcessor })
 
-export const handler = createHandler()
+export const handler = await createHandler()
 ```
 
 ```yaml
@@ -239,7 +239,7 @@ const createProcessor = () => async (event, ctx) => {
 
 const createHandler = sqsJsonHandler({ createProcessor })
 
-export const handler = createHandler()
+export const handler = await createHandler()
 ```
 
 ### Advanced usage

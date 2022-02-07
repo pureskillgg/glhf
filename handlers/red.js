@@ -35,4 +35,6 @@ export const createHandler = invokeHandler({
   registerDependencies
 })
 
-export const handler = Sentry.AWSLambda.wrapHandler(createHandler(parameters))
+export const handler = Sentry.AWSLambda.wrapHandler(
+  await createHandler(parameters)
+)
