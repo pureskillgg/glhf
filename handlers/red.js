@@ -1,12 +1,38 @@
-'use strict'
+import Sentry from '@sentry/serverless'
+import { asClass } from 'awilix'
+import { LambdaClient } from '@pureskillgg/awsjs'
+import { ssmString } from '@pureskillgg/ace'
 
-const Sentry = require('@sentry/serverless')
+import { invokeHandler } from '../index.js'
 
 Sentry.AWSLambda.init()
 
-const index = import('./red.mjs')
+const parameters = {
+  blueLambdaFunction: ssmString('BLUE_LAMBDA_FUNCTION_SSM_PATH')
+}
 
-exports.handler = Sentry.AWSLambda.wrapHandler(async (...args) => {
-  const { handler } = await index
-  return handler(...args)
+const createProcessor =
+  ({ blueLambdaClient, log }) =>
+  async (event, ctx) => {
+    return blueLambdaClient.invokeJson(event)
+  }
+
+const registerDependencies = (container, config) => {
+  container.register(
+    'blueLambdaClient',
+    asClass(LambdaClient).inject(() => ({
+      name: 'blue',
+      functionName: config.blueLambdaFunction,
+      AwsLambdaClient: undefined,
+      params: undefined
+    }))
+  )
+}
+
+export const createHandler = invokeHandler({
+  parameters,
+  createProcessor,
+  registerDependencies
 })
+
+export const handler = Sentry.AWSLambda.wrapHandler(createHandler(parameters))

@@ -1,12 +1,28 @@
-'use strict'
+import Sentry from '@sentry/serverless'
+import { asValue } from 'awilix'
+import { envString } from '@pureskillgg/ace'
 
-const Sentry = require('@sentry/serverless')
+import { invokeHandler } from '../index.js'
 
 Sentry.AWSLambda.init()
 
-const index = import('./blue.mjs')
+const registerDependencies = (container, config) => {
+  container.register({ rank: asValue(config.rank) })
+}
 
-exports.handler = Sentry.AWSLambda.wrapHandler(async (...args) => {
-  const { handler } = await index
-  return handler(...args)
+const parameters = {
+  rank: envString('RANK')
+}
+
+const createProcessor =
+  ({ rank }) =>
+  async (event, ctx) => {
+    return { ...event, rank }
+  }
+
+export const createHandler = invokeHandler({
+  registerDependencies,
+  createProcessor
 })
+
+export const handler = Sentry.AWSLambda.wrapHandler(createHandler(parameters))

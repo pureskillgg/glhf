@@ -1,7 +1,7 @@
 import test from 'ava'
 import { asValue } from 'awilix'
 
-import { createHandler } from '../../handlers/red.mjs'
+import { createHandler } from '../../handlers/red.js'
 
 test('invoke', async (t) => {
   const event = { foo: 'bar' }

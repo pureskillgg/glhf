@@ -1,7 +1,7 @@
 import test from 'ava'
 import { localString } from '@pureskillgg/ace'
 
-import { createHandler } from '../../handlers/blue.mjs'
+import { createHandler } from '../../handlers/blue.js'
 
 test('invoke', async (t) => {
   const event = { foo: 'bar' }
