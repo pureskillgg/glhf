@@ -103,6 +103,9 @@ export const handler = await createHandler(parameters)
 All exported handler functions return a new handler factory with identical signature:
   1. `parameters`: The [AWS Config Executor] parameters to load.
   2. `t`: The AVA `t` object (if running inside AVA).
+      If not using AVA, you must pass either `true` or an object with a `log` method
+      which takes a string message as it's only argument.
+      Additionally, your test running must set `NODE_ENV=test`.
   3. `overrideDependencies`: A function with signature `(container, config) => void`
       which will be called immediately after `registerDependencies`.
 
