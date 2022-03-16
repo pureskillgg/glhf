@@ -41,7 +41,6 @@
     "preversion": "npm-run-all --parallel lint test sls:package",
     "postversion": "git push --follow-tags",
     "sls:package": "serverless package",
-    "sls:offline": "nodemon --exec serverless offline",
     "sls:invoke": "serverless invoke local -f",
     "deploy": "npm-run-all --serial deploy:stack",
     "deploy:stack": "serverless deploy --aws-s3-accelerate --stage=$SERVERLESS_STAGE",
@@ -72,7 +71,7 @@
     "@meltwater/examplr": "^7.0.0",
     "@pureskillgg/awsjs": "^1.5.0",
     "@sentry/serverless": "^6.3.6",
-    "ava": "^3.3.0",
+    "ava": "^4.0.1",
     "documentation": "^13.2.5",
     "eslint": "^7.4.0",
     "eslint-config-prettier": "^8.3.0",
@@ -86,7 +85,6 @@
     "prettier": "^2.3.0",
     "serverless": "^2.66.2",
     "serverless-jetpack": "^0.11.1",
-    "serverless-offline": "^8.0.0",
     "testdouble": "^3.16.1"
   }
 }
