@@ -97,6 +97,10 @@ export const handler = await createHandler(parameters)
   This function is registered with the [Awilix] container
   as a factory function, thus it can access all dependencies registered
   using `registerDependencies`.
+- Register a dependency named `init` as an async function which will be called
+  once when the handler is created.
+  This allows the function to perform one-time expensive setup on cold starts
+  or when provisioned concurrency is used.
 
 ### Handler Factories
 
@@ -118,10 +122,11 @@ matching the signature expected by AWS Lambda.
 All handlers execute these steps in order:
   1. Load the config defined by the parameters.
   2. Create a new [Awilix] container and register the default dependencies:
-     `log`, `reqId`, and `processor`.
-  3. Parse the event with the parser.
-  4. Execute the processor on the event using the configured strategy and wrapper.
-  5. Serialize and return the result.
+     `log`, `reqId`, `init`, and `processor`.
+  3. Await the `init` function.
+  4. Parse the event with the parser.
+  6. Execute the processor on the event using the configured strategy and wrapper.
+  7. Serialize and return the result.
 
 [AWS Config Executor]: https://github.com/pureskillgg/ace
 [Awilix]: https://github.com/jeffijoe/awilix
