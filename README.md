@@ -245,7 +245,7 @@ export const handler = createHandler()
 ### Advanced usage
 
 The handler functions take additional options:
-`parser`, `serializer`, `createWrapper`, and `createStrategy`.
+`logOptions`, `parser`, `serializer`, `createWrapper`, and `createStrategy`.
 These are advanced features which are stable, but not yet fully documented.
 They are used internally to create the included handler factories.
 Please refer to the code for how they may be used.
