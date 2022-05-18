@@ -1,7 +1,7 @@
 # Good Lambda Have Function
 
 [![npm](https://img.shields.io/npm/v/@pureskillgg/glhf.svg)](https://www.npmjs.com/package/@pureskillgg/glhf)
-[![docs](https://img.shields.io/badge/docs-online-informational)](https://docs.pureskill.gg/glhf/)
+[![docs](https://img.shields.io/badge/docs-online-informational)](https://dev.pureskill.gg/glhf/)
 [![GitHub Actions](https://github.com/pureskillgg/glhf/workflows/main/badge.svg)](https://github.com/pureskillgg/glhf/actions)
 
 Code Lambda for fun and profit.
