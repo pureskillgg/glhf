@@ -12,7 +12,7 @@ plugins:
 provider:
   name: aws
   architecture: arm64
-  runtime: nodejs14.x
+  runtime: nodejs18.x
   region: ${env:AWS_DEFAULT_REGION, 'us-east-1'}
   stage: stg
   logRetentionInDays: 30
