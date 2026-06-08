@@ -18,43 +18,44 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.event.inputs.ref }}${{ github.event.client_payload.ref }}
       - name: Start deployment
-        uses: bobheadxi/deployments@v0.6.0
+        uses: maxgfr/github-multi-deployments@v1.8.5
         id: deployment
         with:
           step: start
           env: ${{ github.event.inputs.environment }}${{ github.event.client_payload.environment }}
-          desc: ${{ github.event.client_payload.ref }}${{ github.event.client_payload.ref }}
+          desc: ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
           ref: ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
+          auto_inactive: 'true'
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v5
         with:
           node-version: '18'
       - name: Get yarn cache directory
         id: yarn-cache-dir
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
       - name: Yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v5
         with:
           path: ${{ steps.yarn-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Node modules cache
-        uses: actions/cache@v2
+        uses: actions/cache@v5
         with:
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
@@ -79,21 +80,24 @@ jobs:
           SERVERLESS_STAGE: stg
       - name: Get commit message
         id: message
-        run: echo ::set-output name=message::$(git log --format=%B -n 1 ${{ github.sha }})
+        run: echo "message=$(git log --format=%B -n 1 ${{ github.sha }})" >> "$GITHUB_OUTPUT"
       - name: Grafana Annotation
-        uses: frankie567/grafana-annotation-action@v1.0.2
+        uses: pureskillgg/psgg-grafana-annotation-action@v2.0.1
         with:
-          apiHost: ${{ secrets.GRAFANA_API_ORIGIN }}
-          apiToken: ${{ secrets.GRAFANA_API_KEY }}
-          tags: deployment,${{ github.event.repository.name }},${{ github.event.inputs.environment }}${{ github.event.client_payload.environment }}
-          text: |
+          grafanaHost: ${{ secrets.GRAFANA_API_ORIGIN }}
+          grafanaToken: ${{ secrets.GRAFANA_API_KEY }}
+          grafanaTags: |
+            deployment
+            ${{ github.event.repository.name }}
+            ${{ github.event.client_payload.environment }}${{ github.event.inputs.environment }}
+          grafanaText: >-
             ${{ steps.message.outputs.message }}
             ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
             ${{ github.sha }}
       - name: Get version
         id: version
         run: |
-          echo "::set-output name=version::$(jq -r .version < package.json)"
+          echo "version=$(jq -r .version < package.json)" >> "$GITHUB_OUTPUT"
       - name: Sentry release v${{ steps.version.outputs.version }} to production
         if: ${{ github.event.inputs.environment == 'production' || github.event.client_payload.environment == 'production' }}
         uses: getsentry/action-release@v1
@@ -121,9 +125,9 @@ jobs:
         if: always()
         run: |
           if [ "${JOB_STATUS,,}" == 'success' ]; then
-            echo "::set-output name=color::#00ff00"
+            echo "color=#00ff00" >> "$GITHUB_OUTPUT"
           else
-            echo "::set-output name=color::#ff0000"
+            echo "color=#ff0000" >> "$GITHUB_OUTPUT"
           fi
         env:
           JOB_STATUS: ${{ job.status }}
@@ -140,7 +144,7 @@ jobs:
           SLACK_MESSAGE: ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
           SLACK_FOOTER: ${{ github.repository }}
       - name: Finish deployment
-        uses: bobheadxi/deployments@v0.6.0
+        uses: maxgfr/github-multi-deployments@v1.8.5
         if: always()
         with:
           step: finish
