@@ -1,6 +1,6 @@
 import path from 'path'
 
-import { createExamples } from '@meltwater/examplr'
+import { createExamples } from '@pureskillgg/examplr'
 
 import { red } from './invoke.js'
 
