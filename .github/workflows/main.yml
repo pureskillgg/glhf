@@ -8,17 +8,13 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node:
-          - '22'
     steps:
       - name: Checkout
         uses: actions/checkout@v5
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: ${{ matrix.node }}
+          node-version: '22'
       - name: Get yarn cache directory
         id: yarn-cache-dir
         run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
@@ -48,7 +44,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: ${{ matrix.node }}
+          node-version: '22'
       - name: Get yarn cache directory
         id: yarn-cache-dir
         run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
@@ -78,7 +74,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: ${{ matrix.node }}
+          node-version: '22'
       - name: Get yarn cache directory
         id: yarn-cache-dir
         run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"

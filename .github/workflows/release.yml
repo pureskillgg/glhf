@@ -80,7 +80,12 @@ jobs:
           SERVERLESS_STAGE: stg
       - name: Get commit message
         id: message
-        run: echo "message=$(git log --format=%B -n 1 ${{ github.sha }})" >> "$GITHUB_OUTPUT"
+        run: |
+          {
+            echo "message<<EOF"
+            git log --format=%B -n 1 ${{ github.sha }}
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
       - name: Grafana Annotation
         uses: pureskillgg/psgg-grafana-annotation-action@v2.0.1
         with:
