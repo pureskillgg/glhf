@@ -54,7 +54,7 @@
     "report": "nyc report"
   },
   "engines": {
-    "node": ">=16.14.0"
+    "node": ">=20.0.0"
   },
   "dependencies": {
     "@hapi/boom": "^9.1.3",
