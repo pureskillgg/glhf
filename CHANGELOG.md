@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## 3.0.0 / 2026-06-08
+
+### Changed
+
+- Migrate direct `@meltwater/*` dependencies (`mlabs-logger`, `phi`, `examplr`) to their `@pureskillgg/*` equivalents.
+- Bump `@pureskillgg/ace` and `@pureskillgg/awsjs` to v2.
+- Require Node.js v20 or later.
+
 ## 2.5.0 / 2024-04-21
 
 ### Changed
