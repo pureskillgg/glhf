@@ -6,10 +6,61 @@
 
 Code Lambda for fun and profit.
 
-## Description
+glhf ("Good Lambda Have Function") is a reusable Node.js / ESM library that builds
+AWS Lambda handler factories with minimal boilerplate, wiring up config loading,
+an [Awilix] dependency-injection container, structured logging, and per-event-source
+parsing, serialization, and error-handling strategies.
 
-This library trivializes creating powerful AWS Lambda handler
-functions with minimal boilerplate.
+## What it does
+
+glhf exports a family of **handler-factory functions**, one per AWS Lambda event
+source. Each is a thin wrapper around a central `createHandler` factory so the same
+engine serves every event type:
+
+- **`invokeHandler`** — raw Lambda invocation / arbitrary JSON events (the default
+  / fallback handler). Identity parser and serializer, single-run event strategy.
+- **`eventbridgeHandler`** — [EventBridge events], with dead-letter-queue redrive
+  support that transparently unwraps both EventBridge-origin and Lambda-`onFailure`
+  DLQ records.
+- **`sqsHandler`** / **`sqsJsonHandler`** — SQS batches, processed **per record in
+  parallel**, each in its own Awilix child scope. The JSON variant also parses each
+  message body as JSON.
+- **`httpHandler`** / **`httpJsonHandler`** — API Gateway HTTP API v2 proxy events,
+  with [Boom]-based mapping of processor errors to HTTP status codes. The JSON
+  variant parses the request body and serializes the response body to JSON.
+
+Every handler follows the same lifecycle. On cold start it creates a cache
+([cache-manager], 60s TTL) and an Awilix container; per invocation it builds a
+request context (`ctx`), derives a request id, creates a child structured logger,
+loads configuration via [AWS Config Executor], registers the caller's dependencies,
+creates a scoped container, and runs the chosen **strategy** through a **wrapper**
+that parses the event, invokes the caller's processor, logs start/data/end, and
+serializes the result.
+
+The design deliberately separates four pluggable concerns — **parser**,
+**serializer**, **wrapper**, and **strategy** — so the same core factory powers
+every event source. See [Handler lifecycle and DI scoping](./docs/handler-lifecycle.md)
+for the full flow and the parent-vs-per-event-vs-per-record scoping model.
+
+## Pipeline role
+
+glhf is a foundational **shared library** (published to npm as `@pureskillgg/glhf`),
+not a pipeline stage itself. Virtually every Node.js Lambda across the PureSkill.gg
+CS2 pipeline imports it to create its `handler` export — for example `csgo-mutator`,
+`csgo-profile`, `oauthjs`, automatch and link services, AppSync resolvers, and
+EventBridge / SQS / HTTP consumers.
+
+It sits alongside the other internal libraries it composes: it loads config with
+[`@pureskillgg/ace`][AWS Config Executor] (SSM / env descriptors), logs with
+`@pureskillgg/mlabs-logger`, and uses functional utilities from `@pureskillgg/phi`.
+glhf standardizes how all of these services parse events, load config, log, and
+handle errors so each consuming repo only writes its own `parameters`,
+`registerDependencies`, and `createProcessor`.
+
+This library has **no production AWS infrastructure of its own**. The `serverless.yml`,
+`serverless/*.yml`, and `handlers/` in this repo exist only as a red/blue
+**example / integration-test deployment** used to exercise the library end to end
+(see [Example deployment](#example-deployment-redblue)).
 
 This creates a handler that invokes another AWS Lambda function:
 
@@ -273,6 +324,110 @@ It may optionally call the logger, parser, and serializer.
 A strategy has access to the Awilix container scoped to the event.
 It should resolve and call the processor and optionally handle errors.
 
+## Building blocks
+
+Every handler factory is composed from the same internal primitives. These are the
+real exported names confirmed in [`lib`](./lib); consuming services usually only need
+the handler factories, but the pieces are exported for advanced use and custom handlers.
+
+### Handler factories (`lib/handlers`)
+
+| Export | Source | Role |
+| --- | --- | --- |
+| `invokeHandler` | `lib/handlers/invoke.js` | Raw invocation / generic JSON; identity parser + serializer, event strategy |
+| `eventbridgeHandler` | `lib/handlers/eventbridge.js` | EventBridge events; eventbridge parser + parallel strategy; DLQ redrive |
+| `sqsHandler` / `sqsJsonHandler` | `lib/handlers/sqs.js` | SQS batches; per-record parallel processing in child scopes |
+| `httpHandler` / `httpJsonHandler` | `lib/handlers/http.js` | API Gateway HTTP API v2; HTTP strategy maps errors to status codes |
+| `createHandler` | `lib/handlers/factory.js` | Central engine all factories delegate to (cache, container, config, scope, run) |
+
+### Strategies (`lib/strategies`)
+
+| Export | Behavior |
+| --- | --- |
+| `createEventStrategy` | Resolves and runs the processor once; resolves an optional `onError` |
+| `createParallelStrategy` | Validates the parsed event is an array; runs the processor on each record concurrently (`Promise.all`), each in its own child scope |
+| `createHttpStrategy` | Catches processor errors, boomifies them, logs a warning, returns `{ statusCode }` |
+
+### Wrappers (`lib/wrappers`)
+
+| Export | Role |
+| --- | --- |
+| `createInvokeWrapper` | Orchestrates parse → strategy → serialize with start/data/end logging |
+| `createRecordWrapper` | Per-record inner loop for the parallel strategy (own ctx/log per record) |
+
+### Parsers and serializers (`lib/parsers`, `lib/serializers`)
+
+- **Parsers:** `identityParser`, `sqsParser` / `sqsJsonParser`, `eventbridgeParser`,
+  `recordsParser`, `apiGatewayProxyParser` / `apiGatewayProxyJsonParser`. These normalize
+  raw events — typing SQS attributes (String / Number / Binary), unwrapping DLQ records,
+  and validating API Gateway v2 (`version` `2.0`) payloads.
+- **Serializers:** `identitySerializer`, `apiGatewayProxySerializer` /
+  `apiGatewayProxyJsonSerializer`. The JSON variant stringifies `body` and fills in
+  default HTTP response fields.
+
+### Utilities
+
+`createCtx` (`lib/ctx.js`), `getRequestId` (`lib/request-id.js`),
+`discoverEventType` (`lib/event/discover.js` — distinguishes `aws:sqs` from everything
+else), `createLogger` / `logFatal` (`lib/logger.js`), `createGetConfig` wrapping ace's
+`getConfig` (`lib/config.js`), `createScope` / `registerContext` (`lib/container.js`),
+`createCache` (`lib/cache.js`, 60s TTL), `readJson` (`lib/fs.js`), and `securityHeaders`
+(`lib/headers.js`).
+
+## Observability
+
+glhf is a published library, not a deployed service, so there is **no application AWS
+infrastructure to inspect** — no DynamoDB, SQS, SNS, Step Functions, EventBridge,
+AppSync, or CloudFront in this repo. The observability behavior below is what the library
+establishes for **consuming services**; find runtime logs in the consuming Lambda's own
+CloudWatch log groups (`/aws/lambda/<consumer-service>-<stage>-<function>`).
+
+- **Structured logs.** Every handler emits structured logs via
+  `@pureskillgg/mlabs-logger`. The factory seeds a child logger with env metadata and
+  AWS request context, derives a `reqId` (from SQS message attributes, `event.reqId`, or
+  a fresh uuid), and logs **start / data / end** around each processor run. Verbosity is
+  controlled by `LOG_LEVEL` (defaults to `info`); the consuming service also sets
+  `LOG_ENV`, `LOG_SYSTEM`, `LOG_SERVICE`, and `LOG_VERSION`. To trace a single
+  invocation, filter the consumer's log group by its `reqId`.
+- **Errors.** Synchronous invoke errors propagate to the caller. HTTP handlers convert
+  errors to status codes with `@hapi/boom` (`createHttpStrategy`). glhf itself wires no
+  DLQ or retry sink — those belong to the consuming service's Serverless config; the
+  `eventbridgeHandler` is what lets a service **redrive** its own EventBridge / `onFailure`
+  DLQ messages (see the deep-dive below).
+- **Sentry.** glhf does not bundle Sentry; consuming services typically wrap their handler
+  with `@sentry/serverless`. The example deploy in this repo demonstrates that pattern.
+
+### Example deployment (red/blue)
+
+The `serverless.yml` + `serverless/*.yml` + `handlers/` exist **only** as an
+integration test of the library, deployed under service `glhf` (default stage `stg`):
+
+- **`glhf-${sls:stage}-red`** (`handlers/red.handler`) — reads
+  `BLUE_LAMBDA_FUNCTION_SSM_PATH` via ace's `ssmString` and invokes the blue Lambda
+  through `@pureskillgg/awsjs` `LambdaClient`.
+- **`glhf-${sls:stage}-blue`** (`handlers/blue.handler`, env `RANK=ge`) — the downstream
+  target invoked by red.
+- **SSM parameter** `/pureskillgg/glhf/${stage}/glhf/blue_lambda_function`
+  (`AWS::SSM::Parameter`, type `String`, `Value: Ref BlueLambdaFunction` in
+  `serverless/resources.yml`) — holds the deployed blue function; red reads it and IAM
+  grants `ssm:GetParameter` on `/${owner}/${app}/${stage}/${name}/*`.
+- Example handlers are Sentry-wrapped (`Sentry.AWSLambda.wrapHandler`, with the
+  `SentryNodeServerlessSDK:40` Lambda layer) purely to exercise the consumer pattern.
+
+Log groups for the example deploy (30-day retention): `/aws/lambda/glhf-${sls:stage}-red`
+and `/aws/lambda/glhf-${sls:stage}-blue`.
+
+> Note: the `httpApi` block in `serverless.yml` has its default endpoint disabled and **no
+> function attaches an `httpApi` event**, so no API Gateway is actually provisioned for
+> the example.
+
+## Documentation
+
+- [Handler lifecycle and DI scoping](./docs/handler-lifecycle.md) — the cold-start →
+  per-invocation → per-record flow, the parent / per-event / per-record Awilix scope
+  model, and how EventBridge DLQ redrive unwrapping works. Start here if a consuming
+  service's dependencies or `reqId` are not what you expect.
+
 ## Development and Testing
 
 ### Quickstart
@@ -414,6 +569,8 @@ Portions of code in this project were taken and adapted from
 [@meltwater/jackalambda] which is licensed under the MIT license.
 
 [@meltwater/jackalambda]: https://github.com/meltwater/jackalambda
+[Boom]: https://hapi.dev/module/boom/
+[cache-manager]: https://www.npmjs.com/package/cache-manager
 
 ## Warranty
 
