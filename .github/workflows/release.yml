@@ -78,27 +78,6 @@ jobs:
         if: ${{ github.event.inputs.environment == 'staging' || github.event.client_payload.environment == 'staging' }}
         env:
           SERVERLESS_STAGE: stg
-      - name: Get commit message
-        id: message
-        run: |
-          {
-            echo "message<<EOF"
-            git log --format=%B -n 1 ${{ github.sha }}
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
-      - name: Grafana Annotation
-        uses: pureskillgg/psgg-grafana-annotation-action@v2.0.1
-        with:
-          grafanaHost: ${{ secrets.GRAFANA_API_ORIGIN }}
-          grafanaToken: ${{ secrets.GRAFANA_API_KEY }}
-          grafanaTags: |
-            deployment
-            ${{ github.event.repository.name }}
-            ${{ github.event.client_payload.environment }}${{ github.event.inputs.environment }}
-          grafanaText: >-
-            ${{ steps.message.outputs.message }}
-            ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
-            ${{ github.sha }}
       - name: Get version
         id: version
         run: |
