@@ -1,4 +1,4 @@
-ARG VARIANT="18"
+ARG VARIANT="22"
 
 FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:${VARIANT}
 

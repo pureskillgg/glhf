@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## 4.0.0
+
+### Changed
+
+- **Breaking:** Require Node.js 22+ — `engines.node` is now `>=22.0.0`,
+  dropping support for Node versions below 22. Also bump the devcontainer to
+  Node 22. (CI already ran on Node 22.)
+
 ## 3.0.0 / 2026-06-08
 
 ### Changed
