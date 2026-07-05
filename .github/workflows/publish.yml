@@ -31,9 +31,9 @@ jobs:
       - name: Check version
         id: version
         run: |
-          echo "name=$(jq -r '.name' package.json)" >> $GITHUB_OUTPUT
-          echo "current=$(jq -r '.version' package.json)" >> $GITHUB_OUTPUT
-          echo "published=$(npm view $(jq -r '.name' package.json)@$(jq -r '.version' package.json) version 2>/dev/null || echo '')" >> $GITHUB_OUTPUT
+          echo "name=$(jq -r '.name' package.json)" >> "$GITHUB_OUTPUT"
+          echo "current=$(jq -r '.version' package.json)" >> "$GITHUB_OUTPUT"
+          echo "published=$(npm view $(jq -r '.name' package.json)@$(jq -r '.version' package.json) version 2>/dev/null || echo '')" >> "$GITHUB_OUTPUT"
       - name: Publish ${{ steps.version.outputs.name }}@${{ steps.version.outputs.current }}
         if: steps.version.outputs.current != steps.version.outputs.published
         run: npm publish --access public
@@ -53,9 +53,9 @@ jobs:
       - name: Check version
         id: version
         run: |
-          echo "name=$(jq -r '.name' package.json)" >> $GITHUB_OUTPUT
-          echo "current=$(jq -r '.version' package.json)" >> $GITHUB_OUTPUT
-          echo "published=$(npm view $(jq -r '.name' package.json)@$(jq -r '.version' package.json) version 2>/dev/null || echo '')" >> $GITHUB_OUTPUT
+          echo "name=$(jq -r '.name' package.json)" >> "$GITHUB_OUTPUT"
+          echo "current=$(jq -r '.version' package.json)" >> "$GITHUB_OUTPUT"
+          echo "published=$(npm view $(jq -r '.name' package.json)@$(jq -r '.version' package.json) version 2>/dev/null || echo '')" >> "$GITHUB_OUTPUT"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish ${{ steps.version.outputs.name }}@${{ steps.version.outputs.current }}
