@@ -1,12 +1,12 @@
 'use strict'
 
-const Sentry = require('@sentry/serverless')
+const Sentry = require('@sentry/aws-serverless')
 
-Sentry.AWSLambda.init()
+Sentry.init()
 
 const index = import('./blue.mjs')
 
-exports.handler = Sentry.AWSLambda.wrapHandler(async (...args) => {
+exports.handler = Sentry.wrapHandler(async (...args) => {
   const { handler } = await index
   return handler(...args)
 })

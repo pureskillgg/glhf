@@ -44,24 +44,16 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: '22'
-      - name: Get yarn cache directory
-        id: yarn-cache-dir
-        run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
-      - name: Yarn cache
-        uses: actions/cache@v5
-        with:
-          path: ${{ steps.yarn-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Node modules cache
-        uses: actions/cache@v5
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
+          cache: npm
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --non-interactive
+        run: npm ci
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Cut ${{ github.event.inputs.version }}${{ github.event.client_payload.version }} version
         run: npm version ${{ github.event.inputs.version }}${{ github.event.client_payload.version }}
+        env:
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}

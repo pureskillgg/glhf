@@ -8,34 +8,23 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node:
+          - '22'
+          - '24'
     steps:
       - name: Checkout
         uses: actions/checkout@v5
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: '22'
-      - name: Get yarn cache directory
-        id: yarn-cache-dir
-        run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
-      - name: Yarn cache
-        uses: actions/cache@v5
-        with:
-          path: ${{ steps.yarn-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Node modules cache
-        uses: actions/cache@v5
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
+          node-version: ${{ matrix.node }}
+          cache: npm
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --non-interactive
+        run: npm ci
       - name: Test
-        run: yarn test
+        run: npm test
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -45,27 +34,11 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: '22'
-      - name: Get yarn cache directory
-        id: yarn-cache-dir
-        run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
-      - name: Yarn cache
-        uses: actions/cache@v5
-        with:
-          path: ${{ steps.yarn-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Node modules cache
-        uses: actions/cache@v5
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
+          cache: npm
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --non-interactive
+        run: npm ci
       - name: Lint
-        run: yarn run lint
+        run: npm run lint
   package:
     runs-on: ubuntu-latest
     steps:
@@ -75,30 +48,14 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: '22'
-      - name: Get yarn cache directory
-        id: yarn-cache-dir
-        run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
-      - name: Yarn cache
-        uses: actions/cache@v5
-        with:
-          path: ${{ steps.yarn-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Node modules cache
-        uses: actions/cache@v5
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
+          cache: npm
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --non-interactive
+        run: npm ci
       - name: Move runtime dependencies
         run: |
           version=$(jq -r '.devDependencies."@pureskillgg/awsjs"' < package.json)
-          yarn remove @pureskillgg/awsjs
-          yarn add "@pureskillgg/awsjs@${version}"
+          npm uninstall @pureskillgg/awsjs
+          npm install "@pureskillgg/awsjs@${version}"
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
@@ -106,6 +63,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Build
-        run: yarn run sls:package
+        run: npm run sls:package
         env:
           SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
