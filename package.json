@@ -59,21 +59,17 @@
   "engines": {
     "node": ">=22.0.0"
   },
-  "overrides": {
-    "uuid": "^14.0.1",
-    "luxon": "^3.7.2"
-  },
   "dependencies": {
     "@hapi/boom": "^10.0.1",
-    "@pureskillgg/ace": "^3.0.0",
-    "@pureskillgg/mlabs-logger": "^10.0.0",
-    "@pureskillgg/phi": "^6.0.0",
+    "@pureskillgg/ace": "^3.1.0",
+    "@pureskillgg/mlabs-logger": "^10.0.2",
+    "@pureskillgg/phi": "^6.0.2",
     "awilix": "^13.0.5",
     "cache-manager": "^3.6.3",
     "uuid": "^14.0.1"
   },
   "devDependencies": {
-    "@pureskillgg/awsjs": "^3.0.0",
+    "@pureskillgg/awsjs": "^3.0.2",
     "@pureskillgg/examplr": "^8.0.1",
     "@sentry/aws-serverless": "^10.63.0",
     "ava": "^8.0.1",
