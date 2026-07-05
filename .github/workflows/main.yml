@@ -101,3 +101,5 @@ jobs:
           yarn add "@pureskillgg/awsjs@${version}"
       - name: Build
         run: yarn run sls:package
+        env:
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}

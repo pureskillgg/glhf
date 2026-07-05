@@ -1,10 +1,7 @@
 ---
 service: glhf
 
-frameworkVersion: '^2.66.2'
-
-variablesResolutionMode: 20210326
-configValidationMode: error
+frameworkVersion: '^4'
 
 plugins:
   - serverless-jetpack
@@ -12,7 +9,7 @@ plugins:
 provider:
   name: aws
   architecture: arm64
-  runtime: nodejs18.x
+  runtime: nodejs22.x
   region: ${env:AWS_DEFAULT_REGION, 'us-east-1'}
   stage: stg
   logRetentionInDays: 30
@@ -35,7 +32,6 @@ provider:
     useCloudFormation: true
   deploymentBucket:
     blockPublicAccess: true
-  lambdaHashingVersion: 20201221
   iam:
     role:
       statements: ${file(./serverless/role.yml)}

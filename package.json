@@ -83,8 +83,8 @@
     "npm-run-all": "^4.1.2",
     "nyc": "^15.0.0",
     "prettier": "^2.3.0",
-    "serverless": "^2.66.2",
-    "serverless-jetpack": "^0.11.1",
+    "serverless": "^4.37.0",
+    "serverless-jetpack": "^0.12.0",
     "testdouble": "^3.16.1"
   }
 }
