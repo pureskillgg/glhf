@@ -99,5 +99,13 @@ jobs:
           version=$(jq -r '.devDependencies."@pureskillgg/awsjs"' < package.json)
           yarn remove @pureskillgg/awsjs
           yarn add "@pureskillgg/awsjs@${version}"
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Build
         run: yarn run sls:package
+        env:
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}

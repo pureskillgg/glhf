@@ -73,11 +73,13 @@ jobs:
         if: ${{ github.event.inputs.environment == 'production' || github.event.client_payload.environment == 'production' }}
         env:
           SERVERLESS_STAGE: prod
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
       - name: Serverless deploy to staging from ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
         run: yarn run deploy
         if: ${{ github.event.inputs.environment == 'staging' || github.event.client_payload.environment == 'staging' }}
         env:
           SERVERLESS_STAGE: stg
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
       - name: Get version
         id: version
         run: |
