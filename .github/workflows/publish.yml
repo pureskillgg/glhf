@@ -5,6 +5,12 @@ on:
   push:
     tags:
       - v*
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+  packages: write
 
 jobs:
   npm:
@@ -17,19 +23,20 @@ jobs:
         with:
           node-version: '22'
           registry-url: https://registry.npmjs.org
+          cache: npm
+      - name: Update npm for OIDC trusted publishing
+        run: npm install -g npm@^11
+      - name: Install dependencies
+        run: npm ci
       - name: Check version
         id: version
         run: |
           echo "name=$(jq -r '.name' package.json)" >> "$GITHUB_OUTPUT"
           echo "current=$(jq -r '.version' package.json)" >> "$GITHUB_OUTPUT"
-          echo "published=$(npm view $(jq -r '.name' package.json)@$(jq -r '.version' package.json) version)" >> "$GITHUB_OUTPUT"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          echo "published=$(npm view $(jq -r '.name' package.json)@$(jq -r '.version' package.json) version 2>/dev/null || echo '')" >> "$GITHUB_OUTPUT"
       - name: Publish ${{ steps.version.outputs.name }}@${{ steps.version.outputs.current }}
-        if: ${{ endsWith(github.ref, format('v{0}', steps.version.outputs.published)) == false }}
+        if: steps.version.outputs.current != steps.version.outputs.published
         run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   github:
     runs-on: ubuntu-latest
     steps:
@@ -40,21 +47,24 @@ jobs:
         with:
           node-version: '22'
           registry-url: https://npm.pkg.github.com
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
       - name: Check version
         id: version
         run: |
           echo "name=$(jq -r '.name' package.json)" >> "$GITHUB_OUTPUT"
           echo "current=$(jq -r '.version' package.json)" >> "$GITHUB_OUTPUT"
-          echo "published=$(npm view $(jq -r '.name' package.json)@$(jq -r '.version' package.json) version)" >> "$GITHUB_OUTPUT"
+          echo "published=$(npm view $(jq -r '.name' package.json)@$(jq -r '.version' package.json) version 2>/dev/null || echo '')" >> "$GITHUB_OUTPUT"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish ${{ steps.version.outputs.name }}@${{ steps.version.outputs.current }}
-        if: ${{ endsWith(github.ref, format('v{0}', steps.version.outputs.published)) == false }}
+        if: steps.version.outputs.current != steps.version.outputs.published
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Sentry release
-        uses: getsentry/action-release@v1
+        uses: getsentry/action-release@v2
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ github.repository_owner }}
@@ -84,31 +94,15 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: '22'
-      - name: Get yarn cache directory
-        id: yarn-cache-dir
-        run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
-      - name: Yarn cache
-        uses: actions/cache@v5
-        with:
-          path: ${{ steps.yarn-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Node modules cache
-        uses: actions/cache@v5
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
+          cache: npm
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --non-interactive
+        run: npm ci
       - name: Get version
         id: version
         run: |
           echo "current=$(jq -r '.version' package.json)" >> "$GITHUB_OUTPUT"
       - name: Documentation
-        run: yarn run docs:build
+        run: npm run docs:build
       - name: Publish ${{ steps.version.outputs.current }}
         uses: peaceiris/actions-gh-pages@v4
         with:

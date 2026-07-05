@@ -28,9 +28,6 @@ tmp
 # Serverless Offline
 .serverless-offline
 
-# npm lockfile (only yarn.lock supported)
-package-lock.json
-
 # Logs
 logs
 *.log

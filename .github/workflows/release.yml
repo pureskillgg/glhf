@@ -44,38 +44,22 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: '22'
-      - name: Get yarn cache directory
-        id: yarn-cache-dir
-        run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
-      - name: Yarn cache
-        uses: actions/cache@v5
-        with:
-          path: ${{ steps.yarn-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Node modules cache
-        uses: actions/cache@v5
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
+          cache: npm
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --non-interactive
+        run: npm ci
       - name: Move runtime dependencies
         run: |
           version=$(jq -r '.devDependencies."@pureskillgg/awsjs"' < package.json)
-          yarn remove @pureskillgg/awsjs
-          yarn add "@pureskillgg/awsjs@${version}"
+          npm uninstall @pureskillgg/awsjs
+          npm install "@pureskillgg/awsjs@${version}"
       - name: Serverless deploy to production from ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
-        run: yarn run deploy
+        run: npm run deploy
         if: ${{ github.event.inputs.environment == 'production' || github.event.client_payload.environment == 'production' }}
         env:
           SERVERLESS_STAGE: prod
           SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
       - name: Serverless deploy to staging from ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
-        run: yarn run deploy
+        run: npm run deploy
         if: ${{ github.event.inputs.environment == 'staging' || github.event.client_payload.environment == 'staging' }}
         env:
           SERVERLESS_STAGE: stg
@@ -86,7 +70,7 @@ jobs:
           echo "version=$(jq -r .version < package.json)" >> "$GITHUB_OUTPUT"
       - name: Sentry release v${{ steps.version.outputs.version }} to production
         if: ${{ github.event.inputs.environment == 'production' || github.event.client_payload.environment == 'production' }}
-        uses: getsentry/action-release@v1
+        uses: getsentry/action-release@v2
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ github.repository_owner }}
@@ -97,7 +81,7 @@ jobs:
           version_prefix: ${{ github.event.repository.name }}@
       - name: Sentry release v${{ steps.version.outputs.version }} to staging
         if: ${{ github.event.inputs.environment == 'staging' || github.event.client_payload.environment == 'staging' }}
-        uses: getsentry/action-release@v1
+        uses: getsentry/action-release@v2
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ github.repository_owner }}
