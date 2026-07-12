@@ -5,13 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## 4.0.0
+## 3.1.1 / 2026-07-05
 
 ### Changed
 
-- **Breaking:** Require Node.js 22+ — `engines.node` is now `>=22.0.0`,
-  dropping support for Node versions below 22. Also bump the devcontainer to
-  Node 22. (CI already ran on Node 22.)
+- Bump internal `@pureskillgg/*` dependencies to their latest published versions.
+- Drop the redundant `uuid` and `luxon` `overrides`, now resolved correctly upstream.
+
+## 3.1.0 / 2026-07-05
+
+### Changed
+
+- Require Node.js 22+ (drop Node <22).
 
 ## 3.0.0 / 2026-06-08
 
