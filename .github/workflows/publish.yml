@@ -107,7 +107,7 @@ jobs:
           echo "current=$(jq -r '.version' package.json)" >> "$GITHUB_OUTPUT"
       - name: Documentation
         run: npm run docs:build
-      - name: Publish ${{ steps.version.outputs.name }}@${{ steps.version.outputs.current }}
+      - name: Publish ${{ steps.version.outputs.current }}
         uses: peaceiris/actions-gh-pages@v4
         with:
           personal_token: ${{ secrets.GH_TOKEN }}
@@ -116,7 +116,7 @@ jobs:
           keep_files: true
           user_name: ${{ secrets.GIT_USER_NAME }}
           user_email: ${{ secrets.GIT_USER_EMAIL }}
-      - name: Publish ${{ steps.version.outputs.name }}@${{ steps.version.outputs.current }}
+      - name: Publish latest
         uses: peaceiris/actions-gh-pages@v4
         with:
           personal_token: ${{ secrets.GH_TOKEN }}

@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
-- Harden the deploy workflows: pass the version input through `env:` instead of interpolating it into the shell line; reject an unrecognized release environment instead of reporting a deploy that never happened; give the dispatch and tag workflows readable run titles; serialize deploys with a concurrency group and give every job a timeout.
+- Harden the deploy workflows: pass the version input through `env:` instead of interpolating it into the shell line; reject an unrecognized release environment instead of reporting a deploy that never happened; give the dispatch and tag workflows readable run titles; serialize deploys with a concurrency group; give every job a timeout.
 
 ## 3.1.2
 
