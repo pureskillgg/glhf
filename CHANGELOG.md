@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## 3.1.3
+
+### Changed
+
+- Harden the deploy workflows: pass the version input through `env:` instead of interpolating it into the shell line; reject an unrecognized release environment instead of reporting a deploy that never happened; give the dispatch and tag workflows readable run titles; serialize deploys with a concurrency group; give every job a timeout.
+
 ## 3.1.2
 
 ### Changed
