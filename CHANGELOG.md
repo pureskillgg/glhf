@@ -9,20 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
-- Harden the deploy workflows: pass the version input through `env:` instead of interpolating it into the shell line; reject an unrecognized release environment instead of reporting a deploy that never happened; give the dispatch and tag workflows readable run titles; serialize deploys with a concurrency group; give every job a timeout.
+- Harden the deploy workflows.
 
 ## 3.1.2
 
 ### Changed
 
-- GitHub Actions updated to Node 24 runtimes: `actions/checkout` v5 to v7; `actions/setup-node` v5 to v6.
+- Update GitHub Actions to Node 24 runtimes.
 
 ## 3.1.1 / 2026-07-05
 
 ### Changed
 
 - Bump internal `@pureskillgg/*` dependencies to their latest published versions.
-- Drop the redundant `uuid` and `luxon` `overrides`, now resolved correctly upstream.
+- Drop the redundant `uuid` and `luxon` `overrides`.
 
 ## 3.1.0 / 2026-07-05
 
