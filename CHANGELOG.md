@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Pin workflow runners to `ubuntu-24.04`.
 - Harden the deploy workflows.
 
 ## 3.1.2
