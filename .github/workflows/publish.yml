@@ -1,5 +1,5 @@
 ---
-name: publish
+name: Publish
 run-name: Publish ${{ github.ref_name }}
 
 on:
@@ -20,16 +20,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: '22'
-          registry-url: https://registry.npmjs.org
-          cache: npm
+      - name: Setup
+        uses: ./.github/actions/setup
       - name: Update npm for OIDC trusted publishing
         run: npm install -g npm@^11
-      - name: Install dependencies
-        run: npm ci
       - name: Check version
         id: version
         run: |
@@ -45,14 +39,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
+      - name: Setup
+        uses: ./.github/actions/setup
         with:
-          node-version: '22'
-          registry-url: https://npm.pkg.github.com
-          cache: npm
-      - name: Install dependencies
-        run: npm ci
+          registry_url: https://npm.pkg.github.com
       - name: Check version
         id: version
         run: |
@@ -67,14 +57,14 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Sentry release
-        uses: getsentry/action-release@v2
+        uses: getsentry/action-release@v3
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ github.repository_owner }}
           SENTRY_PROJECT: ${{ github.event.repository.name }}
         with:
-          version: ${{ steps.version.outputs.current }}
-          version_prefix: ${{ github.event.repository.name }}@
+          release: ${{ steps.version.outputs.current }}
+          release_prefix: ${{ github.event.repository.name }}@
   docs:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
@@ -94,13 +84,8 @@ jobs:
           git_committer_email: ${{ secrets.GIT_USER_EMAIL }}
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.GPG_PASSPHRASE }}
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: '22'
-          cache: npm
-      - name: Install dependencies
-        run: npm ci
+      - name: Setup
+        uses: ./.github/actions/setup
       - name: Get version
         id: version
         run: |

@@ -1,13 +1,21 @@
 ---
-name: main
+name: CI
+run-name: "${{ github.event_name == 'pull_request' && format('CI: {0}', github.event.pull_request.title) || '' }}"
 
 on:
-  - push
-  - pull_request
+  push:
+    branches:
+      - master
+      - 'ver/**'
+  pull_request:
+    branches:
+      - master
+      - 'ver/**'
 
 jobs:
   test:
     runs-on: ubuntu-24.04
+    timeout-minutes: 30
     strategy:
       matrix:
         node:
@@ -16,41 +24,30 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
+      - name: Setup
+        uses: ./.github/actions/setup
         with:
-          node-version: ${{ matrix.node }}
-          cache: npm
-      - name: Install dependencies
-        run: npm ci
+          node_version: ${{ matrix.node }}
       - name: Test
         run: npm test
   lint:
     runs-on: ubuntu-24.04
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: '22'
-          cache: npm
-      - name: Install dependencies
-        run: npm ci
+      - name: Setup
+        uses: ./.github/actions/setup
       - name: Lint
         run: npm run lint
   package:
     runs-on: ubuntu-24.04
+    timeout-minutes: 45
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: '22'
-          cache: npm
-      - name: Install dependencies
-        run: npm ci
+      - name: Setup
+        uses: ./.github/actions/setup
       - name: Move runtime dependencies
         run: |
           version=$(jq -r '.devDependencies."@pureskillgg/awsjs"' < package.json)

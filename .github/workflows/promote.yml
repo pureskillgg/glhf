@@ -1,6 +1,6 @@
 ---
-name: promote
-run-name: Promote ${{ github.ref_name }} to staging
+name: Send to staging
+run-name: Send ${{ github.ref_name }} to staging
 
 on:
   push:
@@ -16,15 +16,9 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
-      - name: Get tag
-        uses: jungwinter/split@v2
-        id: tag
-        with:
-          msg: ${{ github.ref }}
-          separator: /
-      - name: Promote ${{ steps.tag.outputs._2 }} to staging
+      - name: Send ${{ github.ref_name }} to staging
         uses: peter-evans/repository-dispatch@v4
         with:
           token: ${{ secrets.GH_TOKEN }}
           event-type: release
-          client-payload: '{"environment": "staging", "ref": "${{ steps.tag.outputs._2 }}"}'
+          client-payload: '{"environment": "staging", "ref": "${{ github.ref_name }}"}'

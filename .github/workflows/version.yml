@@ -1,15 +1,20 @@
 ---
-name: version
+name: Cut version
 run-name: Cut ${{ github.event.inputs.version }}${{ github.event.client_payload.version }}
 
 on:
   workflow_dispatch:
     inputs:
       version:
-        description: Version to cut
+        description: 'patch, minor, major or X.Y.Z'
+        required: true
   repository_dispatch:
     types:
       - version
+
+concurrency:
+  group: version
+  cancel-in-progress: false
 
 jobs:
   release:
@@ -42,13 +47,8 @@ jobs:
           git_committer_email: ${{ secrets.GIT_USER_EMAIL }}
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.GPG_PASSPHRASE }}
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: '22'
-          cache: npm
-      - name: Install dependencies
-        run: npm ci
+      - name: Setup
+        uses: ./.github/actions/setup
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
@@ -56,7 +56,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Cut ${{ github.event.inputs.version }}${{ github.event.client_payload.version }} version
-        run: npm version "$VERSION"
+        # setup points npm at its own .npmrc (registry-url), so the sign-git-tag set above no longer applies
+        run: npm version --sign-git-tag=true "$VERSION"
         env:
           VERSION: ${{ github.event.inputs.version }}${{ github.event.client_payload.version }}
           SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
