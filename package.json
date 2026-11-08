@@ -42,7 +42,7 @@
     "lint:docs": "documentation lint 'lib/**/*.doc.js'",
     "prepublishOnly": "npm-run-all --parallel lint test",
     "preversion": "npm-run-all --parallel lint test sls:package",
-    "postversion": "git push --follow-tags",
+    "postversion": "git push --atomic --follow-tags",
     "sls:package": "serverless package",
     "sls:invoke": "serverless invoke local -f",
     "deploy": "npm-run-all --serial deploy:stack",

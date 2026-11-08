@@ -1,6 +1,6 @@
 ---
-name: release
-run-name: Release ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }} to ${{ github.event.inputs.environment }}${{ github.event.client_payload.environment }}
+name: Deploy
+run-name: Deploy ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }} to ${{ github.event.inputs.environment }}${{ github.event.client_payload.environment }}
 
 on:
   workflow_dispatch:
@@ -29,6 +29,9 @@ jobs:
   check:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
+    outputs:
+      sha: ${{ steps.ref.outputs.sha }}
+      deploy_ref: ${{ steps.ref.outputs.deploy_ref }}
     steps:
       - name: Check environment
         env:
@@ -42,6 +45,58 @@ jobs:
               exit 1
               ;;
           esac
+      # Production takes a v* tag, the default branch or a full commit SHA (redeploy sends one),
+      # and the commit must be on the default branch or a ver/* maintenance branch.
+      - name: Checkout
+        if: ${{ github.event.inputs.environment == 'production' || github.event.client_payload.environment == 'production' }}
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
+          fetch-depth: 0
+          filter: blob:none
+          persist-credentials: false
+      - name: Check the ref for production
+        id: ref
+        if: ${{ github.event.inputs.environment == 'production' || github.event.client_payload.environment == 'production' }}
+        env:
+          REF: ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          case "$REF" in
+            "$DEFAULT_BRANCH"|"refs/heads/$DEFAULT_BRANCH") ;;
+            v[0-9]*|refs/tags/v[0-9]*)
+              # a tag, not a branch that happens to be named like one
+              if ! git show-ref --verify --quiet "refs/tags/${REF#refs/tags/}"; then
+                echo "::error::$REF is not a tag"
+                exit 1
+              fi
+              # checkout takes a branch over a tag of the same name: what it checked out must be the tag's commit
+              if [ "$(git rev-parse HEAD)" != "$(git rev-parse "refs/tags/${REF#refs/tags/}^{commit}")" ]; then
+                echo "::error::$REF is also a branch; deploy refs/tags/${REF#refs/tags/}"
+                exit 1
+              fi
+              ;;
+            *)
+              if [[ ! "$REF" =~ ^[0-9a-f]{40}$ ]]; then
+                echo "::error::Production takes a v* tag, $DEFAULT_BRANCH or a commit SHA"
+                printf 'got: %q\n' "$REF"
+                exit 1
+              fi
+              ;;
+          esac
+          if ! git merge-base --is-ancestor HEAD "origin/$DEFAULT_BRANCH" &&
+            [ -z "$(git branch -r --contains HEAD --list 'origin/ver/*')" ]; then
+            echo "::error::$REF is not on $DEFAULT_BRANCH or a ver/* branch"
+            exit 1
+          fi
+          # deploy checks out this commit, so a ref that moves after this check can't change what ships
+          # deploy_ref is what the GitHub deployment records: the tag, or the commit for anything else
+          name="${REF#refs/tags/}"
+          if [[ "$name" =~ ^v[0-9] ]]; then deploy_ref="$name"; else deploy_ref="$(git rev-parse HEAD)"; fi
+          {
+            echo "sha=$(git rev-parse HEAD)"
+            echo "deploy_ref=$deploy_ref"
+          } >> "$GITHUB_OUTPUT"
   deploy:
     needs: check
     runs-on: ubuntu-24.04
@@ -50,7 +105,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
         with:
-          ref: ${{ github.event.inputs.ref }}${{ github.event.client_payload.ref }}
+          # production: the commit the check job checked
+          ref: ${{ needs.check.outputs.sha || format('{0}{1}', github.event.client_payload.ref, github.event.inputs.ref) }}
       - name: Start deployment
         uses: maxgfr/github-multi-deployments@v1.8.5
         id: deployment
@@ -58,7 +114,7 @@ jobs:
           step: start
           env: ${{ github.event.inputs.environment }}${{ github.event.client_payload.environment }}
           desc: ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
-          ref: ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
+          ref: ${{ needs.check.outputs.deploy_ref || format('{0}{1}', github.event.client_payload.ref, github.event.inputs.ref) }}
           auto_inactive: 'true'
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Configure AWS credentials
@@ -97,29 +153,30 @@ jobs:
           echo "version=$(jq -r .version < package.json)" >> "$GITHUB_OUTPUT"
       - name: Sentry release v${{ steps.version.outputs.version }} to production
         if: ${{ github.event.inputs.environment == 'production' || github.event.client_payload.environment == 'production' }}
-        uses: getsentry/action-release@v2
+        uses: getsentry/action-release@v3
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ github.repository_owner }}
           SENTRY_PROJECT: ${{ github.event.repository.name }}
         with:
           environment: prod
-          version: ${{ steps.version.outputs.version }}
-          version_prefix: ${{ github.event.repository.name }}@
+          release: ${{ steps.version.outputs.version }}
+          release_prefix: ${{ github.event.repository.name }}@
       - name: Sentry release v${{ steps.version.outputs.version }} to staging
         if: ${{ github.event.inputs.environment == 'staging' || github.event.client_payload.environment == 'staging' }}
-        uses: getsentry/action-release@v2
+        uses: getsentry/action-release@v3
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ github.repository_owner }}
           SENTRY_PROJECT: ${{ github.event.repository.name }}
         with:
           environment: stg
-          version: ${{ steps.version.outputs.version }}
-          version_prefix: ${{ github.event.repository.name }}@
+          release: ${{ steps.version.outputs.version }}
+          release_prefix: ${{ github.event.repository.name }}@
       - name: Get status
         id: status
         if: always()
+        shell: bash
         run: |
           if [ "${JOB_STATUS,,}" == 'success' ]; then
             echo "color=#00ff00" >> "$GITHUB_OUTPUT"
@@ -137,7 +194,7 @@ jobs:
           SLACK_ICON_EMOJI: ':github:'
           SLACK_COLOR: ${{ steps.status.outputs.color }}
           SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-          SLACK_TITLE: Deployed ${{ github.event.inputs.environment }}${{ github.event.client_payload.environment }}
+          SLACK_TITLE: ${{ job.status == 'success' && 'Deployed' || format('Deploy {0}:', job.status) }} ${{ github.event.inputs.environment }}${{ github.event.client_payload.environment }}
           SLACK_MESSAGE: ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
           SLACK_FOOTER: ${{ github.repository }}
       - name: Finish deployment

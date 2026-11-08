@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Set Node up with the shared setup action in every workflow but Deploy; CI runs on pushes and PRs to master and `ver/**` only. Rename the workflows as they show on the Actions tab (CI, Format, Cut version, Publish, Send to staging, Deploy) with readable run titles; production deploys take only a version tag, the default branch or a commit on it; the Discord post says when a deploy failed; Sentry release action v3; one version cut at a time, with a required version input; the version tag is pushed only together with its branch (`git push --atomic`); format skips fork and Dependabot PRs; every job has a timeout.
 - Pin workflow runners to `ubuntu-24.04`.
 - Harden the deploy workflows.
 

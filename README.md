@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@pureskillgg/glhf.svg)](https://www.npmjs.com/package/@pureskillgg/glhf)
 [![docs](https://img.shields.io/badge/docs-online-informational)](https://dev.pureskill.gg/glhf/)
-[![GitHub Actions](https://github.com/pureskillgg/glhf/workflows/main/badge.svg)](https://github.com/pureskillgg/glhf/actions)
+[![GitHub Actions](https://github.com/pureskillgg/glhf/actions/workflows/main.yml/badge.svg)](https://github.com/pureskillgg/glhf/actions)
 
 Code Lambda for fun and profit.
 
@@ -498,19 +498,19 @@ Use the [`npm version`][npm-version] command to release a new version.
 This will push a new git tag which will trigger a GitHub action.
 
 Publishing may be triggered using on the web
-using a [version workflow_dispatch on GitHub Actions].
+using a [Cut version workflow on GitHub Actions].
 
 [npm-version]: https://docs.npmjs.com/cli/version
-[version workflow_dispatch on GitHub Actions]: https://github.com/pureskillgg/glhf/actions?query=workflow%3Aversion
+[Cut version workflow on GitHub Actions]: https://github.com/pureskillgg/glhf/actions/workflows/version.yml
 
 ### Deployment
 
 Serverless deployment is triggered by a release repository_dispatch on GitHub Actions.
 
 Deployment may be triggered using on the web
-using a [release workflow_dispatch on GitHub Actions].
+using a [Deploy workflow on GitHub Actions].
 
-[release workflow_dispatch on GitHub Actions]: https://github.com/pureskillgg/glhf/actions?query=workflow%3Arelease
+[Deploy workflow on GitHub Actions]: https://github.com/pureskillgg/glhf/actions/workflows/release.yml
 
 ## GitHub Actions
 
