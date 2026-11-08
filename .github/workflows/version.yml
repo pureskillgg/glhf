@@ -36,7 +36,6 @@ jobs:
           git remote set-url --push origin "https://${GH_USER}:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git config user.name "$GIT_USER_NAME"
           git config user.email "$GIT_USER_EMAIL"
-          npm config set sign-git-tag true
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@v7
         id: import_gpg
@@ -56,7 +55,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Cut ${{ github.event.inputs.version }}${{ github.event.client_payload.version }} version
-        # setup points npm at its own .npmrc (registry-url), so the sign-git-tag set above no longer applies
         run: npm version --sign-git-tag=true "$VERSION"
         env:
           VERSION: ${{ github.event.inputs.version }}${{ github.event.client_payload.version }}
