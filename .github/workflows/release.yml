@@ -31,6 +31,7 @@ jobs:
     timeout-minutes: 5
     outputs:
       sha: ${{ steps.ref.outputs.sha }}
+      deploy_ref: ${{ steps.ref.outputs.deploy_ref }}
     steps:
       - name: Check environment
         env:
@@ -89,7 +90,13 @@ jobs:
             exit 1
           fi
           # deploy checks out this commit, so a ref that moves after this check can't change what ships
-          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          # deploy_ref is what the GitHub deployment records: the tag, or the commit for anything else
+          name="${REF#refs/tags/}"
+          if [[ "$name" =~ ^v[0-9] ]]; then deploy_ref="$name"; else deploy_ref="$(git rev-parse HEAD)"; fi
+          {
+            echo "sha=$(git rev-parse HEAD)"
+            echo "deploy_ref=$deploy_ref"
+          } >> "$GITHUB_OUTPUT"
   deploy:
     needs: check
     runs-on: ubuntu-24.04
@@ -107,7 +114,7 @@ jobs:
           step: start
           env: ${{ github.event.inputs.environment }}${{ github.event.client_payload.environment }}
           desc: ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
-          ref: ${{ github.event.client_payload.ref }}${{ github.event.inputs.ref }}
+          ref: ${{ needs.check.outputs.deploy_ref || format('{0}{1}', github.event.client_payload.ref, github.event.inputs.ref) }}
           auto_inactive: 'true'
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Configure AWS credentials
